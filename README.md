@@ -1,4 +1,4 @@
-# Jenkins master for Docker
+# Dockerized Jenkins master
 
 
 ### Read plugins from remote Jenkins
