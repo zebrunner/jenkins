@@ -1,7 +1,7 @@
 # Jenkins master for Docker
 
 
-### Reads plugins from remote Jenkins
+### Read plugins from remote Jenkins
 ```
 #!/bin/bash
 
