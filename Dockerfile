@@ -2,15 +2,14 @@ FROM jenkins/jenkins:lts-alpine
 
 ENV ROOT_URL=http://localhost:8083/jenkins
 ENV ROOT_EMAIL=cloud@qaprosoft.com
-ENV ADMIN_NAME=admin
+ENV ADMIN_USER=admin
 ENV ADMIN_PASS=qaprosoft
 ENV JENKINS_JOB_DSL_GIT_URL=git@github.com:qaprosoft/jenkins-job-dsl.git
-ENV JENKINS_OPTS="--prefix=/jenkins --httpPort=-1 --httpsPort=8083 --httpsCertificate=/var/jenkins_home/ssl.crt --httpsPrivateKey=/var/jenkins_home/ssl.key"
+ENV JENKINS_OPTS="--prefix=/jenkins --httpPort=-1 --httpsPort=8083 --httpsKeyStore=/var/jenkins_home/keystore.jks --httpsKeyStorePassword=password"
 ENV CARINA_CORE_VERSION=LATEST
-ENV CORE_LOG_LEVEL=INFO
-ENV DEFAULT_BASE_MAVEN_GOALS="-f pom.xml -Dci_run_id=${ci_run_id} -Dcore_log_level=${CORE_LOG_LEVEL} -Ddevice=${device} -Demail_list=${email_list} -Dmaven.test.failure.ignore=true -Dselenium_host=${SELENIUM_HOST} -Dmax_screen_history=1 -Dinit_retry_count=0 -Dinit_retry_interval=10 -Dcarina-core_version=${CARINA_CORE_VERSION} $ZAFIRA_BASE_CONFIG clean test"
+ENV DEFAULT_BASE_MAVEN_GOALS="-Dcarina-core_version='\$CARINA_CORE_VERSION' -f pom.xml -Dci_run_id='\$ci_run_id' -Dcore_log_level='\$CORE_LOG_LEVEL' -Demail_list='\$email_list' -Dmaven.test.failure.ignore=true -Dselenium_host='\$SELENIUM_HOST' -Dmax_screen_history=1 -Dinit_retry_count=0 -Dinit_retry_interval=10 '\$ZAFIRA_BASE_CONFIG' clean test"
 ENV SELENIUM_HOST=http://localhost:4444/wd/hub
-ENV ZAFIRA_BASE_CONFIG=-Dzafira_enabled=true -Dzafira_rerun_failures=${rerun_failures} -Dzafira_service_url=$ZAFIRA_SERVICE_URL -Dgit_branch=$GIT_BRANCH -Dgit_commit=$GIT_COMMIT -Dgit_url=$GIT_URL -Dci_user_id=$BUILD_USER_ID -Dci_user_first_name=$BUILD_USER_FIRST_NAME -Dci_user_last_name=$BUILD_USER_LAST_NAME -Dci_user_email=$BUILD_USER_EMAIL
+ENV ZAFIRA_BASE_CONFIG="-Dzafira_enabled=true -Dzafira_rerun_failures='\$rerun_failures' -Dzafira_service_url='\$ZAFIRA_SERVICE_URL' -Dgit_branch='\$GIT_BRANCH' -Dgit_commit='\$GIT_COMMIT' -Dgit_url='\$GIT_URL' -Dci_user_id='\$BUILD_USER_ID' -Dci_user_first_name='\$BUILD_USER_FIRST_NAME' -Dci_user_last_name='\$BUILD_USER_LAST_NAME' -Dci_user_email='\$BUILD_USER_EMAIL'"
 ENV ZAFIRA_SERVICE_URL=https://localhost:8080/zafira-ws
 
 USER root
@@ -53,7 +52,12 @@ RUN /usr/local/bin/mvn-entrypoint.sh
 USER jenkins
 
 COPY resources/init.groovy.d/ /usr/share/jenkins/ref/init.groovy.d/
-COPY resources/configs/plugins.txt /usr/share/jenkins/ref/
 COPY resources/jobs/ /usr/share/jenkins/ref/jobs/
 
+# Configure plugins
+
+COPY resources/configs/plugins.txt /usr/share/jenkins/ref/
 RUN /usr/local/bin/plugins.sh /usr/share/jenkins/ref/plugins.txt
+
+COPY resources/configs/jp.ikedam.jenkins.plugins.extensible_choice_parameter.GlobalTextareaChoiceListProvider.xml /usr/share/jenkins/ref/
+COPY resources/configs/org.jenkinsci.plugins.workflow.libs.GlobalLibraries.xml /usr/share/jenkins/ref/

@@ -1,18 +1,22 @@
 import hudson.model.*;
 import jenkins.model.*;
 
+// Disable Jenkins security that blocks eTAF reports
+System.setProperty("hudson.model.DirectoryBrowserSupport.CSP", "default-src 'self'; script-src 'self' https://ajax.googleapis.com 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self'")
+
 // Variables
 def env = System.getenv()
 
 def rootURL = env['ROOT_URL']
 def rootEmail = env['ROOT_EMAIL']
 
-def carinaCoreVersion = env['CARINA_CORE_VERSION']
 def coreLogLevel = env['CORE_LOG_LEVEL']
 def defaultBaseMavenGoals = env['DEFAULT_BASE_MAVEN_GOALS']
 def seleniumHost = env['SELENIUM_HOST']
+def carinaCoreVersion = env['CARINA_CORE_VERSION']
 def zafiraBaseConfig = env['ZAFIRA_BASE_CONFIG']
 def zafiraServiceURL = env['ZAFIRA_SERVICE_URL']
+def jenkinsJobDslGitURL = env['JENKINS_JOB_DSL_GIT_URL']
 
 def globalPipelineLib = env['GLOBAL_PIPELINE_LIB']
 
@@ -45,10 +49,6 @@ Thread.start {
       envVars = envVarsNodePropertyList.get(0).getEnvVars()
     }
 
-    if ( carinaCoreVersion != null ) {
-      envVars.put("CARINA_CORE_VERSION", carinaCoreVersion)
-    }
-
     if ( coreLogLevel != null ) {
       envVars.put("CORE_LOG_LEVEL", coreLogLevel)
     }
@@ -61,6 +61,10 @@ Thread.start {
       envVars.put("SELENIUM_HOST", seleniumHost)
     }
 
+    if ( carinaCoreVersion != null ) {
+      envVars.put("CARINA_CORE_VERSION", carinaCoreVersion)
+    }
+
     if ( zafiraBaseConfig != null ) {
       envVars.put("ZAFIRA_BASE_CONFIG", zafiraBaseConfig)
     }
@@ -71,6 +75,10 @@ Thread.start {
 
     if ( globalPipelineLib != null ) {
       envVars.put("GLOBAL_PIPELINE_LIB", globalPipelineLib)
+    }
+
+    if ( jenkinsJobDslGitURL != null ) {
+      envVars.put("JENKINS_JOB_DSL_GIT_URL", jenkinsJobDslGitURL)
     }
 
     // Save the state

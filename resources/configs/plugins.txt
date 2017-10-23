@@ -3,12 +3,13 @@ ant:1.7
 antisamy-markup-formatter:1.5
 apache-httpcomponents-client-4-api:4.5.3-2.0
 authentication-tokens:1.3
+ansicolor:0.5.2
 blueocean-autofavorite:1.0.0
 blueocean-bitbucket-pipeline:1.3.0
 blueocean-commons:1.3.0
 blueocean-config:1.3.0
 blueocean-dashboard:1.3.0
-blueocean-display-url:2.1.0
+blueocean-display-url:2.1.1
 blueocean-events:1.3.0
 blueocean-git-pipeline:1.3.0
 blueocean-github-pipeline:1.3.0
@@ -91,7 +92,7 @@ pipeline-stage-view:2.9
 plain-credentials:1.4
 pubsub-light:1.12
 random-string-parameter:1.0
-rebuild:1.25
+rebuild:1.27
 resource-disposer:0.8
 role-strategy:2.6.1
 run-condition:1.0
@@ -99,10 +100,10 @@ scm-api:2.2.3
 script-security:1.34
 sse-gateway:1.15
 ssh-credentials:1.13
-ssh-slaves:1.21
+ssh-slaves:1.22
 structs:1.10
 subversion:2.9
-swarm:3.5
+swarm:3.6
 timestamper:1.8.8
 token-macro:2.3
 variant:1.1

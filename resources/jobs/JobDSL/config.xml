@@ -4,7 +4,7 @@
   <description></description>
   <keepDependencies>false</keepDependencies>
   <properties>
-    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.25">
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.27">
       <autoRebuild>false</autoRebuild>
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
@@ -13,7 +13,7 @@
     <configVersion>2</configVersion>
     <userRemoteConfigs>
       <hudson.plugins.git.UserRemoteConfig>
-        <url>${JENKINS_JOB_DSL_GIT_URL}</url>
+        <url>`\$JENKINS_JOB_DSL_GIT_URL`</url>
       </hudson.plugins.git.UserRemoteConfig>
     </userRemoteConfigs>
     <branches>
@@ -41,9 +41,10 @@
       <failOnMissingPlugin>false</failOnMissingPlugin>
       <unstableOnDeprecation>false</unstableOnDeprecation>
       <removedJobAction>IGNORE</removedJobAction>
-      <removedViewAction>IGNORE</removedViewAction>
-      <removedConfigFilesAction>IGNORE</removedConfigFilesAction>
+      <removedViewAction>DELETE</removedViewAction>
+      <removedConfigFilesAction>DELETE</removedConfigFilesAction>
       <lookupStrategy>JENKINS_ROOT</lookupStrategy>
+      <additionalClasspath>src/main/groovy</additionalClasspath>
     </javaposse.jobdsl.plugin.ExecuteDslScripts>
   </builders>
   <publishers/>
