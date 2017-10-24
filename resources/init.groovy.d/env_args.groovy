@@ -50,39 +50,39 @@ Thread.start {
       envVars = envVarsNodePropertyList.get(0).getEnvVars()
     }
 
-    if ( coreLogLevel != null ) {
+    if ( coreLogLevel != null && !envVars.containsKey("CORE_LOG_LEVEL") ) {
       envVars.put("CORE_LOG_LEVEL", coreLogLevel)
     }
 
-    if ( defaultBaseMavenGoals != null ) {
+    if ( defaultBaseMavenGoals != null && !envVars.containsKey("DEFAULT_BASE_MAVEN_GOALS") ) {
       envVars.put("DEFAULT_BASE_MAVEN_GOALS", defaultBaseMavenGoals)
     }
 
-    if ( seleniumHost != null ) {
+    if ( seleniumHost != null && !envVars.containsKey("SELENIUM_HOST") ) {
       envVars.put("SELENIUM_HOST", seleniumHost)
     }
 
-    if ( carinaCoreVersion != null ) {
+    if ( carinaCoreVersion != null && !envVars.containsKey("CARINA_CORE_VERSION") ) {
       envVars.put("CARINA_CORE_VERSION", carinaCoreVersion)
     }
 
-    if ( zafiraBaseConfig != null ) {
+    if ( zafiraBaseConfig != null && !envVars.containsKey("ZAFIRA_BASE_CONFIG") ) {
       envVars.put("ZAFIRA_BASE_CONFIG", zafiraBaseConfig)
     }
 
-    if ( zafiraServiceURL != null ) {
+    if ( zafiraServiceURL != null && !envVars.containsKey("ZAFIRA_SERVICE_URL") ) {
       envVars.put("ZAFIRA_SERVICE_URL", zafiraServiceURL)
     }
 
-    if ( zafiraAccessToken != null ) {
+    if ( zafiraAccessToken != null && !envVars.containsKey("ZAFIRA_ACCESS_TOKEN") ) {
       envVars.put("ZAFIRA_ACCESS_TOKEN", zafiraAccessToken)
     }
 
-    if ( globalPipelineLib != null ) {
+    if ( globalPipelineLib != null && !envVars.containsKey("GLOBAL_PIPELINE_LIB") ) {
       envVars.put("GLOBAL_PIPELINE_LIB", globalPipelineLib)
     }
 
-    if ( jenkinsJobDslGitURL != null ) {
+    if ( jenkinsJobDslGitURL != null && !envVars.containsKey("JENKINS_JOB_DSL_GIT_URL") ) {
       envVars.put("JENKINS_JOB_DSL_GIT_URL", jenkinsJobDslGitURL)
     }
 
