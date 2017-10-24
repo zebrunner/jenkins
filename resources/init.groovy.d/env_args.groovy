@@ -16,6 +16,7 @@ def seleniumHost = env['SELENIUM_HOST']
 def carinaCoreVersion = env['CARINA_CORE_VERSION']
 def zafiraBaseConfig = env['ZAFIRA_BASE_CONFIG']
 def zafiraServiceURL = env['ZAFIRA_SERVICE_URL']
+def zafiraAccessToken = env['ZAFIRA_ACCESS_TOKEN']
 def jenkinsJobDslGitURL = env['JENKINS_JOB_DSL_GIT_URL']
 
 def globalPipelineLib = env['GLOBAL_PIPELINE_LIB']
@@ -71,6 +72,10 @@ Thread.start {
 
     if ( zafiraServiceURL != null ) {
       envVars.put("ZAFIRA_SERVICE_URL", zafiraServiceURL)
+    }
+
+    if ( zafiraAccessToken != null ) {
+      envVars.put("ZAFIRA_ACCESS_TOKEN", zafiraAccessToken)
     }
 
     if ( globalPipelineLib != null ) {
