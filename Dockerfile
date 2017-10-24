@@ -10,7 +10,8 @@ ENV CARINA_CORE_VERSION=LATEST
 ENV CORE_LOG_LEVEL=INFO
 ENV DEFAULT_BASE_MAVEN_GOALS="-Dcarina-core_version=\$CARINA_CORE_VERSION -f pom.xml -Dci_run_id=\$ci_run_id -Dcore_log_level=\$CORE_LOG_LEVEL -Demail_list=\$email_list -Dmaven.test.failure.ignore=true -Dselenium_host=\$SELENIUM_HOST -Dmax_screen_history=1 -Dinit_retry_count=0 -Dinit_retry_interval=10 \$ZAFIRA_BASE_CONFIG clean test"
 ENV SELENIUM_HOST=http://localhost:4444/wd/hub
-ENV ZAFIRA_BASE_CONFIG="-Dzafira_enabled=true -Dzafira_rerun_failures=\$rerun_failures -Dzafira_service_url=\$ZAFIRA_SERVICE_URL -Dgit_branch=\$GIT_BRANCH -Dgit_commit=\$GIT_COMMIT -Dgit_url=\$GIT_URL -Dci_user_id=\$BUILD_USER_ID -Dci_user_first_name=\$BUILD_USER_FIRST_NAME -Dci_user_last_name=\$BUILD_USER_LAST_NAME -Dci_user_email=\$BUILD_USER_EMAIL"
+ENV ZAFIRA_ACCESS_TOKEN=CHANGE_ME
+ENV ZAFIRA_BASE_CONFIG="-Dzafira_enabled=true -Dzafira_rerun_failures=\$rerun_failures -Dzafira_service_url=\$ZAFIRA_SERVICE_URL -Dgit_branch=\$GIT_BRANCH -Dgit_commit=\$GIT_COMMIT -Dgit_url=\$GIT_URL -Dci_user_id=\$BUILD_USER_ID -Dci_user_first_name=\$BUILD_USER_FIRST_NAME -Dci_user_last_name=\$BUILD_USER_LAST_NAME -Dci_user_email=\$BUILD_USER_EMAIL -Dzafira_access_token=\$ZAFIRA_ACCESS_TOKEN"
 ENV ZAFIRA_SERVICE_URL=https://localhost:8080/zafira-ws
 
 USER root
