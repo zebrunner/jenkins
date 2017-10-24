@@ -44,7 +44,8 @@ COPY resources/configs/settings-docker.xml /usr/share/maven/ref/
 
 VOLUME "$USER_HOME_DIR/.m2"
 
-RUN chown -R jenkins "$USER_HOME_DIR" /usr/share/maven /usr/share/maven/ref /etc/ssl/certs/java/cacerts
+RUN chown -R jenkins "$USER_HOME_DIR" /usr/share/maven /usr/share/maven/ref
+RUN chmod a+w /etc/ssl/certs/java/cacerts
 
 RUN /usr/local/bin/mvn-entrypoint.sh
 
