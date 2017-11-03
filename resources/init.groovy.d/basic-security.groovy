@@ -8,9 +8,12 @@ def user = env['ADMIN_USER']
 def pass = env['ADMIN_PASS']
 
 def hudsonRealm = new HudsonPrivateSecurityRealm(false)
-hudsonRealm.createAccount(user, pass)
-instance.setSecurityRealm(hudsonRealm)
+if(!hudsonRealm.hasSomeUser())
+{
+    hudsonRealm.createAccount(user, pass)
+    instance.setSecurityRealm(hudsonRealm)
 
-def strategy = new FullControlOnceLoggedInAuthorizationStrategy()
-instance.setAuthorizationStrategy(strategy)
-instance.save()
+    def strategy = new FullControlOnceLoggedInAuthorizationStrategy()
+    instance.setAuthorizationStrategy(strategy)
+    instance.save()
+}
