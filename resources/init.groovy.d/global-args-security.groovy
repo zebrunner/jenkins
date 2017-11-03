@@ -1,5 +1,6 @@
 import hudson.model.*;
 import jenkins.model.*;
+import hudson.security.*
 
 // Disable Jenkins security that blocks eTAF reports
 System.setProperty("hudson.model.DirectoryBrowserSupport.CSP", "default-src 'self'; script-src 'self' https://ajax.googleapis.com 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self'")
@@ -9,6 +10,9 @@ def env = System.getenv()
 
 def rootURL = env['ROOT_URL']
 def rootEmail = env['ROOT_EMAIL']
+
+def user = env['ADMIN_USER']
+def pass = env['ADMIN_PASS']
 
 def coreLogLevel = env['CORE_LOG_LEVEL']
 def defaultBaseMavenGoals = env['DEFAULT_BASE_MAVEN_GOALS']
@@ -84,6 +88,19 @@ Thread.start {
 
     if ( jenkinsJobDslGitURL != null && !envVars.containsKey("JENKINS_JOB_DSL_GIT_URL") ) {
       envVars.put("JENKINS_JOB_DSL_GIT_URL", jenkinsJobDslGitURL)
+    }
+
+    // Setup security
+    if(!envVars.containsKey("JENKINS_SECURITY_INITIALIZED") || envVars.get("JENKINS_SECURITY_INITIALIZED") != "true")
+    {
+        def hudsonRealm = new HudsonPrivateSecurityRealm(false)
+        hudsonRealm.createAccount(user, pass)
+        instance.setSecurityRealm(hudsonRealm)
+
+        def strategy = new FullControlOnceLoggedInAuthorizationStrategy()
+        instance.setAuthorizationStrategy(strategy)
+
+        envVars.put("JENKINS_SECURITY_INITIALIZED", "true")
     }
 
     // Save the state
