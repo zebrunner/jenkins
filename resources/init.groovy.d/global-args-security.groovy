@@ -1,6 +1,9 @@
 import hudson.model.*;
 import jenkins.model.*;
 import hudson.security.*
+import com.cloudbees.plugins.credentials.impl.*;
+import com.cloudbees.plugins.credentials.*;
+import com.cloudbees.plugins.credentials.domains.*;
 
 // Disable Jenkins security that blocks eTAF reports
 System.setProperty("hudson.model.DirectoryBrowserSupport.CSP", "default-src 'self'; script-src 'self' https://ajax.googleapis.com 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self'")
@@ -15,13 +18,15 @@ def user = env['ADMIN_USER']
 def pass = env['ADMIN_PASS']
 
 def coreLogLevel = env['CORE_LOG_LEVEL']
-def defaultBaseMavenGoals = env['DEFAULT_BASE_MAVEN_GOALS']
 def seleniumHost = env['SELENIUM_HOST']
 def carinaCoreVersion = env['CARINA_CORE_VERSION']
 def zafiraBaseConfig = env['ZAFIRA_BASE_CONFIG']
 def zafiraServiceURL = env['ZAFIRA_SERVICE_URL']
 def zafiraAccessToken = env['ZAFIRA_ACCESS_TOKEN']
 def jenkinsJobDslGitURL = env['JENKINS_JOB_DSL_GIT_URL']
+
+def jacocoBucket = env['JACOCO_BUCKET']
+def jacocoEnable = env['JACOCO_ENABLE']
 
 def globalPipelineLib = env['GLOBAL_PIPELINE_LIB']
 
@@ -58,10 +63,6 @@ Thread.start {
       envVars.put("CORE_LOG_LEVEL", coreLogLevel)
     }
 
-    if ( defaultBaseMavenGoals != null && !envVars.containsKey("DEFAULT_BASE_MAVEN_GOALS") ) {
-      envVars.put("DEFAULT_BASE_MAVEN_GOALS", defaultBaseMavenGoals)
-    }
-
     if ( seleniumHost != null && !envVars.containsKey("SELENIUM_HOST") ) {
       envVars.put("SELENIUM_HOST", seleniumHost)
     }
@@ -88,6 +89,14 @@ Thread.start {
 
     if ( jenkinsJobDslGitURL != null && !envVars.containsKey("JENKINS_JOB_DSL_GIT_URL") ) {
       envVars.put("JENKINS_JOB_DSL_GIT_URL", jenkinsJobDslGitURL)
+    }
+
+    if ( jacocoBucket != null && !envVars.containsKey("JACOCO_BUCKET") ) {
+      envVars.put("JACOCO_BUCKET", jacocoBucket)
+    }
+
+    if ( jacocoEnable != null && !envVars.containsKey("JACOCO_ENABLE") ) {
+      envVars.put("JACOCO_ENABLE", jacocoEnable)
     }
 
     // Setup security

@@ -8,11 +8,14 @@ ENV JENKINS_JOB_DSL_GIT_URL=git@github.com:qaprosoft/jenkins-job-dsl.git
 ENV JENKINS_OPTS="--prefix=/jenkins --httpPort=-1 --httpsPort=8083 --httpsKeyStore=/var/jenkins_home/keystore.jks --httpsKeyStorePassword=password"
 ENV CARINA_CORE_VERSION=LATEST
 ENV CORE_LOG_LEVEL=INFO
-ENV DEFAULT_BASE_MAVEN_GOALS="-Dcarina-core_version=\$CARINA_CORE_VERSION -f pom.xml -Dci_run_id=\$ci_run_id -Dcore_log_level=\$CORE_LOG_LEVEL -Demail_list=\$email_list -Dmaven.test.failure.ignore=true -Dselenium_host=\$SELENIUM_HOST -Dmax_screen_history=1 -Dinit_retry_count=0 -Dinit_retry_interval=10 \$ZAFIRA_BASE_CONFIG clean test"
 ENV SELENIUM_HOST=http://localhost:4444/wd/hub
-ENV ZAFIRA_ACCESS_TOKEN=eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwicGFzc3dvcmQiOiJXRUNXYUwxUDRodUJ0YUtlMmFIMCsyWkZHbUZzWW9UMiIsImV4cCI6MTMwMzYxMDgwNzQ4fQ.lfK1JB6pY1Sih9AzE2HQ5XJ44w--IVszWJIbdfXJ6V9bCiYbs1nICSF_FYkrrHwPIQ9qeuDJtxXOYGqiU8MdDg
-ENV ZAFIRA_BASE_CONFIG="-Dzafira_enabled=true -Dzafira_rerun_failures=\$rerun_failures -Dzafira_service_url=\$ZAFIRA_SERVICE_URL -Dgit_branch=\$GIT_BRANCH -Dgit_commit=\$GIT_COMMIT -Dgit_url=\$GIT_URL -Dci_user_id=\$BUILD_USER_ID -Dci_user_first_name=\$BUILD_USER_FIRST_NAME -Dci_user_last_name=\$BUILD_USER_LAST_NAME -Dci_user_email=\$BUILD_USER_EMAIL -Dzafira_access_token=\$ZAFIRA_ACCESS_TOKEN"
+ENV ZAFIRA_ACCESS_TOKEN=eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwicGFzc3dvcmQiOiJhaTk1Q0JFUmN2MEw4WHZERWozMzV3dkxhK1AxMU50ViIsImV4cCI6MTMwMzYxNjcxMTk2fQ.5S1SA9KP9wXTR9_c-fW9j2fj0e8-3uesDWRv4MfYhrF5O4zSQ2TtzmRpmFjrnroYJ3RTWIf5yUAVJEWTRkKYAw
+ENV ZAFIRA_BASE_CONFIG="-Dzafira_enabled=true -Dzafira_rerun_failures=\$rerun_failures -Dzafira_service_url=\$ZAFIRA_SERVICE_URL -Dgit_branch=\$branch -Dgit_commit=\$GIT_COMMIT -Dgit_url=\$repository -Dci_user_id=\$BUILD_USER_ID -Dci_user_first_name=\$BUILD_USER_FIRST_NAME -Dci_user_last_name=\$BUILD_USER_LAST_NAME -Dci_user_email=\$BUILD_USER_EMAIL -Dzafira_access_token=\$ZAFIRA_ACCESS_TOKEN"
 ENV ZAFIRA_SERVICE_URL=https://localhost:8080/zafira-ws
+ENV JACOCO_BUCKET=jacoco.qaprosoft.com
+ENV JACOCO_ENABLE=true
+ENV AWS_KEY=AKIAIF43YTFM7RWG7EVQ
+ENV AWS_SECRET=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
 
 USER root
 
