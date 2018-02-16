@@ -35,6 +35,7 @@ built-on-column:1.1
 cloudbees-bitbucket-branch-source:2.2.3
 cloudbees-folder:6.2.1
 cobertura:1.11
+command-launcher:1.2
 conditional-buildstep:1.3.6
 copyartifact:1.39
 credentials-binding:1.13
@@ -105,7 +106,7 @@ role-strategy:2.6.1
 run-condition:1.0
 s3:0.10.12
 scm-api:2.2.3
-script-security:1.34
+script-security:1.41
 sonar:2.6.1
 sse-gateway:1.15
 ssh-agent:1.15
@@ -117,6 +118,7 @@ swarm:3.6
 timestamper:1.8.8
 token-macro:2.3
 variant:1.1
+view-job-filters:1.27
 windows-slaves:1.3.1
 workflow-aggregator:2.5
 workflow-api:2.22

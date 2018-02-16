@@ -8,7 +8,7 @@
           <configVersion>2</configVersion>
           <userRemoteConfigs>
             <hudson.plugins.git.UserRemoteConfig>
-              <url>${JENKINS_JOB_DSL_GIT_URL}</url>
+              <url>${JENKINS_PIPELINE_GIT_URL}</url>
             </hudson.plugins.git.UserRemoteConfig>
           </userRemoteConfigs>
           <branches>

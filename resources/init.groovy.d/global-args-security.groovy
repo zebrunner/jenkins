@@ -23,7 +23,14 @@ def carinaCoreVersion = env['CARINA_CORE_VERSION']
 def zafiraBaseConfig = env['ZAFIRA_BASE_CONFIG']
 def zafiraServiceURL = env['ZAFIRA_SERVICE_URL']
 def zafiraAccessToken = env['ZAFIRA_ACCESS_TOKEN']
-def jenkinsJobDslGitURL = env['JENKINS_JOB_DSL_GIT_URL']
+def jenkinsJobDslGitURL = env['JENKINS_PIPELINE_GIT_URL']
+
+def gitApiURL = env['GITHUB_API_URL']
+def gitHost = env['GITHUB_HOST']
+def gitHtmlURL = env['GITHUB_HTML_URL']
+def gitOauthToken = env['GITHUB_OAUTH_TOKEN']
+def gitOrganization = env['GITHUB_ORGANIZATION']
+def gitSshURL = env['GITHUB_SSH_URL']
 
 def jacocoBucket = env['JACOCO_BUCKET']
 def jacocoEnable = env['JACOCO_ENABLE']
@@ -87,8 +94,32 @@ Thread.start {
       envVars.put("GLOBAL_PIPELINE_LIB", globalPipelineLib)
     }
 
-    if ( jenkinsJobDslGitURL != null && !envVars.containsKey("JENKINS_JOB_DSL_GIT_URL") ) {
-      envVars.put("JENKINS_JOB_DSL_GIT_URL", jenkinsJobDslGitURL)
+    if ( jenkinsJobDslGitURL != null && !envVars.containsKey("JENKINS_PIPELINE_GIT_URL") ) {
+      envVars.put("JENKINS_PIPELINE_GIT_URL", jenkinsJobDslGitURL)
+    }
+
+    if (gitApiURL != null && !envVars.containsKey("GITHUB_API_URL") ) {
+      envVars.put("GITHUB_API_URL", gitApiURL)
+    }
+
+    if (gitHost != null && !envVars.containsKey("GITHUB_HOST") ) {
+      envVars.put("GITHUB_HOST", gitHost)
+    }
+
+    if (gitHtmlURL != null && !envVars.containsKey("GITHUB_HTML_URL") ) {
+      envVars.put("GITHUB_HTML_URL", gitHtmlURL)
+    }
+
+    if (gitOauthToken != null && !envVars.containsKey("GITHUB_OAUTH_TOKEN") ) {
+      envVars.put("GITHUB_OAUTH_TOKEN", gitOauthToken)
+    }
+
+    if (gitOrganization != null && !envVars.containsKey("GITHUB_ORGANIZATION") ) {
+      envVars.put("GITHUB_ORGANIZATION", gitOrganization)
+    }
+
+    if (gitSshURL != null && !envVars.containsKey("GITHUB_SSH_URL") ) {
+      envVars.put("GITHUB_SSH_URL", gitSshURL)
     }
 
     if ( jacocoBucket != null && !envVars.containsKey("JACOCO_BUCKET") ) {
