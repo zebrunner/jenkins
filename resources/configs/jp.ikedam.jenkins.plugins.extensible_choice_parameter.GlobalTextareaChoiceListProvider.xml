@@ -43,5 +43,18 @@
       </choiceList>
       <allowAddEditedValue>false</allowAddEditedValue>
     </jp.ikedam.jenkins.plugins.extensible__choice__parameter.GlobalTextareaChoiceListEntry>
+    <jp.ikedam.jenkins.plugins.extensible__choice__parameter.GlobalTextareaChoiceListEntry>
+      <name>gc_CUSTOM_CAPABILITIES</name>
+      <choiceList class="java.util.RandomAccessSubList">
+        <l class="java.util.Arrays$ArrayList">
+          <a class="string-array">
+            <string>NULL</string>
+          </a>
+        </l>
+        <offset>0</offset>
+        <size>1</size>
+      </choiceList>
+      <allowAddEditedValue>false</allowAddEditedValue>
+    </jp.ikedam.jenkins.plugins.extensible__choice__parameter.GlobalTextareaChoiceListEntry>
   </choiceListEntryList>
 </jp.ikedam.jenkins.plugins.extensible__choice__parameter.GlobalTextareaChoiceListProvider_-DescriptorImpl>

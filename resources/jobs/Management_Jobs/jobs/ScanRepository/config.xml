@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<flow-definition plugin="workflow-job@2.15">
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.27">
+      <autoRebuild>false</autoRebuild>
+      <rebuildDisabled>false</rebuildDisabled>
+    </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <jp.ikedam.jenkins.plugins.extensible__choice__parameter.ExtensibleChoiceParameterDefinition plugin="extensible-choice-parameter@1.4.1">
+          <name>project</name>
+          <description></description>
+          <editable>true</editable>
+          <choiceListProvider class="jp.ikedam.jenkins.plugins.extensible_choice_parameter.GlobalTextareaChoiceListProvider">
+            <whenToAdd>Triggered</whenToAdd>
+            <name>gc_GIT_PROJECT</name>
+          </choiceListProvider>
+        </jp.ikedam.jenkins.plugins.extensible__choice__parameter.ExtensibleChoiceParameterDefinition>
+        <jp.ikedam.jenkins.plugins.extensible__choice__parameter.ExtensibleChoiceParameterDefinition plugin="extensible-choice-parameter@1.4.1">
+          <name>branch</name>
+          <description></description>
+          <editable>true</editable>
+          <choiceListProvider class="jp.ikedam.jenkins.plugins.extensible_choice_parameter.GlobalTextareaChoiceListProvider">
+            <whenToAdd>Triggered</whenToAdd>
+            <name>gc_GIT_BRANCH</name>
+            <defaultChoice>master</defaultChoice>
+          </choiceListProvider>
+        </jp.ikedam.jenkins.plugins.extensible__choice__parameter.ExtensibleChoiceParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>folder</name>
+          <description></description>
+          <defaultValue>Automation</defaultValue>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+    <org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
+      <triggers/>
+    </org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
+  </properties>
+  <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.41">
+    <script>@Library(&apos;QPS-Jenkins&apos;)
+import com.qaprosoft.jenkins.repository.pipeline.Scanner;
+new Scanner().scanRepository()</script>
+    <sandbox>true</sandbox>
+  </definition>
+  <triggers/>
+  <authToken>ciStart</authToken>
+  <disabled>false</disabled>
+</flow-definition>

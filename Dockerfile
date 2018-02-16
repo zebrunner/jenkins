@@ -4,7 +4,7 @@ ENV ROOT_URL=http://localhost:8083/jenkins
 ENV ROOT_EMAIL=cloud@qaprosoft.com
 ENV ADMIN_USER=admin
 ENV ADMIN_PASS=qaprosoft
-ENV JENKINS_JOB_DSL_GIT_URL=git@github.com:qaprosoft/jenkins-job-dsl.git
+ENV JENKINS_PIPELINE_GIT_URL=git@github.com:qaprosoft/qps-pipeline.git
 ENV JENKINS_OPTS="--prefix=/jenkins --httpPort=-1 --httpsPort=8083 --httpsKeyStore=/var/jenkins_home/keystore.jks --httpsKeyStorePassword=password"
 ENV CARINA_CORE_VERSION=LATEST
 ENV CORE_LOG_LEVEL=INFO
@@ -16,6 +16,12 @@ ENV JACOCO_BUCKET=jacoco.qaprosoft.com
 ENV JACOCO_ENABLE=true
 ENV AWS_KEY=AKIAIF43YTFM7RWG7EVQ
 ENV AWS_SECRET=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
+ENV GITHUB_API_URL=https://api.$GITHUB_HOST/
+ENV GITHUB_HOST=github.com
+ENV GITHUB_HTML_URL=https://${GITHUB_HOST}/${GITHUB_ORGANIZATION}
+ENV GITHUB_OAUTH_TOKEN=7986abef9d29860448dd7ab969aa42c4f2054aea
+ENV GITHUB_ORGANIZATION=qaprosoft
+ENV GITHUB_SSH_URL=git@${GITHUB_HOST}:${GITHUB_ORGANIZATION}
 
 USER root
 
