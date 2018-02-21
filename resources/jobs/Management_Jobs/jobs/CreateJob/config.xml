@@ -25,12 +25,12 @@
         <hudson.model.StringParameterDefinition>
           <name>project</name>
           <description></description>
-          <defaultValue>nerdwallet-automation</defaultValue>
+          <defaultValue>carina-demo</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>sub_project</name>
           <description></description>
-          <defaultValue></defaultValue>
+          <defaultValue>./defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>suite</name>
