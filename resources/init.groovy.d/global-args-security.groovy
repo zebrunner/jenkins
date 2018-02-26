@@ -23,7 +23,8 @@ def carinaCoreVersion = env['CARINA_CORE_VERSION']
 def zafiraBaseConfig = env['ZAFIRA_BASE_CONFIG']
 def zafiraServiceURL = env['ZAFIRA_SERVICE_URL']
 def zafiraAccessToken = env['ZAFIRA_ACCESS_TOKEN']
-def jenkinsJobDslGitURL = env['JENKINS_PIPELINE_GIT_URL']
+def jenkinsPipelineGitURL = env['JENKINS_PIPELINE_GIT_URL']
+def jenkinsPipelineGitBranch = env['JENKINS_PIPELINE_GIT_BRANCH']
 
 def gitApiURL = env['GITHUB_API_URL']
 def gitHost = env['GITHUB_HOST']
@@ -94,8 +95,12 @@ Thread.start {
       envVars.put("GLOBAL_PIPELINE_LIB", globalPipelineLib)
     }
 
-    if ( jenkinsJobDslGitURL != null && !envVars.containsKey("JENKINS_PIPELINE_GIT_URL") ) {
-      envVars.put("JENKINS_PIPELINE_GIT_URL", jenkinsJobDslGitURL)
+    if ( jenkinsPipelineGitURL != null && !envVars.containsKey("JENKINS_PIPELINE_GIT_URL") ) {
+      envVars.put("JENKINS_PIPELINE_GIT_URL", jenkinsPipelineGitURL)
+    }
+
+    if ( jenkinsPipelineGitBranch != null && !envVars.containsKey("JENKINS_PIPELINE_GIT_BRANCH") ) {
+      envVars.put("JENKINS_PIPELINE_GIT_BRANCH", jenkinsPipelineGitBranch)
     }
 
     if (gitApiURL != null && !envVars.containsKey("GITHUB_API_URL") ) {
