@@ -44,6 +44,23 @@
       <allowAddEditedValue>false</allowAddEditedValue>
     </jp.ikedam.jenkins.plugins.extensible__choice__parameter.GlobalTextareaChoiceListEntry>
     <jp.ikedam.jenkins.plugins.extensible__choice__parameter.GlobalTextareaChoiceListEntry>
+      <name>gc_BUILD_PRIORITY</name>
+      <choiceList class="java.util.RandomAccessSubList">
+        <l class="java.util.Arrays$ArrayList">
+          <a class="string-array">
+            <string>5</string>
+            <string>4</string>
+            <string>3</string>
+            <string>2</string>
+            <string>1</string>
+          </a>
+        </l>
+        <offset>0</offset>
+        <size>5</size>
+      </choiceList>
+      <allowAddEditedValue>false</allowAddEditedValue>
+    </jp.ikedam.jenkins.plugins.extensible__choice__parameter.GlobalTextareaChoiceListEntry>
+    <jp.ikedam.jenkins.plugins.extensible__choice__parameter.GlobalTextareaChoiceListEntry>
       <name>gc_CUSTOM_CAPABILITIES</name>
       <choiceList class="java.util.RandomAccessSubList">
         <l class="java.util.Arrays$ArrayList">
