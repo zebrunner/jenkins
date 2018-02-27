@@ -36,7 +36,10 @@ def gitSshURL = env['GITHUB_SSH_URL']
 def jacocoBucket = env['JACOCO_BUCKET']
 def jacocoEnable = env['JACOCO_ENABLE']
 
+def jobMaxRunTime = env['JOB_MAX_RUN_TIME']
+
 def globalPipelineLib = env['GLOBAL_PIPELINE_LIB']
+
 
 // Constants
 def instance = Jenkins.getInstance()
@@ -125,6 +128,10 @@ Thread.start {
 
     if (gitSshURL != null && !envVars.containsKey("GITHUB_SSH_URL") ) {
       envVars.put("GITHUB_SSH_URL", gitSshURL)
+    }
+
+    if (jobMaxRunTime != null && !envVars.containsKey("JOB_MAX_RUN_TIME") ) {
+      envVars.put("JOB_MAX_RUN_TIME", jobMaxRunTime)
     }
 
     if ( jacocoBucket != null && !envVars.containsKey("JACOCO_BUCKET") ) {
