@@ -1,4 +1,4 @@
-FROM jenkins/jenkins:lts-alpine
+FROM jenkins/jenkins:2.113-alpine
 
 ENV ROOT_URL=http://localhost:8083/jenkins
 ENV ROOT_EMAIL=cloud@qaprosoft.com
