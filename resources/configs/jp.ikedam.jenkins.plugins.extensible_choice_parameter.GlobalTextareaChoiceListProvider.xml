@@ -1,75 +1,45 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<jp.ikedam.jenkins.plugins.extensible__choice__parameter.GlobalTextareaChoiceListProvider_-DescriptorImpl plugin="extensible-choice-parameter@1.4.0">
+<?xml version='1.1' encoding='UTF-8'?>
+<jp.ikedam.jenkins.plugins.extensible__choice__parameter.GlobalTextareaChoiceListProvider_-DescriptorImpl plugin="extensible-choice-parameter@1.5.0">
   <choiceListEntryList>
     <jp.ikedam.jenkins.plugins.extensible__choice__parameter.GlobalTextareaChoiceListEntry>
       <name>gc_GIT_PROJECT</name>
-      <choiceList class="java.util.RandomAccessSubList">
-        <l class="java.util.Arrays$ArrayList">
-          <a class="string-array">
-            <string>carina-demo</string>
-          </a>
-        </l>
-        <offset>0</offset>
-        <size>1</size>
+      <choiceList>
+          <string>carina-demo</string>
       </choiceList>
       <allowAddEditedValue>false</allowAddEditedValue>
     </jp.ikedam.jenkins.plugins.extensible__choice__parameter.GlobalTextareaChoiceListEntry>
     <jp.ikedam.jenkins.plugins.extensible__choice__parameter.GlobalTextareaChoiceListEntry>
       <name>gc_GIT_BRANCH</name>
-      <choiceList class="java.util.RandomAccessSubList">
-        <l class="java.util.Arrays$ArrayList">
-          <a class="string-array">
-            <string>master</string>
-          </a>
-        </l>
-        <offset>0</offset>
-        <size>1</size>
+      <choiceList>
+        <string>master</string>
       </choiceList>
       <allowAddEditedValue>true</allowAddEditedValue>
     </jp.ikedam.jenkins.plugins.extensible__choice__parameter.GlobalTextareaChoiceListEntry>
     <jp.ikedam.jenkins.plugins.extensible__choice__parameter.GlobalTextareaChoiceListEntry>
       <name>gc_BROWSER</name>
-      <choiceList class="java.util.RandomAccessSubList">
-        <l class="java.util.Arrays$ArrayList">
-          <a class="string-array">
-            <string>chrome</string>
-            <string>firefox</string>
-            <string>safari</string>
-            <string>ie</string>
-          </a>
-        </l>
-        <offset>0</offset>
-        <size>4</size>
+      <choiceList>
+        <string>chrome</string>
+        <string>firefox</string>
+        <string>safari</string>
+        <string>ie</string>
       </choiceList>
       <allowAddEditedValue>false</allowAddEditedValue>
     </jp.ikedam.jenkins.plugins.extensible__choice__parameter.GlobalTextareaChoiceListEntry>
     <jp.ikedam.jenkins.plugins.extensible__choice__parameter.GlobalTextareaChoiceListEntry>
       <name>gc_BUILD_PRIORITY</name>
-      <choiceList class="java.util.RandomAccessSubList">
-        <l class="java.util.Arrays$ArrayList">
-          <a class="string-array">
-            <string>5</string>
-            <string>4</string>
-            <string>3</string>
-            <string>2</string>
-            <string>1</string>
-          </a>
-        </l>
-        <offset>0</offset>
-        <size>5</size>
+      <choiceList>
+        <string>5</string>
+        <string>4</string>
+        <string>3</string>
+        <string>2</string>
+        <string>1</string>
       </choiceList>
       <allowAddEditedValue>false</allowAddEditedValue>
     </jp.ikedam.jenkins.plugins.extensible__choice__parameter.GlobalTextareaChoiceListEntry>
     <jp.ikedam.jenkins.plugins.extensible__choice__parameter.GlobalTextareaChoiceListEntry>
       <name>gc_CUSTOM_CAPABILITIES</name>
-      <choiceList class="java.util.RandomAccessSubList">
-        <l class="java.util.Arrays$ArrayList">
-          <a class="string-array">
-            <string>NULL</string>
-          </a>
-        </l>
-        <offset>0</offset>
-        <size>1</size>
+      <choiceList>
+        <string>NULL</string>
       </choiceList>
       <allowAddEditedValue>false</allowAddEditedValue>
     </jp.ikedam.jenkins.plugins.extensible__choice__parameter.GlobalTextareaChoiceListEntry>
