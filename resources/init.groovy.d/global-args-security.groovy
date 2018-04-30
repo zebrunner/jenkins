@@ -44,6 +44,9 @@ def globalPipelineLib = env['GLOBAL_PIPELINE_LIB']
 // Constants
 def instance = Jenkins.getInstance()
 
+//https://github.com/qaprosoft/jenkins-master/issues/12 - remove default 5 sec quite period for Jenkins
+instance.setQuietPeriod(0)
+
 Thread.start {
     println "--> Configuring General Settings"
 
