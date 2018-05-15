@@ -1,7 +1,8 @@
 FROM jenkins/jenkins:2.114-alpine
 
 ENV ROOT_URL=http://localhost:8083/jenkins
-ENV ROOT_EMAIL=cloud@qaprosoft.com
+ENV ROOT_EMAIL=qps-auto@qaprosoft.com
+ENV ADMIN_EMAILS=qps-auto@qaprosoft.com
 ENV ADMIN_USER=admin
 ENV ADMIN_PASS=qaprosoft
 ENV JENKINS_PIPELINE_GIT_URL=git@github.com:qaprosoft/qps-pipeline.git

@@ -14,6 +14,8 @@ def env = System.getenv()
 def rootURL = env['ROOT_URL']
 def rootEmail = env['ROOT_EMAIL']
 
+def adminEmails = env['ADMIN_EMAILS']
+
 def user = env['ADMIN_USER']
 def pass = env['ADMIN_PASS']
 
@@ -144,6 +146,11 @@ Thread.start {
     if ( jacocoEnable != null && !envVars.containsKey("JACOCO_ENABLE") ) {
       envVars.put("JACOCO_ENABLE", jacocoEnable)
     }
+
+    if ( adminEmails != null && !envVars.containsKey("ADMIN_EMAILS") ) {
+      envVars.put("ADMIN_EMAILS", adminEmails)
+    }
+
 
     // Setup security
     if(!envVars.containsKey("JENKINS_SECURITY_INITIALIZED") || envVars.get("JENKINS_SECURITY_INITIALIZED") != "true")
