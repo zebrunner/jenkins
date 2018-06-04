@@ -21,6 +21,9 @@ def pass = env['ADMIN_PASS']
 
 def coreLogLevel = env['CORE_LOG_LEVEL']
 def seleniumHost = env['SELENIUM_HOST']
+def seleniumPort = env['SELENIUM_PORT']
+def seleniumProtocol = env['SELENIUM_PROTOCOL']
+def seleniumUrl = env['SELENIUM_URL']
 def carinaCoreVersion = env['CARINA_CORE_VERSION']
 def zafiraBaseConfig = env['ZAFIRA_BASE_CONFIG']
 def zafiraServiceURL = env['ZAFIRA_SERVICE_URL']
@@ -79,9 +82,26 @@ Thread.start {
       envVars.put("CORE_LOG_LEVEL", coreLogLevel)
     }
 
+
+
     if ( seleniumHost != null && !envVars.containsKey("SELENIUM_HOST") ) {
       envVars.put("SELENIUM_HOST", seleniumHost)
     }
+
+    if ( seleniumPort != null && !envVars.containsKey("SELENIUM_PORT") ) {
+      envVars.put("SELENIUM_PORT", seleniumPort)
+    }
+
+    if ( seleniumProtocol != null && !envVars.containsKey("SELENIUM_PROTOCOL") ) {
+      envVars.put("SELENIUM_PROTOCOL", seleniumProtocol)
+    }
+
+    if ( seleniumUrl != null && !envVars.containsKey("SELENIUM_URL") ) {
+      envVars.put("SELENIUM_URL", seleniumUrl)
+    }
+
+
+
 
     if ( carinaCoreVersion != null && !envVars.containsKey("CARINA_CORE_VERSION") ) {
       envVars.put("CARINA_CORE_VERSION", carinaCoreVersion)

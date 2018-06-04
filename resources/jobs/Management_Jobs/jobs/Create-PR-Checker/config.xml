@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description></description>
+  <description>TODO: put link onto documentation howto configure GitHub for valid PR checker...</description>
   <keepDependencies>false</keepDependencies>
   <properties>
     <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.27">
@@ -59,7 +59,7 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <javaposse.jobdsl.plugin.ExecuteDslScripts plugin="job-dsl@1.66">
-      <targets>src/com/qaprosoft/jenkins/repository/jobdsl/PR_Checker.groovy</targets>
+      <targets>src/com/qaprosoft/jenkins/repository/jobdsl/v2/PR_Checker.groovy</targets>
       <usingScriptText>false</usingScriptText>
       <sandbox>false</sandbox>
       <ignoreExisting>false</ignoreExisting>

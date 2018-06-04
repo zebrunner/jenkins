@@ -2,7 +2,7 @@
 <org.jenkinsci.plugins.workflow.libs.GlobalLibraries plugin="workflow-cps-global-lib@2.8">
   <libraries>
     <org.jenkinsci.plugins.workflow.libs.LibraryConfiguration>
-      <name>QPS-Jenkins</name>
+      <name>QPS-Pipeline</name>
       <retriever class="org.jenkinsci.plugins.workflow.libs.SCMRetriever">
         <scm class="hudson.plugins.git.GitSCM" plugin="git@3.5.1">
           <configVersion>2</configVersion>
