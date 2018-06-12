@@ -51,6 +51,7 @@ def instance = Jenkins.getInstance()
 
 //https://github.com/qaprosoft/jenkins-master/issues/12 - remove default 5 sec quite period for Jenkins
 instance.setQuietPeriod(0)
+instance.setNumExecutors(10)
 
 Thread.start {
     println "--> Configuring General Settings"
