@@ -18,9 +18,9 @@ ENV ZAFIRA_ACCESS_TOKEN=eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwicGFzc3dvcmQiOiJhaTk
 ENV ZAFIRA_BASE_CONFIG="-Dzafira_enabled=true -Dzafira_rerun_failures=\$rerun_failures -Dzafira_service_url=\$ZAFIRA_SERVICE_URL -Dgit_branch=\$branch -Dgit_commit=\$GIT_COMMIT -Dgit_url=\$repository -Dci_user_id=\$BUILD_USER_ID -Dci_user_first_name=\$BUILD_USER_FIRST_NAME -Dci_user_last_name=\$BUILD_USER_LAST_NAME -Dci_user_email=\$BUILD_USER_EMAIL -Dzafira_access_token=\$ZAFIRA_ACCESS_TOKEN"
 ENV ZAFIRA_SERVICE_URL=https://localhost:8080/zafira-ws
 ENV JACOCO_BUCKET=jacoco.qaprosoft.com
-ENV JACOCO_ENABLE=true
-ENV AWS_KEY=AKIAIF43YTFM7RWG7EVQ
-ENV AWS_SECRET=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
+ENV JACOCO_ENABLE=false
+ENV AWS_KEY=CHANGE_ME
+ENV AWS_SECRET=CHANGE_ME
 ENV GITHUB_API_URL=https://api.\$GITHUB_HOST/
 ENV GITHUB_HOST=github.com
 ENV GITHUB_HTML_URL=https://\$GITHUB_HOST/\$GITHUB_ORGANIZATION
