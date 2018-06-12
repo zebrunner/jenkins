@@ -22,19 +22,19 @@ owner</description>
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
-          <name>ci_parent_url</name>
-          <description>Parent pipeline job URL. All children job results will be analyzed and some of them re-executed.</description>
+          <name>upstream_job_id</name>
+          <description>Parent pipeline job id. All children job results will be analyzed and some of them re-executed.</description>
           <defaultValue></defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>ci_parent_build</name>
-          <description>Parent pipeline job build number. Milestones re-execution only supported for nightly jobs</description>
+          <name>upstream_job_build_number</name>
+          <description>Parent pipeline job build number</description>
           <defaultValue></defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>git_url</name>
+          <name>scm_url</name>
           <description>[Optional] if provided then only jobs/suites which belong to this particular repo could be re-executed </description>
           <defaultValue></defaultValue>
           <trim>false</trim>
@@ -46,16 +46,14 @@ owner</description>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>failurePercent</name>
-          <description>[Optional] Value from 0..100. Only jobs which FAIL RATE more than &apos;failurePercent&apos; will be re-executed.
-FAIL RATE includes fail, skip, aborted and another negative statuses.
-</description>
+          <name>hashcode</name>
+          <description>[Optional] mostly for integration with Zafira Reporting Tool to be able to re-execute only jobs which tests failed due to the absolutely the SAME reason.</description>
           <defaultValue></defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>hashcode</name>
-          <description>[Optional] mostly for integration with Zafira reporting Tool to be able to re-execute only jobs which tests failed due to the similar reason.</description>
+          <name>cause</name>
+          <description>[Optional] mostly for integration with Zafira Reporting Tool to be able to re-execute only jobs which tests failed due to the SIMILAR reason.</description>
           <defaultValue></defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
