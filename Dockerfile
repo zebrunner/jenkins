@@ -5,8 +5,8 @@ ENV ROOT_EMAIL=qps-auto@qaprosoft.com
 ENV ADMIN_EMAILS=qps-auto@qaprosoft.com
 ENV ADMIN_USER=admin
 ENV ADMIN_PASS=qaprosoft
-ENV JENKINS_PIPELINE_GIT_URL=git@github.com:qaprosoft/qps-pipeline.git
-ENV JENKINS_PIPELINE_GIT_BRANCH=2.2
+ENV QPS_PIPELINE_GIT_URL=git@github.com:qaprosoft/qps-pipeline.git
+ENV QPS_PIPELINE_GIT_BRANCH=2.3
 ENV JENKINS_OPTS="--prefix=/jenkins --httpPort=-1 --httpsPort=8083 --httpsKeyStore=/var/jenkins_home/keystore.jks --httpsKeyStorePassword=password"
 ENV CARINA_CORE_VERSION=LATEST
 ENV CORE_LOG_LEVEL=INFO
