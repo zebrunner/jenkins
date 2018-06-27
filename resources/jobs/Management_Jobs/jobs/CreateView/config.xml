@@ -1,9 +1,10 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version='1.1' encoding='UTF-8'?>
 <project>
-  <description></description>
+  <actions/>
+  <description>TODO: move implementation into the Creator.createView() groovy script</description>
   <keepDependencies>false</keepDependencies>
   <properties>
-    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.27">
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.28">
       <autoRebuild>false</autoRebuild>
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
@@ -13,16 +14,19 @@
           <name>folder</name>
           <description></description>
           <defaultValue>Automation</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>view</name>
           <description></description>
           <defaultValue></defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>descFilter</name>
           <description></description>
           <defaultValue></defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
@@ -35,13 +39,8 @@
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
   <builders>
-    <javaposse.jobdsl.plugin.ExecuteDslScripts plugin="job-dsl@1.66">
-      <scriptText>folder(folder) {
-	displayName(folder)
-}
-
-
-listView(&quot;${folder}/${view}&quot;) {
+    <javaposse.jobdsl.plugin.ExecuteDslScripts plugin="job-dsl@1.68">
+      <scriptText>listView(&quot;${folder}/${view}&quot;) {
   columns {
 	status()
     weather()
@@ -76,7 +75,7 @@ listView(&quot;${folder}/${view}&quot;) {
   </builders>
   <publishers/>
   <buildWrappers>
-    <org.jenkinsci.plugins.buildnamesetter.BuildNameSetter plugin="build-name-setter@1.6.7">
+    <org.jenkinsci.plugins.buildnamesetter.BuildNameSetter plugin="build-name-setter@1.6.9">
       <template>#${BUILD_NUMBER}|${view}</template>
       <runAtStart>true</runAtStart>
       <runAtEnd>true</runAtEnd>

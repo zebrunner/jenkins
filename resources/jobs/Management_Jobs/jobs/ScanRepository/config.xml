@@ -40,9 +40,9 @@
     </org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.41">
-    <script>@Library(&apos;QPS-Jenkins&apos;)
-import com.qaprosoft.jenkins.repository.pipeline.Scanner;
-new Scanner().scanRepository()</script>
+    <script>@Library(&apos;QPS-Pipeline&apos;)
+import com.qaprosoft.jenkins.repository.pipeline.v2.Scanner;
+new Scanner(this).scanRepository()</script>
     <sandbox>true</sandbox>
   </definition>
   <triggers/>

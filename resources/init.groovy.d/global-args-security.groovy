@@ -21,12 +21,15 @@ def pass = env['ADMIN_PASS']
 
 def coreLogLevel = env['CORE_LOG_LEVEL']
 def seleniumHost = env['SELENIUM_HOST']
+def seleniumPort = env['SELENIUM_PORT']
+def seleniumProtocol = env['SELENIUM_PROTOCOL']
+def seleniumUrl = env['SELENIUM_URL']
 def carinaCoreVersion = env['CARINA_CORE_VERSION']
 def zafiraBaseConfig = env['ZAFIRA_BASE_CONFIG']
 def zafiraServiceURL = env['ZAFIRA_SERVICE_URL']
 def zafiraAccessToken = env['ZAFIRA_ACCESS_TOKEN']
-def jenkinsPipelineGitURL = env['JENKINS_PIPELINE_GIT_URL']
-def jenkinsPipelineGitBranch = env['JENKINS_PIPELINE_GIT_BRANCH']
+def qpsPipelineGitURL = env['QPS_PIPELINE_GIT_URL']
+def qpsPipelineGitBranch = env['QPS_PIPELINE_GIT_BRANCH']
 
 def gitApiURL = env['GITHUB_API_URL']
 def gitHost = env['GITHUB_HOST']
@@ -48,6 +51,7 @@ def instance = Jenkins.getInstance()
 
 //https://github.com/qaprosoft/jenkins-master/issues/12 - remove default 5 sec quite period for Jenkins
 instance.setQuietPeriod(0)
+instance.setNumExecutors(10)
 
 Thread.start {
     println "--> Configuring General Settings"
@@ -79,9 +83,26 @@ Thread.start {
       envVars.put("CORE_LOG_LEVEL", coreLogLevel)
     }
 
+
+
     if ( seleniumHost != null && !envVars.containsKey("SELENIUM_HOST") ) {
       envVars.put("SELENIUM_HOST", seleniumHost)
     }
+
+    if ( seleniumPort != null && !envVars.containsKey("SELENIUM_PORT") ) {
+      envVars.put("SELENIUM_PORT", seleniumPort)
+    }
+
+    if ( seleniumProtocol != null && !envVars.containsKey("SELENIUM_PROTOCOL") ) {
+      envVars.put("SELENIUM_PROTOCOL", seleniumProtocol)
+    }
+
+    if ( seleniumUrl != null && !envVars.containsKey("SELENIUM_URL") ) {
+      envVars.put("SELENIUM_URL", seleniumUrl)
+    }
+
+
+
 
     if ( carinaCoreVersion != null && !envVars.containsKey("CARINA_CORE_VERSION") ) {
       envVars.put("CARINA_CORE_VERSION", carinaCoreVersion)
@@ -103,12 +124,12 @@ Thread.start {
       envVars.put("GLOBAL_PIPELINE_LIB", globalPipelineLib)
     }
 
-    if ( jenkinsPipelineGitURL != null && !envVars.containsKey("JENKINS_PIPELINE_GIT_URL") ) {
-      envVars.put("JENKINS_PIPELINE_GIT_URL", jenkinsPipelineGitURL)
+    if ( qpsPipelineGitURL != null && !envVars.containsKey("QPS_PIPELINE_GIT_URL") ) {
+      envVars.put("QPS_PIPELINE_GIT_URL", qpsPipelineGitURL)
     }
 
-    if ( jenkinsPipelineGitBranch != null && !envVars.containsKey("JENKINS_PIPELINE_GIT_BRANCH") ) {
-      envVars.put("JENKINS_PIPELINE_GIT_BRANCH", jenkinsPipelineGitBranch)
+    if ( qpsPipelineGitBranch != null && !envVars.containsKey("QPS_PIPELINE_GIT_BRANCH") ) {
+      envVars.put("QPS_PIPELINE_GIT_BRANCH", qpsPipelineGitBranch)
     }
 
     if (gitApiURL != null && !envVars.containsKey("GITHUB_API_URL") ) {

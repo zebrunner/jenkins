@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description></description>
+  <description>TODO: put link onto documentation howto configure GitHub for valid PR checker...</description>
   <keepDependencies>false</keepDependencies>
   <properties>
     <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.27">
@@ -31,12 +31,12 @@
     <configVersion>2</configVersion>
     <userRemoteConfigs>
       <hudson.plugins.git.UserRemoteConfig>
-        <url>${JENKINS_PIPELINE_GIT_URL}</url>
+        <url>${QPS_PIPELINE_GIT_URL}</url>
       </hudson.plugins.git.UserRemoteConfig>
     </userRemoteConfigs>
     <branches>
       <hudson.plugins.git.BranchSpec>
-        <name>${JENKINS_PIPELINE_GIT_BRANCH}</name>
+        <name>${QPS_PIPELINE_GIT_BRANCH}</name>
       </hudson.plugins.git.BranchSpec>
     </branches>
     <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
@@ -59,7 +59,7 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <javaposse.jobdsl.plugin.ExecuteDslScripts plugin="job-dsl@1.66">
-      <targets>src/com/qaprosoft/jenkins/repository/jobdsl/PR_Checker.groovy</targets>
+      <targets>src/com/qaprosoft/jenkins/repository/jobdsl/v2/PR_Checker.groovy</targets>
       <usingScriptText>false</usingScriptText>
       <sandbox>false</sandbox>
       <ignoreExisting>false</ignoreExisting>

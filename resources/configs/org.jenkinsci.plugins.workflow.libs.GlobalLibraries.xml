@@ -2,18 +2,18 @@
 <org.jenkinsci.plugins.workflow.libs.GlobalLibraries plugin="workflow-cps-global-lib@2.8">
   <libraries>
     <org.jenkinsci.plugins.workflow.libs.LibraryConfiguration>
-      <name>QPS-Jenkins</name>
+      <name>QPS-Pipeline</name>
       <retriever class="org.jenkinsci.plugins.workflow.libs.SCMRetriever">
         <scm class="hudson.plugins.git.GitSCM" plugin="git@3.5.1">
           <configVersion>2</configVersion>
           <userRemoteConfigs>
             <hudson.plugins.git.UserRemoteConfig>
-              <url>${JENKINS_PIPELINE_GIT_URL}</url>
+              <url>${QPS_PIPELINE_GIT_URL}</url>
             </hudson.plugins.git.UserRemoteConfig>
           </userRemoteConfigs>
           <branches>
             <hudson.plugins.git.BranchSpec>
-              <name>${JENKINS_PIPELINE_GIT_BRANCH}</name>
+              <name>${QPS_PIPELINE_GIT_BRANCH}</name>
             </hudson.plugins.git.BranchSpec>
           </branches>
           <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
