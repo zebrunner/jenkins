@@ -29,11 +29,8 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <javaposse.jobdsl.plugin.ExecuteDslScripts plugin="job-dsl@1.68">
-      <scriptText>import jenkins.model.Jenkins
-import hudson.model.Item
-
-if (!&quot;${folder}&quot;.isEmpty() &amp;&amp; !Jenkins.instance.getItem(&quot;${folder}&quot;)) {
-    folder(&quot;${folder}&quot;)
+      <scriptText>if (!&quot;${folder}&quot;.isEmpty()) {
+  folder(&quot;${folder}&quot;)
 }</scriptText>
       <usingScriptText>true</usingScriptText>
       <sandbox>false</sandbox>
