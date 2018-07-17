@@ -19,29 +19,10 @@ def adminEmails = env['ADMIN_EMAILS']
 def user = env['ADMIN_USER']
 def pass = env['ADMIN_PASS']
 
-def coreLogLevel = env['CORE_LOG_LEVEL']
-def seleniumHost = env['SELENIUM_HOST']
-def seleniumPort = env['SELENIUM_PORT']
-def seleniumProtocol = env['SELENIUM_PROTOCOL']
-def seleniumUrl = env['SELENIUM_URL']
-def carinaCoreVersion = env['CARINA_CORE_VERSION']
-def zafiraBaseConfig = env['ZAFIRA_BASE_CONFIG']
-def zafiraServiceURL = env['ZAFIRA_SERVICE_URL']
+def qpsHost = env['QPS_HOST']
 def zafiraAccessToken = env['ZAFIRA_ACCESS_TOKEN']
 def qpsPipelineGitURL = env['QPS_PIPELINE_GIT_URL']
 def qpsPipelineGitBranch = env['QPS_PIPELINE_GIT_BRANCH']
-
-def gitApiURL = env['GITHUB_API_URL']
-def gitHost = env['GITHUB_HOST']
-def gitHtmlURL = env['GITHUB_HTML_URL']
-def gitOauthToken = env['GITHUB_OAUTH_TOKEN']
-def gitOrganization = env['GITHUB_ORGANIZATION']
-def gitSshURL = env['GITHUB_SSH_URL']
-
-def jacocoBucket = env['JACOCO_BUCKET']
-def jacocoEnable = env['JACOCO_ENABLE']
-
-def jobMaxRunTime = env['JOB_MAX_RUN_TIME']
 
 def globalPipelineLib = env['GLOBAL_PIPELINE_LIB']
 
@@ -79,41 +60,9 @@ Thread.start {
       envVars = envVarsNodePropertyList.get(0).getEnvVars()
     }
 
-    if ( coreLogLevel != null && !envVars.containsKey("CORE_LOG_LEVEL") ) {
-      envVars.put("CORE_LOG_LEVEL", coreLogLevel)
-    }
 
-
-
-    if ( seleniumHost != null && !envVars.containsKey("SELENIUM_HOST") ) {
-      envVars.put("SELENIUM_HOST", seleniumHost)
-    }
-
-    if ( seleniumPort != null && !envVars.containsKey("SELENIUM_PORT") ) {
-      envVars.put("SELENIUM_PORT", seleniumPort)
-    }
-
-    if ( seleniumProtocol != null && !envVars.containsKey("SELENIUM_PROTOCOL") ) {
-      envVars.put("SELENIUM_PROTOCOL", seleniumProtocol)
-    }
-
-    if ( seleniumUrl != null && !envVars.containsKey("SELENIUM_URL") ) {
-      envVars.put("SELENIUM_URL", seleniumUrl)
-    }
-
-
-
-
-    if ( carinaCoreVersion != null && !envVars.containsKey("CARINA_CORE_VERSION") ) {
-      envVars.put("CARINA_CORE_VERSION", carinaCoreVersion)
-    }
-
-    if ( zafiraBaseConfig != null && !envVars.containsKey("ZAFIRA_BASE_CONFIG") ) {
-      envVars.put("ZAFIRA_BASE_CONFIG", zafiraBaseConfig)
-    }
-
-    if ( zafiraServiceURL != null && !envVars.containsKey("ZAFIRA_SERVICE_URL") ) {
-      envVars.put("ZAFIRA_SERVICE_URL", zafiraServiceURL)
+    if ( qpsHost != null && !envVars.containsKey("QPS_HOST") ) {
+      envVars.put("QPS_HOST", qpsHost)
     }
 
     if ( zafiraAccessToken != null && !envVars.containsKey("ZAFIRA_ACCESS_TOKEN") ) {
@@ -130,42 +79,6 @@ Thread.start {
 
     if ( qpsPipelineGitBranch != null && !envVars.containsKey("QPS_PIPELINE_GIT_BRANCH") ) {
       envVars.put("QPS_PIPELINE_GIT_BRANCH", qpsPipelineGitBranch)
-    }
-
-    if (gitApiURL != null && !envVars.containsKey("GITHUB_API_URL") ) {
-      envVars.put("GITHUB_API_URL", gitApiURL)
-    }
-
-    if (gitHost != null && !envVars.containsKey("GITHUB_HOST") ) {
-      envVars.put("GITHUB_HOST", gitHost)
-    }
-
-    if (gitHtmlURL != null && !envVars.containsKey("GITHUB_HTML_URL") ) {
-      envVars.put("GITHUB_HTML_URL", gitHtmlURL)
-    }
-
-    if (gitOauthToken != null && !envVars.containsKey("GITHUB_OAUTH_TOKEN") ) {
-      envVars.put("GITHUB_OAUTH_TOKEN", gitOauthToken)
-    }
-
-    if (gitOrganization != null && !envVars.containsKey("GITHUB_ORGANIZATION") ) {
-      envVars.put("GITHUB_ORGANIZATION", gitOrganization)
-    }
-
-    if (gitSshURL != null && !envVars.containsKey("GITHUB_SSH_URL") ) {
-      envVars.put("GITHUB_SSH_URL", gitSshURL)
-    }
-
-    if (jobMaxRunTime != null && !envVars.containsKey("JOB_MAX_RUN_TIME") ) {
-      envVars.put("JOB_MAX_RUN_TIME", jobMaxRunTime)
-    }
-
-    if ( jacocoBucket != null && !envVars.containsKey("JACOCO_BUCKET") ) {
-      envVars.put("JACOCO_BUCKET", jacocoBucket)
-    }
-
-    if ( jacocoEnable != null && !envVars.containsKey("JACOCO_ENABLE") ) {
-      envVars.put("JACOCO_ENABLE", jacocoEnable)
     }
 
     if ( adminEmails != null && !envVars.containsKey("ADMIN_EMAILS") ) {

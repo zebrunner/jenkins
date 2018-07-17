@@ -5,29 +5,13 @@ ENV ROOT_EMAIL=qps-auto@qaprosoft.com
 ENV ADMIN_EMAILS=qps-auto@qaprosoft.com
 ENV ADMIN_USER=admin
 ENV ADMIN_PASS=qaprosoft
+ENV QPS_HOST=localhost
 ENV QPS_PIPELINE_GIT_URL=git@github.com:qaprosoft/qps-pipeline.git
-ENV QPS_PIPELINE_GIT_BRANCH=2.3
+ENV QPS_PIPELINE_GIT_BRANCH=2.6
 ENV JENKINS_OPTS="--prefix=/jenkins --httpPort=-1 --httpsPort=8083 --httpsKeyStore=/var/jenkins_home/keystore.jks --httpsKeyStorePassword=password"
-ENV CARINA_CORE_VERSION=LATEST
-ENV CORE_LOG_LEVEL=INFO
-ENV SELENIUM_HOST=localhost
-ENV SELENIUM_PORT=4444
-ENV SELENIUM_PROTOCOL=http
-ENV SELENIUM_URL=\$SELENIUM_PROTOCOL://\$SELENIUM_HOST:\$SELENIUM_PORT/wd/hub
 ENV ZAFIRA_ACCESS_TOKEN=eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwicGFzc3dvcmQiOiJhaTk1Q0JFUmN2MEw4WHZERWozMzV3dkxhK1AxMU50ViIsImV4cCI6MTMwMzYxNjcxMTk2fQ.5S1SA9KP9wXTR9_c-fW9j2fj0e8-3uesDWRv4MfYhrF5O4zSQ2TtzmRpmFjrnroYJ3RTWIf5yUAVJEWTRkKYAw
-ENV ZAFIRA_BASE_CONFIG="-Dzafira_enabled=true -Dzafira_rerun_failures=\$rerun_failures -Dzafira_service_url=\$ZAFIRA_SERVICE_URL -Dgit_branch=\$branch -Dgit_commit=\$GIT_COMMIT -Dgit_url=\$repository -Dci_user_id=\$BUILD_USER_ID -Dci_user_first_name=\$BUILD_USER_FIRST_NAME -Dci_user_last_name=\$BUILD_USER_LAST_NAME -Dci_user_email=\$BUILD_USER_EMAIL -Dzafira_access_token=\$ZAFIRA_ACCESS_TOKEN"
-ENV ZAFIRA_SERVICE_URL=https://localhost:8080/zafira-ws
-ENV JACOCO_BUCKET=jacoco.qaprosoft.com
-ENV JACOCO_ENABLE=false
 ENV AWS_KEY=CHANGE_ME
 ENV AWS_SECRET=CHANGE_ME
-ENV GITHUB_API_URL=https://api.\$GITHUB_HOST/
-ENV GITHUB_HOST=github.com
-ENV GITHUB_HTML_URL=https://\$GITHUB_HOST/\$GITHUB_ORGANIZATION
-ENV GITHUB_OAUTH_TOKEN=7986abef9d29860448dd7ab969aa42c4f2054aea
-ENV GITHUB_ORGANIZATION=qaprosoft
-ENV GITHUB_SSH_URL=git@\$GITHUB_HOST:\$GITHUB_ORGANIZATION
-ENV JOB_MAX_RUN_TIME=60
 
 USER root
 
