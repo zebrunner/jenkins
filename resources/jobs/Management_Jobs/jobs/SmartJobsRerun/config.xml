@@ -22,13 +22,13 @@ owner</description>
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
-          <name>upstream_job_id</name>
+          <name>ci_job_id</name>
           <description>Parent pipeline job id. All children job results will be analyzed and some of them re-executed.</description>
           <defaultValue></defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>upstream_job_build_number</name>
+          <name>ci_parent_build</name>
           <description>Parent pipeline job build number</description>
           <defaultValue></defaultValue>
           <trim>false</trim>
