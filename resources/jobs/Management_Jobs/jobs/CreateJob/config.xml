@@ -1,5 +1,6 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version='1.1' encoding='UTF-8'?>
 <project>
+  <actions/>
   <description>JobDSL functionality for creating and automatic maintenance test automation jobs</description>
   <keepDependencies>false</keepDependencies>
   <properties>
@@ -11,7 +12,7 @@
         <artifactNumToKeep>-1</artifactNumToKeep>
       </strategy>
     </jenkins.model.BuildDiscarderProperty>
-    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.27">
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.28">
       <autoRebuild>false</autoRebuild>
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
@@ -21,26 +22,31 @@
           <name>jobFolder</name>
           <description></description>
           <defaultValue>Automation</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>project</name>
           <description></description>
           <defaultValue>carina-demo</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>sub_project</name>
           <description></description>
           <defaultValue>.</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>suite</name>
           <description></description>
           <defaultValue>suite</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>suiteOwner</name>
           <description></description>
           <defaultValue>anonymous</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.TextParameterDefinition>
           <name>suiteXML</name>
@@ -48,11 +54,13 @@
           <defaultValue>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;suite verbose=&quot;1&quot; parallel=&quot;tests&quot; data-provider-thread-count=&quot;1&quot; name=&quot;EmptySuite&quot;&gt;
 &lt;/suite&gt;</defaultValue>
+          <trim>false</trim>
         </hudson.model.TextParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>zafira_project</name>
           <description></description>
           <defaultValue>unknown</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>createCron</name>
@@ -62,7 +70,7 @@
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
   </properties>
-  <scm class="hudson.plugins.git.GitSCM" plugin="git@3.6.0">
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@3.9.1">
     <configVersion>2</configVersion>
     <userRemoteConfigs>
       <hudson.plugins.git.UserRemoteConfig>
@@ -78,14 +86,15 @@
     <submoduleCfg class="list"/>
     <extensions/>
   </scm>
-  <canRoam>true</canRoam>
+  <assignedNode>master</assignedNode>
+  <canRoam>false</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers/>
-  <concurrentBuild>false</concurrentBuild>
+  <concurrentBuild>true</concurrentBuild>
   <builders>
-    <javaposse.jobdsl.plugin.ExecuteDslScripts plugin="job-dsl@1.66">
+    <javaposse.jobdsl.plugin.ExecuteDslScripts plugin="job-dsl@1.68">
       <targets>src/com/qaprosoft/jenkins/repository/jobdsl/v2/CreateJob.groovy</targets>
       <usingScriptText>false</usingScriptText>
       <sandbox>false</sandbox>
@@ -102,8 +111,8 @@
   </builders>
   <publishers/>
   <buildWrappers>
-    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.8"/>
-    <org.jenkinsci.plugins.buildnamesetter.BuildNameSetter plugin="build-name-setter@1.6.7">
+    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.9"/>
+    <org.jenkinsci.plugins.buildnamesetter.BuildNameSetter plugin="build-name-setter@1.6.9">
       <template>#${BUILD_NUMBER}|${project}|${suite}|${zafira_project}|${createCron}</template>
       <runAtStart>true</runAtStart>
       <runAtEnd>true</runAtEnd>
