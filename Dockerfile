@@ -7,7 +7,7 @@ ENV ADMIN_USER=admin
 ENV ADMIN_PASS=qaprosoft
 ENV QPS_HOST=localhost
 ENV QPS_PIPELINE_GIT_URL=git@github.com:qaprosoft/qps-pipeline.git
-ENV QPS_PIPELINE_GIT_BRANCH=2.6
+ENV QPS_PIPELINE_GIT_BRANCH=2.7
 ENV JENKINS_OPTS="--prefix=/jenkins --httpPort=-1 --httpsPort=8083 --httpsKeyStore=/var/jenkins_home/keystore.jks --httpsKeyStorePassword=password"
 ENV ZAFIRA_ACCESS_TOKEN=eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwicGFzc3dvcmQiOiJhaTk1Q0JFUmN2MEw4WHZERWozMzV3dkxhK1AxMU50ViIsImV4cCI6MTMwMzYxNjcxMTk2fQ.5S1SA9KP9wXTR9_c-fW9j2fj0e8-3uesDWRv4MfYhrF5O4zSQ2TtzmRpmFjrnroYJ3RTWIf5yUAVJEWTRkKYAw
 ENV AWS_KEY=CHANGE_ME
