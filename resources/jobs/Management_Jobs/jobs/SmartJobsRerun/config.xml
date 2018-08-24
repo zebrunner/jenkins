@@ -72,7 +72,7 @@ owner</description>
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.45">
     <script>@Library(&apos;QPS-Pipeline&apos;)
-import com.qaprosoft.jenkins.repository.pipeline.v2.Runner;
+import com.qaprosoft.jenkins.pipeline.Runner;
 new Runner(this).rerunJobs()</script>
     <sandbox>true</sandbox>
   </definition>
