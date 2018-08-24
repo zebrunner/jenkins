@@ -78,7 +78,7 @@
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.45">
     <script>@Library(&apos;QPS-Pipeline&apos;)
-import com.qaprosoft.jenkins.repository.pipeline.v2.Scanner;
+import com.qaprosoft.jenkins.pipeline.Scanner;
 new Scanner(this).scanRepository()</script>
     <sandbox>true</sandbox>
   </definition>

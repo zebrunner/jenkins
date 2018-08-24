@@ -59,7 +59,7 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <javaposse.jobdsl.plugin.ExecuteDslScripts plugin="job-dsl@1.66">
-      <targets>src/com/qaprosoft/jenkins/repository/jobdsl/v2/PR_Checker.groovy</targets>
+      <targets>src/com/qaprosoft/jenkins/jobdsl/PR_Checker.groovy</targets>
       <usingScriptText>false</usingScriptText>
       <sandbox>false</sandbox>
       <ignoreExisting>false</ignoreExisting>
