@@ -54,7 +54,7 @@ USER jenkins
 
 COPY resources/init.groovy.d/ /usr/share/jenkins/ref/init.groovy.d/
 COPY resources/jobs/ /usr/share/jenkins/ref/jobs/
-COPY resources/.ssh/ /usr/share/jenkins_home/
+COPY resources/.ssh/ /var/jenkins_home/.ssh/
 
 # Configure plugins
 
