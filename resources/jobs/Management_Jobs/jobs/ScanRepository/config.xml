@@ -12,7 +12,7 @@
       <parameterDefinitions>
         <jp.ikedam.jenkins.plugins.extensible__choice__parameter.ExtensibleChoiceParameterDefinition plugin="extensible-choice-parameter@1.5.0">
           <name>project</name>
-          <description></description>
+          <description>Choose your GitHub repository for scanning</description>
           <editable>true</editable>
           <choiceListProvider class="jp.ikedam.jenkins.plugins.extensible_choice_parameter.GlobalTextareaChoiceListProvider">
             <whenToAdd>Triggered</whenToAdd>
@@ -21,7 +21,7 @@
         </jp.ikedam.jenkins.plugins.extensible__choice__parameter.ExtensibleChoiceParameterDefinition>
         <jp.ikedam.jenkins.plugins.extensible__choice__parameter.ExtensibleChoiceParameterDefinition plugin="extensible-choice-parameter@1.5.0">
           <name>branch</name>
-          <description></description>
+          <description>It is highly recommended to use master branch for each scan operation</description>
           <editable>true</editable>
           <choiceListProvider class="jp.ikedam.jenkins.plugins.extensible_choice_parameter.GlobalTextareaChoiceListProvider">
             <whenToAdd>Triggered</whenToAdd>
@@ -31,19 +31,14 @@
         </jp.ikedam.jenkins.plugins.extensible__choice__parameter.ExtensibleChoiceParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>folder</name>
-          <description></description>
+          <description>Folder in Jenkins where all jobs/views etc will be generated</description>
           <defaultValue>Automation</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
-          <name>firstScan</name>
-          <description></description>
-          <defaultValue>false</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
           <name>onlyUpdated</name>
-          <description></description>
-          <defaultValue>true</defaultValue>
+          <description>If chosen, scan will be performed only in case of any change in *.xml suites.</description>
+          <defaultValue>false</defaultValue>
         </hudson.model.BooleanParameterDefinition>
         <hudson.model.ChoiceParameterDefinition>
           <name>removedConfigFilesAction</name>
