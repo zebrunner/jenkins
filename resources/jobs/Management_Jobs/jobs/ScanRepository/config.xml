@@ -36,14 +36,9 @@
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
-          <name>firstScan</name>
-          <description>Check only in case of 1st run for your repository or branch to create all content from scratch</description>
-          <defaultValue>false</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
           <name>onlyUpdated</name>
-          <description>If chosen, scan will be performed only in case of any change in *.xml suites</description>
-          <defaultValue>true</defaultValue>
+          <description>If chosen, scan will be performed only in case of any change in *.xml suites.</description>
+          <defaultValue>false</defaultValue>
         </hudson.model.BooleanParameterDefinition>
         <hudson.model.ChoiceParameterDefinition>
           <name>removedConfigFilesAction</name>
