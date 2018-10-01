@@ -99,6 +99,7 @@ Thread.start {
         envVars.put("JENKINS_SECURITY_INITIALIZED", "true")
     }
 
+    instance.getDescriptor("jenkins.CLI").get().setEnabled(false)
     // Save the state
     instance.save()
 }
