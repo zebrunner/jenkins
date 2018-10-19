@@ -39,7 +39,7 @@
         <hudson.model.StringParameterDefinition>
           <name>runnerClass</name>
           <description></description>
-          <defaultValue>com.qaprosoft.jenkins.pipeline.impl.Runner</defaultValue>
+          <defaultValue>com.qaprosoft.jenkins.pipeline.maven.Runner</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
