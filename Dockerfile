@@ -1,4 +1,4 @@
-FROM jenkins/jenkins:2.147-alpine
+FROM jenkins/jenkins:2.148-alpine
 
 ENV ROOT_URL=http://localhost:8083/jenkins
 ENV ROOT_EMAIL=qps-auto@qaprosoft.com
@@ -12,6 +12,7 @@ ENV JENKINS_OPTS="--prefix=/jenkins --httpPort=-1 --httpsPort=8083 --httpsKeySto
 ENV ZAFIRA_ACCESS_TOKEN=eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwicGFzc3dvcmQiOiJ6WHRoVy9CNS9CZk9QRW4xRktMVy8vbmpqbkZFSGJhZSIsInRlbmFudCI6InphZmlyYSIsImV4cCI6MTMwMzg2OTAyMzg3fQ.8xDrHUmtahzBrbyKrAX-Xkr9cUZXpfH5aC-rDh1oQZGWCfVME76YEsUPPoozOOfhHKg6AzV56w-BEq9UtGz_AA
 ENV AWS_KEY=CHANGE_ME
 ENV AWS_SECRET=CHANGE_ME
+ENV QPS_PIPELINE_LOG_LEVEL=INFO
 
 USER root
 

@@ -24,6 +24,8 @@ def zafiraAccessToken = env['ZAFIRA_ACCESS_TOKEN']
 def qpsPipelineGitURL = env['QPS_PIPELINE_GIT_URL']
 def qpsPipelineGitBranch = env['QPS_PIPELINE_GIT_BRANCH']
 
+def qpsPipelineLogLevel = env['QPS_PIPELINE_LOG_LEVEL']
+
 def globalPipelineLib = env['GLOBAL_PIPELINE_LIB']
 
 
@@ -79,6 +81,10 @@ Thread.start {
 
     if ( qpsPipelineGitBranch != null && !envVars.containsKey("QPS_PIPELINE_GIT_BRANCH") ) {
       envVars.put("QPS_PIPELINE_GIT_BRANCH", qpsPipelineGitBranch)
+    }
+
+    if ( qpsPipelineLogLevel != null && !envVars.containsKey("QPS_PIPELINE_LOG_LEVEL") ) {
+      envVars.put("QPS_PIPELINE_LOG_LEVEL", qpsPipelineLogLevel)
     }
 
     if ( adminEmails != null && !envVars.containsKey("ADMIN_EMAILS") ) {
