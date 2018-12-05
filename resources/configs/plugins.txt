@@ -53,7 +53,7 @@ docker-commons:1.11
 docker-workflow:1.15.1
 durable-task:1.22
 dynamic_extended_choice_parameter:1.0.1
-ec2-fleet:1.1.4
+ec2-fleet:1.1.8
 email-ext:2.62
 envinject:2.1.6
 envinject-api:1.5
