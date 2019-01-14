@@ -5,14 +5,21 @@
   <keepDependencies>false</keepDependencies>
   <properties>
     <org.jenkinsci.plugins.workflow.job.properties.DisableResumeJobProperty/>
-    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.28">
+    <com.synopsys.arc.jenkins.plugins.ownership.jobs.JobOwnerJobProperty plugin="ownership@0.12.0"/>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.29">
       <autoRebuild>false</autoRebuild>
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>organization</name>
+          <description></description>
+          <defaultValue>qaprosoft</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
         <jp.ikedam.jenkins.plugins.extensible__choice__parameter.ExtensibleChoiceParameterDefinition plugin="extensible-choice-parameter@1.5.0">
-          <name>project</name>
+          <name>repo</name>
           <description>Choose your GitHub repository for scanning</description>
           <editable>true</editable>
           <choiceListProvider class="jp.ikedam.jenkins.plugins.extensible_choice_parameter.GlobalTextareaChoiceListProvider">
@@ -31,6 +38,18 @@
           </choiceListProvider>
         </jp.ikedam.jenkins.plugins.extensible__choice__parameter.ExtensibleChoiceParameterDefinition>
         <hudson.model.StringParameterDefinition>
+          <name>user</name>
+          <description></description>
+          <defaultValue>tsvrko</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>token</name>
+          <description></description>
+          <defaultValue>ee52b89ec91a7532bfe7dbdc066b17c9a5dc2c2e</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
           <name>pipelineLibrary</name>
           <description>Groovy JobDSL/Pipeline library, for example: https://github.com/qaprosoft/qps-pipeline/releases</description>
           <defaultValue>QPS-Pipeline</defaultValue>
@@ -48,7 +67,7 @@
       <triggers/>
     </org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
   </properties>
-  <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.45">
+  <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.61">
     <script>@Library(&apos;QPS-Pipeline&apos;)
 import com.qaprosoft.jenkins.pipeline.Repository;
 new Repository(this).register()</script>
