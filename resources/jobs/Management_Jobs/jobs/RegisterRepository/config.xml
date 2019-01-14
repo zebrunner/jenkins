@@ -40,13 +40,13 @@
         <hudson.model.StringParameterDefinition>
           <name>user</name>
           <description></description>
-          <defaultValue>tsvrko</defaultValue>
+          <defaultValue></defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>token</name>
           <description></description>
-          <defaultValue>ee52b89ec91a7532bfe7dbdc066b17c9a5dc2c2e</defaultValue>
+          <defaultValue></defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
