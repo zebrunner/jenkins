@@ -130,6 +130,7 @@ s3:0.11.2
 scm-api:2.3.0
 script-security:1.50
 sonar:2.8.1
+sbt:1.5
 sse-gateway:1.17
 ssh-agent:1.17
 ssh-credentials:1.14
