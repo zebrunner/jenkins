@@ -14,19 +14,16 @@
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
           <name>organization</name>
-          <description></description>
+          <description>GitHub organization</description>
           <defaultValue>qaprosoft</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
-        <jp.ikedam.jenkins.plugins.extensible__choice__parameter.ExtensibleChoiceParameterDefinition plugin="extensible-choice-parameter@1.5.0">
+        <hudson.model.StringParameterDefinition>
           <name>repo</name>
-          <description>Choose your GitHub repository for scanning</description>
-          <editable>true</editable>
-          <choiceListProvider class="jp.ikedam.jenkins.plugins.extensible_choice_parameter.GlobalTextareaChoiceListProvider">
-            <whenToAdd>Triggered</whenToAdd>
-            <name>gc_GIT_PROJECT</name>
-          </choiceListProvider>
-        </jp.ikedam.jenkins.plugins.extensible__choice__parameter.ExtensibleChoiceParameterDefinition>
+          <description>GitHub repository for scanning</description>
+          <defaultValue>carina-demo</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
         <jp.ikedam.jenkins.plugins.extensible__choice__parameter.ExtensibleChoiceParameterDefinition plugin="extensible-choice-parameter@1.5.0">
           <name>branch</name>
           <description>It is highly recommended to use master branch for each scan operation</description>
@@ -39,13 +36,13 @@
         </jp.ikedam.jenkins.plugins.extensible__choice__parameter.ExtensibleChoiceParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>user</name>
-          <description></description>
+          <description>GitHub user</description>
           <defaultValue></defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>token</name>
-          <description></description>
+          <description>GitHub token with read permissions</description>
           <defaultValue></defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
