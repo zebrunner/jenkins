@@ -2,13 +2,6 @@
 <jp.ikedam.jenkins.plugins.extensible__choice__parameter.GlobalTextareaChoiceListProvider_-DescriptorImpl plugin="extensible-choice-parameter@1.5.0">
   <choiceListEntryList>
     <jp.ikedam.jenkins.plugins.extensible__choice__parameter.GlobalTextareaChoiceListEntry>
-      <name>gc_GIT_PROJECT</name>
-      <choiceList>
-          <string>carina-demo</string>
-      </choiceList>
-      <allowAddEditedValue>false</allowAddEditedValue>
-    </jp.ikedam.jenkins.plugins.extensible__choice__parameter.GlobalTextareaChoiceListEntry>
-    <jp.ikedam.jenkins.plugins.extensible__choice__parameter.GlobalTextareaChoiceListEntry>
       <name>gc_GIT_BRANCH</name>
       <choiceList>
         <string>master</string>
