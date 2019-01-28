@@ -14,7 +14,7 @@
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
           <name>organization</name>
-          <description>GitHob organization</description>
+          <description>GitHub organization</description>
           <defaultValue>qaprosoft</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
