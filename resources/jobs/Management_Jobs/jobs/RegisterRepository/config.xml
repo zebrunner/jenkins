@@ -42,7 +42,7 @@
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>token</name>
-          <description>GitHub user token with read permissions</description>
+          <description>GitHub token with read permissions</description>
           <defaultValue></defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
