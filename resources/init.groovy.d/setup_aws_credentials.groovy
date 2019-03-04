@@ -4,6 +4,7 @@ import com.cloudbees.plugins.credentials.common.*
 import com.cloudbees.plugins.credentials.domains.*
 import com.cloudbees.plugins.credentials.impl.*
 import com.cloudbees.jenkins.plugins.sshcredentials.impl.*
+import com.cloudbees.jenkins.plugins.awscredentials.AWSCredentialsImpl
 
 println "--> setting aws creds"
 
@@ -16,16 +17,16 @@ def credentialsStore =
 
 def env = System.getenv()
 def id = "aws-jacoco-token"
-def username = env["AWS_KEY"]
-def password = env["AWS_SECRET"]
+def accessKey = env["AWS_KEY"]
+def secretKey = env["AWS_SECRET"]
 def description = "AWS S3 token"
 
-def credentials = new UsernamePasswordCredentialsImpl(
+def awsCredentials = new AWSCredentialsImpl(
   CredentialsScope.GLOBAL,
   id,
-  description,
-  username,
-  password
+  accessKey,
+  secretKey,
+  description
 )
 
-credentialsStore.addCredentials(global_domain, credentials)
+credentialsStore.addCredentials(global_domain, awsCredentials)
