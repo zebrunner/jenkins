@@ -86,6 +86,7 @@ job-dsl:1.71
 jobConfigHistory:2.19
 jquery-detached:1.2.1
 jquery:1.12.4-0
+jquery-ui:1.0.1
 jsch:0.1.55
 junit-attachments:1.5
 junit:1.27
