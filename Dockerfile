@@ -18,9 +18,10 @@ USER root
 
 # Install Git
 
-RUN apk update && apk upgrade && \
-    apk add --no-cache bash git openssh
+#RUN apk update && apk upgrade && \
+#    apk add --no-cache bash git openssh
 
+RUN apk add --no-cache bash git openssh
 
 # Install Apache Maven
 
