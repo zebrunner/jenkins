@@ -1,0 +1,92 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<flow-definition plugin="workflow-job@2.31">
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <org.jenkinsci.plugins.workflow.job.properties.DisableResumeJobProperty/>
+    <com.synopsys.arc.jenkins.plugins.ownership.jobs.JobOwnerJobProperty plugin="ownership@0.12.1"/>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.29">
+      <autoRebuild>false</autoRebuild>
+      <rebuildDisabled>false</rebuildDisabled>
+    </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>organization</name>
+          <description>GitHub organization</description>
+          <defaultValue>qaprosoft</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>repo</name>
+          <description>GitHub repository for scanning</description>
+          <defaultValue>carina-demo</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <jp.ikedam.jenkins.plugins.extensible__choice__parameter.ExtensibleChoiceParameterDefinition plugin="extensible-choice-parameter@1.6.0">
+          <name>branch</name>
+          <description>It is highly recommended to use master branch for each scan operation</description>
+          <editable>true</editable>
+          <editableType>NoFilter</editableType>
+          <choiceListProvider class="jp.ikedam.jenkins.plugins.extensible_choice_parameter.GlobalTextareaChoiceListProvider">
+            <whenToAdd>Triggered</whenToAdd>
+            <name>gc_GIT_BRANCH</name>
+            <defaultChoice>master</defaultChoice>
+          </choiceListProvider>
+        </jp.ikedam.jenkins.plugins.extensible__choice__parameter.ExtensibleChoiceParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>user</name>
+          <description>GitHub user</description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>token</name>
+          <description>GitHub token with read permissions</description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>pipelineLibrary</name>
+          <description>Groovy JobDSL/Pipeline library, for example: https://github.com/qaprosoft/qps-pipeline/releases</description>
+          <defaultValue>QPS-Pipeline</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>runnerClass</name>
+          <description></description>
+          <defaultValue>com.qaprosoft.jenkins.pipeline.runner.maven.QARunner</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>security_enabled</name>
+          <description></description>
+          <defaultValue>false</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+        <com.wangyin.parameter.WHideParameterDefinition plugin="hidden-parameter@0.0.4">
+          <name>ZAFIRA_ACCESS_TOKEN</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </com.wangyin.parameter.WHideParameterDefinition>
+        <com.wangyin.parameter.WHideParameterDefinition plugin="hidden-parameter@0.0.4">
+          <name>ZAFIRA_SERVICE_URL</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </com.wangyin.parameter.WHideParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+    <org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
+      <triggers/>
+    </org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
+  </properties>
+  <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.63">
+    <script>@Library(&apos;QPS-Pipeline&apos;)
+import com.qaprosoft.jenkins.pipeline.Organization;
+new Organization(this).register()</script>
+    <sandbox>true</sandbox>
+  </definition>
+  <triggers/>
+  <authToken>ciStart</authToken>
+  <disabled>false</disabled>
+</flow-definition>
