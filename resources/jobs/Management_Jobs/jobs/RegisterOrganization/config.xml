@@ -33,12 +33,12 @@
         <com.wangyin.parameter.WHideParameterDefinition plugin="hidden-parameter@0.0.4">
           <name>ZAFIRA_SERVICE_URL</name>
           <description></description>
-          <defaultValue>http://demo.qaprosoft.com/zafira-ws</defaultValue>
+          <defaultValue></defaultValue>
         </com.wangyin.parameter.WHideParameterDefinition>
         <com.wangyin.parameter.WHideParameterDefinition plugin="hidden-parameter@0.0.4">
           <name>ZAFIRA_ACCESS_TOKEN</name>
           <description></description>
-          <defaultValue>eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwicGFzc3dvcmQiOiJ6WHRoVy9CNS9CZk9QRW4xRktMVy8vbmpqbkZFSGJhZSIsInRlbmFudCI6InphZmlyYSIsImV4cCI6MTMwMzg2OTAyMzg3fQ.8xDrHUmtahzBrbyKrAX-Xkr9cUZXpfH5aC-rDh1oQZGWCfVME76YEsUPPoozOOfhHKg6AzV56w-BEq9UtGz_AA</defaultValue>
+          <defaultValue></defaultValue>
         </com.wangyin.parameter.WHideParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
