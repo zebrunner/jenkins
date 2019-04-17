@@ -13,8 +13,8 @@
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
-          <name>organization</name>
-          <description>GitHub organization</description>
+          <name>folder</name>
+          <description>Jenkins folder</description>
           <defaultValue></defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
@@ -31,14 +31,14 @@
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <com.wangyin.parameter.WHideParameterDefinition plugin="hidden-parameter@0.0.4">
+          <name>ZAFIRA_ACCESS_TOKEN</name>
+          <description></description>
+          <defaultValue>eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwicGFzc3dvcmQiOiI1aWsxZ1FleEF1YWg3MHArUmlMTEJiSm5ranpEcTdsSCIsInRlbmFudCI6InphZmlyYSIsImV4cCI6MTMwNDA0NDM5OTAxfQ.s_LLhPdnavQSd7mBgisz0tg8EHUo0DZZRKxKCojB2jeLFb27e5YBbTik0FQlerSpsQI9w7feyJLWUENYo9s9Kg</defaultValue>
+        </com.wangyin.parameter.WHideParameterDefinition>
+        <com.wangyin.parameter.WHideParameterDefinition plugin="hidden-parameter@0.0.4">
           <name>ZAFIRA_SERVICE_URL</name>
           <description></description>
           <defaultValue>http://demo.qaprosoft.com/zafira-ws</defaultValue>
-        </com.wangyin.parameter.WHideParameterDefinition>
-        <com.wangyin.parameter.WHideParameterDefinition plugin="hidden-parameter@0.0.4">
-          <name>ZAFIRA_ACCESS_TOKEN</name>
-          <description></description>
-          <defaultValue>eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwicGFzc3dvcmQiOiJ6WHRoVy9CNS9CZk9QRW4xRktMVy8vbmpqbkZFSGJhZSIsInRlbmFudCI6InphZmlyYSIsImV4cCI6MTMwMzg2OTAyMzg3fQ.8xDrHUmtahzBrbyKrAX-Xkr9cUZXpfH5aC-rDh1oQZGWCfVME76YEsUPPoozOOfhHKg6AzV56w-BEq9UtGz_AA</defaultValue>
         </com.wangyin.parameter.WHideParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
