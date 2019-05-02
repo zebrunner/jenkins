@@ -21,20 +21,20 @@
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
-          <name>user</name>
-          <description>GitHub user</description>
+          <name>zafiraServiceURL</name>
+          <description>Zafira service url</description>
           <defaultValue></defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>token</name>
-          <description>GitHub token with read permissions</description>
+          <name>zafiraRefreshToken</name>
+          <description>Zafira refresh token</description>
           <defaultValue></defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>jenkins_user</name>
-          <description>Optional, skip if you register your personal token</description>
+          <name>tenancyName</name>
+          <description>Tenancy folder name</description>
           <defaultValue></defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
@@ -46,8 +46,8 @@
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.63">
     <script>@Library(&apos;QPS-Pipeline&apos;)
-import com.qaprosoft.jenkins.pipeline.Repository
-new Repository(this).registerCredentials()</script>
+import com.qaprosoft.jenkins.pipeline.Organization
+new Organization(this).registerZafiraCredentials()</script>
     <sandbox>true</sandbox>
   </definition>
   <triggers/>
