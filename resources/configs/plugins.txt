@@ -90,6 +90,7 @@ jquery-ui:1.0.1
 jsch:0.1.55
 junit-attachments:1.5
 junit:1.27
+kubernetes-cd:0.2.3
 kubernetes-credentials:0.4.0
 kubernetes:1.14.6
 ldap:1.20
