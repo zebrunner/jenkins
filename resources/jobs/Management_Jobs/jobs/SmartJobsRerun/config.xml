@@ -1,5 +1,5 @@
 <?xml version='1.1' encoding='UTF-8'?>
-<flow-definition plugin="workflow-job@2.17">
+<flow-definition plugin="workflow-job@2.31">
   <actions/>
   <description>Smart job to rebuild any milestone/cron/regression pipeline based on provided parameters:&#xd;
 scm&#xd;
@@ -14,7 +14,7 @@ owner</description>
         <artifactNumToKeep>-1</artifactNumToKeep>
       </strategy>
     </jenkins.model.BuildDiscarderProperty>
-    <com.synopsys.arc.jenkins.plugins.ownership.jobs.JobOwnerJobProperty plugin="ownership@0.12.0"/>
+    <com.synopsys.arc.jenkins.plugins.ownership.jobs.JobOwnerJobProperty plugin="ownership@0.12.1"/>
     <org.jenkinsci.plugins.workflow.job.properties.DurabilityHintJobProperty>
       <hint>PERFORMANCE_OPTIMIZED</hint>
     </org.jenkinsci.plugins.workflow.job.properties.DurabilityHintJobProperty>
@@ -25,25 +25,25 @@ owner</description>
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
-          <name>ci_job_id</name>
+          <name>upstreamJobId</name>
           <description>Parent pipeline job id. All children job results will be analyzed and some of them re-executed.</description>
           <defaultValue></defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>ci_parent_build</name>
+          <name>upstreamJobBuildNumber</name>
           <description>Parent pipeline job build number</description>
           <defaultValue></defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>scm_url</name>
+          <name>scmURL</name>
           <description>[Optional] if provided then only jobs/suites which belong to this particular repo could be re-executed </description>
           <defaultValue></defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>ci_user_id</name>
+          <name>owner</name>
           <description>[Optional] if provided then only jobs/suites which belong to this particular user could be re-executed </description>
           <defaultValue></defaultValue>
           <trim>false</trim>
@@ -73,9 +73,9 @@ owner</description>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
   </properties>
-  <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.61">
+  <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.63">
     <script>@Library(&apos;QPS-Pipeline&apos;)
-import com.qaprosoft.jenkins.pipeline.maven.QARunner;
+import com.qaprosoft.jenkins.pipeline.runner.maven.QARunner;
 new QARunner(this).rerunJobs()</script>
     <sandbox>true</sandbox>
   </definition>
