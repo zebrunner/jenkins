@@ -33,12 +33,12 @@
         <com.wangyin.parameter.WHideParameterDefinition plugin="hidden-parameter@0.0.4">
           <name>accessToken</name>
           <description></description>
-          <defaultValue>sldfnlwfnlkjwnefkwjef</defaultValue>
+          <defaultValue></defaultValue>
         </com.wangyin.parameter.WHideParameterDefinition>
         <com.wangyin.parameter.WHideParameterDefinition plugin="hidden-parameter@0.0.4">
           <name>callbackUrl</name>
           <description></description>
-          <defaultValue>http://demo.qaprosoft.com/jobservice</defaultValue>
+          <defaultValue></defaultValue>
         </com.wangyin.parameter.WHideParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
