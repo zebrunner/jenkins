@@ -36,13 +36,13 @@
           </choiceListProvider>
         </jp.ikedam.jenkins.plugins.extensible__choice__parameter.ExtensibleChoiceParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>user</name>
+          <name>githubUser</name>
           <description>GitHub user</description>
           <defaultValue></defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>token</name>
+          <name>githubToken</name>
           <description>GitHub token with read permissions</description>
           <defaultValue></defaultValue>
           <trim>false</trim>
