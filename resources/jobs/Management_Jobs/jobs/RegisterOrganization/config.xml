@@ -13,8 +13,8 @@
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
-          <name>tenancyName</name>
-          <description>Jenkins folder for tenancy</description>
+          <name>folderName</name>
+          <description>Jenkins folder for repos</description>
           <defaultValue></defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
@@ -40,6 +40,11 @@
           <description></description>
           <defaultValue></defaultValue>
         </com.wangyin.parameter.WHideParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>securityEnabled</name>
+          <description>Disable when run manually</description>
+          <defaultValue>true</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
     <org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
