@@ -13,7 +13,7 @@
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
-          <name>tenancyName</name>
+          <name>folderName</name>
           <description>Tenancy folder name</description>
           <defaultValue></defaultValue>
           <trim>false</trim>
