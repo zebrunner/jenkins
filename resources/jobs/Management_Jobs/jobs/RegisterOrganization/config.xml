@@ -14,7 +14,7 @@
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
           <name>folderName</name>
-          <description>Jenkins folder for repos</description>
+          <description>Organization name to be register as Jenkins folder. </description>
           <defaultValue></defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
@@ -43,7 +43,7 @@
         <hudson.model.BooleanParameterDefinition>
           <name>securityEnabled</name>
           <description>Disable when run manually</description>
-          <defaultValue>true</defaultValue>
+          <defaultValue>false</defaultValue>
         </hudson.model.BooleanParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>

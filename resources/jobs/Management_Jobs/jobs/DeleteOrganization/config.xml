@@ -14,7 +14,7 @@
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
           <name>folderName</name>
-          <description>Tenancy folder name</description>
+          <description>Organization folder name</description>
           <defaultValue></defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
