@@ -1,9 +1,17 @@
 <?xml version='1.1' encoding='UTF-8'?>
 <flow-definition plugin="workflow-job@2.31">
   <actions/>
-  <description>Enable Manage Jenkins/Configure Global Security/Project-based Matrix Authorization Strategy before start.</description>
+  <description></description>
   <keepDependencies>false</keepDependencies>
   <properties>
+    <jenkins.model.BuildDiscarderProperty>
+      <strategy class="hudson.tasks.LogRotator">
+        <daysToKeep>1</daysToKeep>
+        <numToKeep>-1</numToKeep>
+        <artifactDaysToKeep>-1</artifactDaysToKeep>
+        <artifactNumToKeep>-1</artifactNumToKeep>
+      </strategy>
+    </jenkins.model.BuildDiscarderProperty>
     <org.jenkinsci.plugins.workflow.job.properties.DisableResumeJobProperty/>
     <com.synopsys.arc.jenkins.plugins.ownership.jobs.JobOwnerJobProperty plugin="ownership@0.12.1"/>
     <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.29">
@@ -13,38 +21,23 @@
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
+          <name>zafiraServiceURL</name>
+          <description>Zafira service url</description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>zafiraRefreshToken</name>
+          <description>Zafira refresh token</description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
           <name>folderName</name>
-          <description>Organization name to be register as Jenkins folder. </description>
+          <description>Tenancy folder name</description>
           <defaultValue></defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>pipelineLibrary</name>
-          <description>Groovy JobDSL/Pipeline library, for example: https://github.com/qaprosoft/qps-pipeline/releases</description>
-          <defaultValue>QPS-Pipeline</defaultValue>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>runnerClass</name>
-          <description></description>
-          <defaultValue>com.qaprosoft.jenkins.pipeline.runner.maven.QARunner</defaultValue>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <com.wangyin.parameter.WHideParameterDefinition plugin="hidden-parameter@0.0.4">
-          <name>accessToken</name>
-          <description></description>
-          <defaultValue></defaultValue>
-        </com.wangyin.parameter.WHideParameterDefinition>
-        <com.wangyin.parameter.WHideParameterDefinition plugin="hidden-parameter@0.0.4">
-          <name>callbackUrl</name>
-          <description></description>
-          <defaultValue></defaultValue>
-        </com.wangyin.parameter.WHideParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>securityEnabled</name>
-          <description>Disable when run manually</description>
-          <defaultValue>false</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
     <org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
@@ -53,8 +46,8 @@
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.63">
     <script>@Library(&apos;QPS-Pipeline&apos;)
-import com.qaprosoft.jenkins.pipeline.Organization;
-new Organization(this).register()</script>
+import com.qaprosoft.jenkins.pipeline.Organization
+new Organization(this).registerZafiraCredentials()</script>
     <sandbox>true</sandbox>
   </definition>
   <triggers/>
