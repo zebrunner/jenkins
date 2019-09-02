@@ -196,4 +196,4 @@ def install_plugins(plugins_map){
 println "Installing qps-infra plugins required for pure jenkins:"
 install_plugins(required_for_pure_jenkins_plugins)
 install_plugins(custom_plugins)
-//install_plugins(not_install_plugins)
+install_plugins(not_install_plugins)
