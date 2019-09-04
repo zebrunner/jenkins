@@ -1,5 +1,3 @@
-import jenkins.model.Jenkins
-
 def not_install_plugins = [
 'ace-editor':'1.1',
 'amazon-ecs':'1.22',
