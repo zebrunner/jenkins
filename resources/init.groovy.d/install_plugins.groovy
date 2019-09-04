@@ -1,4 +1,5 @@
-import jenkins.model.Jenkins
+import jenkins.model.*
+jenkins = Jenkins.instance
 
 def not_install_plugins = [
 'ace-editor':'1.1',
@@ -87,7 +88,7 @@ def install_plugins(plugins_map){
 	def entries = plugins_map.entrySet()
 	entries.each { entry ->
 	  println "${entry.key}:${entry.value}"
-	  def plugin = Jenkins.instance.updateCenter.getPlugin(entry.key, new hudson.util.VersionNumber(entry.value))
+	  def plugin = jenkins.instance.updateCenter.getPlugin(entry.key, new hudson.util.VersionNumber(entry.value))
 	  if (plugin != null) {
 	    plugin.deploy()
 	  } else {
