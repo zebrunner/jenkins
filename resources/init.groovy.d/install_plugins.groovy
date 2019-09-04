@@ -63,7 +63,7 @@ def not_install_plugins = [
 'parameterized-trigger':'2.35.2',
 'pipeline-aws':'1.38',
 'pipeline-maven':'3.8.1',
-'pipeline-utility-steps:':'2.3.0',
+'pipeline-utility-steps':'2.3.0',
 'pubsub-light':'1.13',
 'rebuild':'1.31',
 'role-strategy':'2.13',
