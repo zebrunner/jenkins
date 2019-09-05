@@ -76,7 +76,6 @@ job-dsl:1.76
 variant:1.3
 aws-java-sdk:1.11.594
 aws-credentials:1.27
-
 PrioritySorter:3.6.0
 ansicolor:0.6.2
 build-name-setter:2.0.1
