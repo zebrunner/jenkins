@@ -56,7 +56,6 @@ COPY resources/init.groovy.d/ /usr/share/jenkins/ref/init.groovy.d/
 COPY resources/jobs/ /usr/share/jenkins/ref/jobs/
 
 # Configure plugins
-
 COPY resources/scripts/plugins.sh /usr/local/bin/
 COPY resources/configs/plugins.txt /usr/share/jenkins/ref/
 RUN /usr/local/bin/plugins.sh /usr/share/jenkins/ref/plugins.txt
