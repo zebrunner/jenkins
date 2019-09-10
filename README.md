@@ -18,5 +18,5 @@ curl -sSL "http://$JENKINS_HOST/pluginManager/api/xml?depth=1&xpath=/*/*/shortNa
 
 ### Manual deployment steps for 3rd party Jenkins Setup
 TODO: update link to README using master branch later
-
 Follow detailed [guide](https://github.com/qaprosoft/jenkins-master/blob/plugins/manual_deployment/README.md)
+
