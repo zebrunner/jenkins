@@ -36,5 +36,36 @@
   * Branches to build: ${QPS_PIPELINE_GIT_BRANCH}
   * Repository browser: (Auto)
   * Additional Behaviours: none
-  
+* Save changes
+
 ![Alt text](./qps-pipeline-library.png?raw=true "QPS-Pipeline library")
+
+### Adjust Pipeline Speed/Durability Settings
+* Open Manage Jenkins -> Configure System
+* Specify Pipeline Default Speed/Durability Level: Performance-optimized: much faster (requires clean shutdown to save running pipelines)
+* Save changes
+
+### Declare required Global Extensible Choices
+* Open Manage Jenkins -> Configure System
+* Click "Add New Choice List" in Extensible Choice: Available Choice Providers
+  * name: gc_GIT_BRANCH
+  * values: master
+* Click "Add New Choice List"
+  * name: gc_BUILD_PRIORITY
+  * values: 5, 4, 3, 2, 1
+  Note: Each value from this doc should be specified in new line!
+* Click "Add New Choice List"
+  * name: gc_BROWSER
+  * values: chrome, firefox
+  Note: safari and ie can be added if your infrastructure support them
+* Click "Add New Choice List"
+  * name: gc_CUSTOM_CAPABILITIES
+  * values: NULL
+  Note: specify full list of custom capabilities resource file like https://github.com/qaprosoft/carina-demo/tree/master/src/main/resources/browserstack/android
+  For example: browserstack/android/Samsung_Galaxy_S8.properties
+  
+
+
+
+  
+  
