@@ -2,8 +2,8 @@ ace-editor:1.1
 amazon-ecs:1.22
 analysis-core:1.96
 ansicolor:0.6.2
-ant:1.10
-antisamy-markup-formatter:1.6
+ant:1.9
+antisamy-markup-formatter:1.5
 apache-httpcomponents-client-4-api:4.5.5-3.0
 authentication-tokens:1.3
 aws-credentials:1.27
@@ -114,7 +114,7 @@ pipeline-aws:1.38
 pipeline-build-step:2.9
 pipeline-github-lib:1.0
 pipeline-graph-analysis:1.10
-pipeline-input-step:2.11
+pipeline-input-step:2.10
 pipeline-maven:3.8.1
 pipeline-milestone-step:1.3.1
 pipeline-model-api:1.3.9
