@@ -33,6 +33,7 @@ gradle:1.33
 handlebars:1.1.1
 hidden-parameter:0.0.4
 htmlpublisher:1.18
+http_request:1.8.23
 jackson2-api:2.9.9.1
 javadoc:1.1
 jdk-tool:1.3
