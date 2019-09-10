@@ -87,7 +87,7 @@ jenkins-design-language:1.18.1
 jenkins-multijob-plugin:1.32
 jira:3.0.9
 jobConfigHistory:2.23.1
-job-dsl:1.76
+job-dsl:1.71
 jquery:1.12.4-1
 jquery-detached:1.2.1
 jquery-ui:1.0.2
