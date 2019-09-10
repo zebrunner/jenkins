@@ -15,3 +15,8 @@ docker run -p 8083:8083 -p 50000:50000 \
 JENKINS_HOST=<username>:<password>@localhost:8080
 curl -sSL "http://$JENKINS_HOST/pluginManager/api/xml?depth=1&xpath=/*/*/shortName|/*/*/version&wrapper=plugins" | perl -pe 's/.*?<shortName>([\w-]+).*?<version>([^<]+)()(<\/\w+>)+/\1 \2\n/g'|sed 's/ /:/'
 ```
+
+### Manual deployment steps for 3rd party Jenkins Setup
+TODO: update link to README using master branch later
+Follow detailed [guide](https://github.com/qaprosoft/jenkins-master/blob/plugins/manual_deployment/README.md)
+
