@@ -36,4 +36,4 @@
   * Branches to build: ${QPS_PIPELINE_GIT_BRANCH}
   * Repository browser: (Auto)
   * Additional Behaviours: none
-![Alt text](./qps-pipeline-library.png.png?raw=true "QPS-Pipeline library")
+![Alt text](./qps-pipeline-library.png?raw=true "QPS-Pipeline library")
