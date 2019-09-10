@@ -71,6 +71,7 @@ pipeline-utility-steps:2.3.0
 plain-credentials:1.5
 PrioritySorter:3.6.0
 random-string-parameter:1.0
+rebuild:1.31
 resource-disposer:0.13
 sbt:1.5
 scm-api:2.6.3
