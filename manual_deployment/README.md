@@ -1,17 +1,38 @@
-# Deploy QPSInfra setting to 3rd party Jenkins install
+# Deploy qps-infra setting to 3rd party Jenkins
 
-### Test
-```
-docker run -p 8083:8083 -p 50000:50000 \
-          -v ~/jenkins_home:/var/jenkins_home -v ~/.m2:/root/.m2 -v ~/.ssh:/var/jenkins_home/.ssh 
-          -e JENKINS_OPTS="--httpPort=-1 --httpsPort=8083 --httpsCertificate=/var/jenkins_home/ssl.crt --httpsPrivateKey=/var/jenkins_home/ssl.key" \
-          -d --rm --name jenkins qaprosoft/jenkins-master:latest
-```
+### Prerequisites
+* Jenkins instance deployed somehow on your premises environment (Linux OS is highly recommended)
+* Admin privileges to the installed Jenkins
 
-### Read plugins from remote Jenkins
-```
-#!/bin/bash
 
-JENKINS_HOST=<username>:<password>@localhost:8080
-curl -sSL "http://$JENKINS_HOST/pluginManager/api/xml?depth=1&xpath=/*/*/shortName|/*/*/version&wrapper=plugins" | perl -pe 's/.*?<shortName>([\w-]+).*?<version>([^<]+)()(<\/\w+>)+/\1 \2\n/g'|sed 's/ /:/'
-```
+### Install required plugins
+* Open Manage Jenkins -> Script Console
+* Execute [install_plugins.groovy](https://github.com/qaprosoft/jenkins-master/plugins/manual_deployment/install_plugins.groovy) script manually
+* Restart Jenkins
+
+### Finish configuration steps
+* Run below scripts from manage Jenkins -> Script Console
+  * Disable scipt security for JobDSL to enable additional classpath for Pipeline+JobDSL steps [disable-scripts-security-for-job-dsl-scripts.groovy](https://github.com/qaprosoft/jenkins-master/blob/master/resources/init.groovy.d/disable-scripts-security-for-job-dsl-scripts.groovy)<br>
+  Note: for details visit https://issues.jenkins-ci.org/browse/JENKINS-40961 and https://github.com/jenkinsci/job-dsl-plugin/wiki/Migration#migrating-to-160
+  * Declare required global variables by [global-args-security.groovy](https://github.com/qaprosoft/jenkins-master/blob/master/resources/init.groovy.d/global-args-security.groovy)
+  * Declare required aws-jacoco-token [setup_aws_credentials.groovy](https://github.com/qaprosoft/jenkins-master/blob/master/resources/init.groovy.d/setup_aws_credentials.groovy)<br>
+  Note: valid value can be added manually if needed
+  * Apply optimization rules by [tcp-slave-agent-port.groovy](https://github.com/qaprosoft/jenkins-master/blob/master/resources/init.groovy.d/tcp-slave-agent-port.groovy)
+  * Setup Maven installer by [configMavenAutoInstaller.groovy](https://github.com/qaprosoft/jenkins-master/blob/master/resources/init.groovy.d/configMavenAutoInstaller.groovy) 
+  * Setup SBT installerby [configSbtAutoInstaller.groovy](https://github.com/qaprosoft/jenkins-master/blob/master/resources/init.groovy.d/configSbtAutoInstaller.groovy) 
+  * Restart Jenkins
+  
+### Declare QPS-Pipeline library
+* Open Manage Jenkins -> Configure System
+* Add into the <b>Global Pipeline Libraries</b> QPS-Pipeline entry
+  * Name: QPS-Pipeline
+  * Default version: master
+  * Load implicitly: false
+  * Allow default version to be overridden: true
+  * Include @Library changes in job recent changes: false
+  * Choose "Legacy SCM->Git" options
+  * Repository URL: ${QPS_PIPELINE_GIT_URL}
+  * Credentials: none
+  * Branches to build: ${QPS_PIPELINE_GIT_BRANCH}
+  * Repository browser: (Auto)
+  * Additional Behaviours: none
