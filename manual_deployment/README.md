@@ -10,12 +10,13 @@
 * Execute [install_plugins.groovy](https://github.com/qaprosoft/jenkins-master/blob/plugins/manual_deployment/install_plugins.groovy) script manually
 * Restart Jenkins
 
-### Finish configuration steps
-* Run below scripts from manage Jenkins -> Script Console
-  * Disable scipt security for JobDSL to enable additional classpath for Pipeline+JobDSL steps [disable-scripts-security-for-job-dsl-scripts.groovy](https://github.com/qaprosoft/jenkins-master/blob/master/resources/init.groovy.d/disable-scripts-security-for-job-dsl-scripts.groovy)<br>
-  <b>Warning:</b> Please, verify that Manage Jenkins -> Configure Global Security -> Enable script security for Job DSL scripts is unchcked!<br>
+### Finish configuration steps (via Mnage Jenkins -> Script Console)
+* Disable scipt security for JobDSL to enable additional classpath for Pipeline+JobDSL steps [disable-scripts-security-for-job-dsl-scripts.groovy](https://github.com/qaprosoft/jenkins-master/blob/master/resources/init.groovy.d/disable-scripts-security-for-job-dsl-scripts.groovy)<br>
   Note: for details visit https://issues.jenkins-ci.org/browse/JENKINS-40961 and https://github.com/jenkinsci/job-dsl-plugin/wiki/Migration#migrating-to-160
-  * Declare required global variables by [global-args-security.groovy](https://github.com/qaprosoft/jenkins-master/blob/master/resources/init.groovy.d/global-args-security.groovy)
+  <b>Warning:</b> Please, verify that Manage Jenkins -> Configure Global Security -> Enable script security for Job DSL scripts is unchcked!<br>
+* Declare required global variables by [global-args-security.groovy](https://github.com/qaprosoft/jenkins-master/blob/master/resources/init.groovy.d/global-args-security.groovy)
+  Note: Verify that Manage Jenkins -> Configure System has such golbal variables defined: ADMIN_EMAILS, JENKINS_SECURITY_INITIALIZED, QPS_HOST, QPS_PIPELINE_GIT_BRANCH, QPS_PIPELINE_GIT_URL, QPS_PIPELINE_LOG_LEVEL, ZAFIRA_ACCESS_TOKEN
+  <b>Warning:</b> Make sure to replace "CHANGE_ME" variables values onto the valid data
   * Declare required aws-jacoco-token [setup_aws_credentials.groovy](https://github.com/qaprosoft/jenkins-master/blob/master/resources/init.groovy.d/setup_aws_credentials.groovy)<br>
   Note: valid value can be added manually if needed
   * Apply optimization rules by [tcp-slave-agent-port.groovy](https://github.com/qaprosoft/jenkins-master/blob/master/resources/init.groovy.d/tcp-slave-agent-port.groovy)
