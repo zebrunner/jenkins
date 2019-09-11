@@ -72,11 +72,46 @@ Update links onto the groovy etc scripts from plugins to master branch after mer
 * Save changes
   
 ### Create Management Jobs
-* Copy [Management_Jobs](https://github.com/qaprosoft/jenkins-master/tree/plugins/resources/jobs/Management_Jobs) to $JENKINS_HOME/jobs
+* Copy recursively [Management_Jobs](https://github.com/qaprosoft/jenkins-master/tree/plugins/resources/jobs/Management_Jobs) to $JENKINS_HOME/jobs
+  <b>Warning:</b> for unix based system make sure after copying with sudo permissions to change ownership to exact jenkins user and group, for example:
+  ```
+  cd /tmp
+  git clone https://github.com/qaprosoft/jenkins-master.git
+  sudo cp -R jenkins-master/resources/jobs/Management_Jobs /var/lib/jenkins/jobs/
+  ls -la /var/lib/jenkins/jobs/
+  total 12
+  drwxr-xr-x  3 jenkins jenkins 4096 Sep 11 10:59 .
+  drwxr-xr-x 16 jenkins jenkins 4096 Sep 11 10:50 ..
+  drwxr-xr-x  3 root    root    4096 Sep 11 10:59 Management_Jobs
+  sudo chown -R jenkins:jenkins /var/lib/jenkins/jobs/
+  ```
 * Manage Jenkins -> Reload Configuration from Disk
-* Verify that folder "Management_Jobs" is created (4-5 default jobs shold present as of today)
+* Verify that folder "Management_Jobs" is created (4-5 default jobs should present as of today)
   
-
+### Test deployment steps
+* Run Management_Jobs/RegisterOrganization job with parameters:
+  folderName: folderName
+  pipelineLibrary: QPS-Pipeline
+  runnerClass: com.qaprosoft.jenkins.pipeline.runner.maven.QARunner
+  securityEnabled: false
+  Note: verify that qaprosoft folder is created at top of your jenkins with launcher and registerRepository jobs
+* Run qaprosoft/RegisterRepository job with parameters:
+  organization: qaprosoft
+  repo: carina-demo
+  branch: master
+  githubUser:
+  githubToken: 
+  pipelineLibrary: QPS-Pipeline
+  runnerClass: com.qaprosoft.jenkins.pipeline.runner.maven.QARunner
+  Note: verify that inside qaprosoft folder a lot of test jobs created (10+)
+* Run qaprosoft/API-Demo-Test job with default parameters
+  Note: make sure you have slave with "api" label to be able to run tests
+* Run qaprosoft/Web-Demo-Test job with default parameters
+  Note: make sure you have slave with "web" label to be able to run tests
+* verify that runs are registered successfully in Zafira
+  
+ 
+  
 
   
   
