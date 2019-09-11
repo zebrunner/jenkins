@@ -33,6 +33,7 @@ def qps_plugins = [
 'git-server':'1.8',
 'git':'3.12.0',
 'github-api':'1.95',
+'global-variable-string-parameter':'1.2',
 'github':'1.29.4',
 'gradle':'1.33',
 'h2-api':'1.4.199',

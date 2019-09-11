@@ -30,6 +30,7 @@ git-server:1.8
 git:3.12.0
 github-api:1.95
 github:1.29.4
+global-variable-string-parameter:1.2
 gradle:1.33
 h2-api:1.4.199
 handlebars:1.1.1
