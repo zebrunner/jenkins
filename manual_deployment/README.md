@@ -13,7 +13,7 @@ Update links onto the groovy etc scripts from plugins to master branch after mer
 * Execute [install_plugins.groovy](https://github.com/qaprosoft/jenkins-master/blob/plugins/manual_deployment/install_plugins.groovy) script manually
 * Restart Jenkins
 
-### Finish configuration steps (via Mnage Jenkins -> Script Console)
+### Finish configuration steps (via Manage Jenkins -> Script Console)
 * Disable scipt security for JobDSL to enable additional classpath for Pipeline+JobDSL steps [disable-scripts-security-for-job-dsl-scripts.groovy](https://github.com/qaprosoft/jenkins-master/blob/master/resources/init.groovy.d/disable-scripts-security-for-job-dsl-scripts.groovy)<br>
   Note: for details visit https://issues.jenkins-ci.org/browse/JENKINS-40961 and https://github.com/jenkinsci/job-dsl-plugin/wiki/Migration#migrating-to-160<br>
   <b>Warning:</b> Please, verify that Manage Jenkins -> Configure Global Security -> Enable script security for Job DSL scripts is unchcked!
@@ -109,9 +109,4 @@ Update links onto the groovy etc scripts from plugins to master branch after mer
 * Run qaprosoft/Web-Demo-Test job with default parameters
   Note: make sure you have slave with "web" label to be able to run tests
 * verify that runs are registered successfully in Zafira
-  
- 
-  
-
-  
   
