@@ -7,7 +7,7 @@
 
 ### Install required plugins
 * Open Manage Jenkins -> Script Console
-* Execute [install_plugins.groovy](https://github.com/qaprosoft/jenkins-master/plugins/manual_deployment/install_plugins.groovy) script manually
+* Execute [install_plugins.groovy](https://github.com/qaprosoft/jenkins-master/blob/plugins/manual_deployment/install_plugins.groovy) script manually
 * Restart Jenkins
 
 ### Finish configuration steps
