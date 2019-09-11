@@ -22,10 +22,11 @@ Update links onto the groovy etc scripts from plugins to master branch after mer
   <b>Warning:</b> Make sure to replace "CHANGE_ME" variables values onto the valid data
   * Declare required aws-jacoco-token [setup_aws_credentials.groovy](https://github.com/qaprosoft/jenkins-master/blob/master/resources/init.groovy.d/setup_aws_credentials.groovy)<br>
   Note: valid value can be added manually if needed
-  * Apply optimization rules by [tcp-slave-agent-port.groovy](https://github.com/qaprosoft/jenkins-master/blob/master/resources/init.groovy.d/tcp-slave-agent-port.groovy)
-  * Setup Maven installer by [configMavenAutoInstaller.groovy](https://github.com/qaprosoft/jenkins-master/blob/master/resources/init.groovy.d/configMavenAutoInstaller.groovy) 
-  * Setup SBT installerby [configSbtAutoInstaller.groovy](https://github.com/qaprosoft/jenkins-master/blob/master/resources/init.groovy.d/configSbtAutoInstaller.groovy) 
-  * Restart Jenkins
+* Setup Maven installer by [configMavenAutoInstaller.groovy](https://github.com/qaprosoft/jenkins-master/blob/master/resources/init.groovy.d/configMavenAutoInstaller.groovy) 
+  <b>Warning:</b> Please, verify that Manage Jenkins -> Global Tool Configuration -> Maven installations contains declaration for 'M3'!
+* Setup SBT installerby [configSbtAutoInstaller.groovy](https://github.com/qaprosoft/jenkins-master/blob/master/resources/init.groovy.d/configSbtAutoInstaller.groovy) 
+  <b>Warning:</b> Please, verify that Manage Jenkins -> Global Tool Configuration -> 	Sbt installations contains declaration for 'SBT'!
+* Restart Jenkins
   
 ### Declare QPS-Pipeline library
 * Open Manage Jenkins -> Configure System
