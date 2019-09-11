@@ -63,6 +63,7 @@
   * values: NULL
   Note: specify full list of custom capabilities resource file like https://github.com/qaprosoft/carina-demo/tree/master/src/main/resources/browserstack/android
   For example: browserstack/android/Samsung_Galaxy_S8.properties
+* Save changes
   
 ### Create Management Jobs
 * Copy [Management_Jobs](https://github.com/qaprosoft/jenkins-master/tree/plugins/resources/jobs/Management_Jobs) to $JENKINS_HOME/jobs
