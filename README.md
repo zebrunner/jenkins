@@ -20,8 +20,8 @@ curl -sSL "http://$JENKINS_HOST/pluginManager/api/xml?depth=1&xpath=/*/*/shortNa
 Follow detailed [guide](https://github.com/qaprosoft/jenkins-master/blob/master/manual_deployment/README.md)
 
 ### F.A.Q
- * Q: Unable to start any job due to the:
-    ```
-   General error during conversion: Error grabbing Grapes -- [download failed: org.beanshell#bsh;2.0b4!bsh.jar]
-   ```
-   A: remove completely $HOME/.m2/repository content to allow jenkins to redownload everything from scratch
+Q: Unable to start any job due to the:
+```
+General error during conversion: Error grabbing Grapes -- [download failed: org.beanshell#bsh;2.0b4!bsh.jar]
+```
+A: remove completely $HOME/.m2/repository content to allow jenkins to redownload everything from scratch
