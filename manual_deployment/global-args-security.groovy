@@ -19,6 +19,7 @@ def adminEmails = "admin@mydomain.com,admin2@mydonain.com"
 def qpsHost = "CHANGE_ME"
 
 //TODO: generate and replace zafira token
+def zafiraServiceUrl = "http://CHANGE_ME/zafira-ws"
 def zafiraAccessToken = "CHANGE_ME"
 def qpsPipelineGitURL = "https://github.com/qaprosoft/qps-pipeline.git"
 def qpsPipelineGitBranch = "4.5"
@@ -54,6 +55,10 @@ if ( envVarsNodePropertyList == null || envVarsNodePropertyList.size() == 0 ) {
 
 if ( qpsHost != null && !envVars.containsKey("QPS_HOST") ) {
   envVars.put("QPS_HOST", qpsHost)
+}
+
+if ( zafiraServiceUrl != null && !envVars.containsKey("ZAFIRA_SERVICE_URL") ) {
+  envVars.put("ZAFIRA_SERVICE_URL", zafiraServiceUrl)
 }
 
 if ( zafiraAccessToken != null && !envVars.containsKey("ZAFIRA_ACCESS_TOKEN") ) {
