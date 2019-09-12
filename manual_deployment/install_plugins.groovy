@@ -44,7 +44,6 @@ def qps_plugins = [
 'jackson2-api':'2.9.9.1',
 'javadoc':'1.1',
 'jdk-tool':'1.3',
-'job-dsl':'1.71',
 'jobConfigHistory':'2.24',
 'jquery-detached':'1.2.1',
 'jsch':'0.1.55.1',
