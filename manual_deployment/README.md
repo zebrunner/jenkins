@@ -20,7 +20,7 @@ Update links onto the groovy etc scripts from plugins to master branch after mer
 * Declare required global variables by [global-args-security.groovy](https://github.com/qaprosoft/jenkins-master/blob/plugins/manual_deployment/global-args-security.groovy)
   Note: Verify that Manage Jenkins -> Configure System has such golbal variables defined: ADMIN_EMAILS, JENKINS_SECURITY_INITIALIZED, QPS_HOST, QPS_PIPELINE_GIT_BRANCH, QPS_PIPELINE_GIT_URL, QPS_PIPELINE_LOG_LEVEL, ZAFIRA_ACCESS_TOKEN<br>
   <b>Warning:</b> Make sure to replace "CHANGE_ME" variables values onto the valid data
-  * Declare required aws-jacoco-token [setup_aws_credentials.groovy](https://github.com/qaprosoft/jenkins-master/blob/master/resources/init.groovy.d/setup_aws_credentials.groovy)<br>
+* Declare required aws-jacoco-token [setup_aws_credentials.groovy](https://github.com/qaprosoft/jenkins-master/blob/master/resources/init.groovy.d/setup_aws_credentials.groovy)<br>
   Note: valid value can be added manually if needed
 * Setup Maven installer by [configMavenAutoInstaller.groovy](https://github.com/qaprosoft/jenkins-master/blob/master/resources/init.groovy.d/configMavenAutoInstaller.groovy) 
   <b>Warning:</b> Please, verify that Manage Jenkins -> Global Tool Configuration -> Maven installations contains declaration for 'M3'!
@@ -95,14 +95,14 @@ Update links onto the groovy etc scripts from plugins to master branch after mer
   runnerClass: com.qaprosoft.jenkins.pipeline.runner.maven.QARunner
   securityEnabled: false
   Note: verify that qaprosoft folder is created at top of your jenkins with launcher and registerRepository jobs
-* Run qaprosoft/RegisterRepository job with parameters:
-  organization: qaprosoft
-  repo: carina-demo
-  branch: master
-  githubUser:
-  githubToken: 
-  pipelineLibrary: QPS-Pipeline
-  runnerClass: com.qaprosoft.jenkins.pipeline.runner.maven.QARunner
+* Run qaprosoft/RegisterRepository job with parameters:<br>
+  organization: qaprosoft<br>
+  repo: carina-demo<br>
+  branch: master<br>
+  githubUser:<br>
+  githubToken:<br>
+  pipelineLibrary: QPS-Pipeline<br>
+  runnerClass: com.qaprosoft.jenkins.pipeline.runner.maven.QARunner<br>
   Note: verify that inside qaprosoft folder a lot of test jobs created (10+)
 * Run qaprosoft/API-Demo-Test job with default parameters
   Note: make sure you have slave with "api" label to be able to run tests
