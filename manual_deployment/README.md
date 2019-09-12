@@ -96,17 +96,17 @@ Update links onto the groovy etc scripts from plugins to master branch after mer
   securityEnabled: false
   Note: verify that qaprosoft folder is created at top of your jenkins with launcher and registerRepository jobs
 * Run qaprosoft/RegisterRepository job with parameters:<br>
-  organization: qaprosoft<br>
-  repo: carina-demo<br>
-  branch: master<br>
-  githubUser:<br>
-  githubToken:<br>
-  pipelineLibrary: QPS-Pipeline<br>
-  runnerClass: com.qaprosoft.jenkins.pipeline.runner.maven.QARunner<br>
+   organization: qaprosoft<br>
+   repo: carina-demo<br>
+   branch: master<br>
+   githubUser:<br>
+   githubToken:<br>
+   pipelineLibrary: QPS-Pipeline<br>
+   runnerClass: com.qaprosoft.jenkins.pipeline.runner.maven.QARunner<br>
   Note: verify that inside qaprosoft folder a lot of test jobs created (10+)
-* Run qaprosoft/API-Demo-Test job with default parameters
+* Run qaprosoft/API-Demo-Test job with default parameters<br>
   Note: make sure you have slave with "api" label to be able to run tests
-* Run qaprosoft/Web-Demo-Test job with default parameters
+* Run qaprosoft/Web-Demo-Test job with default parameters<br>
   Note: make sure you have slave with "web" label to be able to run tests
 * verify that runs are registered successfully in Zafira
   
