@@ -24,4 +24,10 @@ Q: Unable to start any job due to the:
 ```
 General error during conversion: Error grabbing Grapes -- [download failed: org.beanshell#bsh;2.0b4!bsh.jar]
 ```
-A: remove completely $HOME/.m2/repository content to allow jenkins to redownload everything from scratch
+A: remove completely $HOME/.m2/repository and QPS_HONE/jenkins/.groovy/grapes content to allow jenkins to redownload everything from scratch
+```
+rm -rf ~/.m2/repository
+cd ~/tools/qps-infra
+rm -rf ./jenkins/.groovy/grapes
+```
+
