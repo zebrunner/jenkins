@@ -1,0 +1,1 @@
+junit-attachments:1.6
