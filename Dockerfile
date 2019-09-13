@@ -23,6 +23,9 @@ USER root
 # RUN apk update && apk upgrade && \
 #    apk add --no-cache bash git openssh
 
+# Install net utils
+RUN apk add --update --no-cache bind-tools busybox-extras
+
 # Install Apache Maven
 
 ARG MAVEN_VERSION=3.5.4
