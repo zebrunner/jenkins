@@ -21,6 +21,13 @@ USER root
 # RUN apk update && apk upgrade && \
 #    apk add --no-cache bash git openssh
 
+# Setup en_US.UTF-8 locale
+RUN apk add -y locales
+RUN locale-gen en_US.UTF-8 
+ENV LANG en_US.UTF-8 
+ENV LANGUAGE en_US:en 
+ENV LC_ALL en_US.UTF-8
+
 # Install Apache Maven
 
 ARG MAVEN_VERSION=3.5.4
