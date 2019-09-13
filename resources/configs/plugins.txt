@@ -22,6 +22,7 @@ docker-commons:1.15
 docker-workflow:1.19
 durable-task:1.30
 email-ext:2.66
+embeddable-build-status:2.0.2
 extensible-choice-parameter:1.6.0
 external-monitor-job:1.7
 ghprb:1.42.0
