@@ -13,6 +13,8 @@ ENV ZAFIRA_ACCESS_TOKEN=eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwicGFzc3dvcmQiOiJ6WHR
 ENV AWS_KEY=CHANGE_ME
 ENV AWS_SECRET=CHANGE_ME
 ENV QPS_PIPELINE_LOG_LEVEL=INFO
+ENV LANG=en_US.UTF-8
+ENV LANGUAGE=en_US.UTF-8
 
 USER root
 
@@ -20,13 +22,6 @@ USER root
 
 # RUN apk update && apk upgrade && \
 #    apk add --no-cache bash git openssh
-
-# Setup en_US.UTF-8 locale
-RUN apk add -y locales
-RUN locale-gen en_US.UTF-8 
-ENV LANG en_US.UTF-8 
-ENV LANGUAGE en_US:en 
-ENV LC_ALL en_US.UTF-8
 
 # Install Apache Maven
 
