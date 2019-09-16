@@ -22,7 +22,7 @@ def qpsHost = "CHANGE_ME"
 def zafiraServiceUrl = "http://CHANGE_ME/zafira-ws"
 def zafiraAccessToken = "CHANGE_ME"
 def qpsPipelineGitURL = "https://github.com/qaprosoft/qps-pipeline.git"
-def qpsPipelineGitBranch = "4.5"
+def qpsPipelineGitBranch = "4.6"
 
 def qpsPipelineLogLevel = "INFO"
 
