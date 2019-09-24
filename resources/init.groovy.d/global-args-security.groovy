@@ -26,7 +26,7 @@ def qpsPipelineGitBranch = env['QPS_PIPELINE_GIT_BRANCH']
 
 def qpsPipelineLogLevel = env['QPS_PIPELINE_LOG_LEVEL']
 
-def globalPipelineLib = env['GLOBAL_PIPELINE_LIB']
+// def globalPipelineLib = env['GLOBAL_PIPELINE_LIB']
 
 
 // Constants
@@ -71,9 +71,9 @@ Thread.start {
       envVars.put("ZAFIRA_ACCESS_TOKEN", zafiraAccessToken)
     }
 
-    if ( globalPipelineLib != null && !envVars.containsKey("GLOBAL_PIPELINE_LIB") ) {
-      envVars.put("GLOBAL_PIPELINE_LIB", globalPipelineLib)
-    }
+//    if ( globalPipelineLib != null && !envVars.containsKey("GLOBAL_PIPELINE_LIB") ) {
+//      envVars.put("GLOBAL_PIPELINE_LIB", globalPipelineLib)
+//    }
 
     if ( qpsPipelineGitURL != null && !envVars.containsKey("QPS_PIPELINE_GIT_URL") ) {
       envVars.put("QPS_PIPELINE_GIT_URL", qpsPipelineGitURL)
