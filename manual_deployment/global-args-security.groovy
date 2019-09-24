@@ -26,8 +26,6 @@ def qpsPipelineGitBranch = "4.6"
 
 def qpsPipelineLogLevel = "INFO"
 
-// def globalPipelineLib = env['GLOBAL_PIPELINE_LIB']
-
 
 // Constants
 def instance = Jenkins.getInstance()
@@ -64,10 +62,6 @@ if ( zafiraServiceUrl != null && !envVars.containsKey("ZAFIRA_SERVICE_URL") ) {
 if ( zafiraAccessToken != null && !envVars.containsKey("ZAFIRA_ACCESS_TOKEN") ) {
   envVars.put("ZAFIRA_ACCESS_TOKEN", zafiraAccessToken)
 }
-
-//    if ( globalPipelineLib != null && !envVars.containsKey("GLOBAL_PIPELINE_LIB") ) {
-//      envVars.put("GLOBAL_PIPELINE_LIB", globalPipelineLib)
-//    }
 
 if ( qpsPipelineGitURL != null && !envVars.containsKey("QPS_PIPELINE_GIT_URL") ) {
   envVars.put("QPS_PIPELINE_GIT_URL", qpsPipelineGitURL)
