@@ -89,14 +89,14 @@ Thread.start {
     if(!envVars.containsKey("JENKINS_SECURITY_INITIALIZED") || envVars.get("JENKINS_SECURITY_INITIALIZED") != "true")
     {
 
+        def hudsonRealm = new HudsonPrivateSecurityRealm(false)
+        hudsonRealm.createAccount(user, pass)
+        instance.setSecurityRealm(hudsonRealm)
+
         def strategy = new FullControlOnceLoggedInAuthorizationStrategy()
         strategy.setAllowAnonymousRead(false)
         instance.setAuthorizationStrategy(strategy)
         instance.save()
-        
-        def hudsonRealm = new HudsonPrivateSecurityRealm(false)
-        hudsonRealm.createAccount(user, pass)
-        instance.setSecurityRealm(hudsonRealm)
         
         envVars.put("JENKINS_SECURITY_INITIALIZED", "true")
     }
