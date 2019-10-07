@@ -46,8 +46,8 @@
     </properties>
     <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.63">
         <script>@Library(&apos;QPS-Pipeline&apos;)
-            import com.qaprosoft.jenkins.pipeline.Organization
-            new Organization(this).registerZafiraCredentials()</script>
+            import com.qaprosoft.jenkins.pipeline.Repository
+            new Repository(this).registerCredentials()</script>
         <sandbox>true</sandbox>
     </definition>
     <triggers/>
