@@ -7,6 +7,7 @@ import com.cloudbees.plugins.credentials.domains.*;
 
 // Disable Jenkins security that blocks eTAF reports
 System.setProperty("hudson.model.DirectoryBrowserSupport.CSP", "default-src 'self'; script-src 'self' https://ajax.googleapis.com 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self'")
+System.setProperty("hudson.model.ParametersAction.keepUndefinedParameters", "true")
 
 // Variables
 def env = System.getenv()
