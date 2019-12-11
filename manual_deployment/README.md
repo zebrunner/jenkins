@@ -66,10 +66,6 @@
   * values: 5, 4, 3, 2, 1
   Note: Each value from this doc should be specified in new line!
 * Click "Add New Choice List"
-  * name: gc_BROWSER
-  * values: chrome, firefox
-  Note: safari and ie can be added if your infrastructure support them
-* Click "Add New Choice List"
   * name: gc_CUSTOM_CAPABILITIES
   * values: NULL
   Note: specify full list of custom capabilities resource file like https://github.com/qaprosoft/carina-demo/tree/master/src/main/resources/browserstack/android
