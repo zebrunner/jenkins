@@ -2,13 +2,6 @@
 <jp.ikedam.jenkins.plugins.extensible__choice__parameter.GlobalTextareaChoiceListProvider_-DescriptorImpl plugin="extensible-choice-parameter@1.5.0">
   <choiceListEntryList>
     <jp.ikedam.jenkins.plugins.extensible__choice__parameter.GlobalTextareaChoiceListEntry>
-      <name>gc_GIT_BRANCH</name>
-      <choiceList>
-        <string>master</string>
-      </choiceList>
-      <allowAddEditedValue>true</allowAddEditedValue>
-    </jp.ikedam.jenkins.plugins.extensible__choice__parameter.GlobalTextareaChoiceListEntry>
-    <jp.ikedam.jenkins.plugins.extensible__choice__parameter.GlobalTextareaChoiceListEntry>
       <name>gc_BUILD_PRIORITY</name>
       <choiceList>
         <string>5</string>

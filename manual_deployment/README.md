@@ -58,9 +58,6 @@
 
 ### Declare required Global Extensible Choices
 * Open Manage Jenkins -> Configure System
-* Click "Add New Choice List" in Extensible Choice: Available Choice Providers
-  * name: gc_GIT_BRANCH
-  * values: master
 * Click "Add New Choice List"
   * name: gc_BUILD_PRIORITY
   * values: 5, 4, 3, 2, 1
