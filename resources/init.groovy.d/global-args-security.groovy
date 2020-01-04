@@ -7,6 +7,7 @@ import com.cloudbees.plugins.credentials.domains.*;
 
 // Disable Jenkins security that blocks eTAF reports
 System.setProperty("hudson.model.DirectoryBrowserSupport.CSP", "default-src 'self'; script-src 'self' https://ajax.googleapis.com 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self'")
+System.setProperty("hudson.model.ParametersAction.keepUndefinedParameters", "true")
 
 // Variables
 def env = System.getenv()
@@ -25,9 +26,6 @@ def qpsPipelineGitURL = env['QPS_PIPELINE_GIT_URL']
 def qpsPipelineGitBranch = env['QPS_PIPELINE_GIT_BRANCH']
 
 def qpsPipelineLogLevel = env['QPS_PIPELINE_LOG_LEVEL']
-
-def globalPipelineLib = env['GLOBAL_PIPELINE_LIB']
-
 
 // Constants
 def instance = Jenkins.getInstance()
@@ -71,10 +69,6 @@ Thread.start {
       envVars.put("ZAFIRA_ACCESS_TOKEN", zafiraAccessToken)
     }
 
-    if ( globalPipelineLib != null && !envVars.containsKey("GLOBAL_PIPELINE_LIB") ) {
-      envVars.put("GLOBAL_PIPELINE_LIB", globalPipelineLib)
-    }
-
     if ( qpsPipelineGitURL != null && !envVars.containsKey("QPS_PIPELINE_GIT_URL") ) {
       envVars.put("QPS_PIPELINE_GIT_URL", qpsPipelineGitURL)
     }
@@ -95,13 +89,16 @@ Thread.start {
     // Setup security
     if(!envVars.containsKey("JENKINS_SECURITY_INITIALIZED") || envVars.get("JENKINS_SECURITY_INITIALIZED") != "true")
     {
+
         def hudsonRealm = new HudsonPrivateSecurityRealm(false)
         hudsonRealm.createAccount(user, pass)
         instance.setSecurityRealm(hudsonRealm)
 
         def strategy = new FullControlOnceLoggedInAuthorizationStrategy()
+        strategy.setAllowAnonymousRead(false)
         instance.setAuthorizationStrategy(strategy)
-
+        instance.save()
+        
         envVars.put("JENKINS_SECURITY_INITIALIZED", "true")
     }
 

@@ -1,0 +1,126 @@
+import jenkins.model.*
+jenkins = Jenkins.instance
+
+def qps_plugins = [
+'ace-editor':'1.1',
+'ansicolor':'0.6.2',
+'ant':'1.10',
+'antisamy-markup-formatter':'1.6',
+'apache-httpcomponents-client-4-api':'4.5.5-3.0',
+'authentication-tokens':'1.3',
+'aws-credentials':'1.27',
+'aws-java-sdk':'1.11.594',
+'bouncycastle-api':'2.17',
+'branch-api':'2.5.4',
+'build-name-setter':'2.0.1',
+'build-timeout':'1.19',
+'build-user-vars-plugin':'1.5',
+'categorized-view':'1.10',
+'cloudbees-folder':'6.9',
+'command-launcher':'1.3',
+'config-file-provider':'3.6.2',
+'credentials-binding':'1.20',
+'credentials':'2.3.0',
+'display-url-api':'2.3.2',
+'docker-commons':'1.15',
+'docker-workflow':'1.19',
+'durable-task':'1.30',
+'email-ext':'2.66',
+'extensible-choice-parameter':'1.6.0',
+'external-monitor-job':'1.7',
+'ghprb':'1.42.0',
+'git-client':'2.8.2',
+'git-server':'1.8',
+'git':'3.12.0',
+'github-api':'1.95',
+'global-variable-string-parameter':'1.2',
+'github':'1.29.4',
+'gradle':'1.33',
+'h2-api':'1.4.199',
+'handlebars':'1.1.1',
+'hidden-parameter':'0.0.4',
+'htmlpublisher':'1.18',
+'http_request':'1.8.23',
+'jackson2-api':'2.9.9.1',
+'javadoc':'1.1',
+'jdk-tool':'1.3',
+'jobConfigHistory':'2.24',
+'jquery-detached':'1.2.1',
+'jsch':'0.1.55.1',
+'junit':'1.28',
+'ldap':'1.20',
+'lockable-resources':'2.5',
+'mailer':'1.24',
+'mapdb-api':'1.0.9.0',
+'matrix-auth':'2.4.2',
+'matrix-project':'1.14',
+'momentjs':'1.1.1',
+'ownership':'0.12.1',
+'pam-auth':'1.5.1',
+'pipeline-build-step':'2.9',
+'pipeline-github-lib':'1.0',
+'pipeline-graph-analysis':'1.10',
+'pipeline-input-step':'2.11',
+'pipeline-maven':'3.8.1',
+'pipeline-milestone-step':'1.3.1',
+'pipeline-model-api':'1.3.9',
+'pipeline-model-declarative-agent':'1.1.1',
+'pipeline-model-definition':'1.3.9',
+'pipeline-model-extensions':'1.3.9',
+'pipeline-rest-api':'2.12',
+'pipeline-stage-step':'2.3',
+'pipeline-stage-tags-metadata':'1.3.9',
+'pipeline-stage-view':'2.12',
+'pipeline-utility-steps':'2.3.0',
+'plain-credentials':'1.5',
+'PrioritySorter':'3.6.0',
+'random-string-parameter':'1.0',
+'rebuild':'1.31',
+'resource-disposer':'0.13',
+'sbt':'1.5',
+'scm-api':'2.6.3',
+'script-security':'1.62',
+'slack':'2.32',
+'sonar':'2.9',
+'ssh-credentials':'1.17.1',
+'ssh-slaves':'1.30.1',
+'structs':'1.20',
+'subversion':'2.12.2',
+'swarm':'3.17',
+'timestamper':'1.10',
+'token-macro':'2.8',
+'trilead-api':'1.0.3',
+'variant':'1.3',
+'view-job-filters':'2.1.1',
+'windows-slaves':'1.4',
+'workflow-aggregator':'2.6',
+'workflow-api':'2.36',
+'workflow-basic-steps':'2.18',
+'workflow-cps-global-lib':'2.15',
+'workflow-cps':'2.73',
+'workflow-durable-task-step':'2.33',
+'workflow-job':'2.34',
+'workflow-multibranch':'2.21',
+'workflow-scm-step':'2.9',
+'workflow-step-api':'2.20',
+'workflow-support':'3.3',
+'ws-cleanup':'0.37'
+]
+
+
+def install_plugins(plugins_map){
+	def entries = plugins_map.entrySet()
+	entries.each { entry ->
+	  println "${entry.key}:${entry.value}"
+	  def plugin = jenkins.instance.updateCenter.getPlugin(entry.key, new hudson.util.VersionNumber(entry.value))
+	  if (plugin != null) {
+	    plugin.deploy()
+	  } else {
+	    println("ERROR! Unable to get plugin ${entry.key}:${entry.value}!")
+	  }
+	}
+}
+
+
+println "Installing qps-infra plugins required for jenkins:"
+install_plugins(qps_plugins)

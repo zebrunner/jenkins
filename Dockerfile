@@ -7,12 +7,14 @@ ENV ADMIN_USER=admin
 ENV ADMIN_PASS=qaprosoft
 ENV QPS_HOST=localhost
 ENV QPS_PIPELINE_GIT_URL=https://github.com/qaprosoft/qps-pipeline.git
-ENV QPS_PIPELINE_GIT_BRANCH=4.5
+ENV QPS_PIPELINE_GIT_BRANCH=4.8
 ENV JENKINS_OPTS="--prefix=/jenkins --httpPort=-1 --httpsPort=8083 --httpsKeyStore=/var/jenkins_home/keystore.jks --httpsKeyStorePassword=password"
 ENV ZAFIRA_ACCESS_TOKEN=eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwicGFzc3dvcmQiOiJ6WHRoVy9CNS9CZk9QRW4xRktMVy8vbmpqbkZFSGJhZSIsInRlbmFudCI6InphZmlyYSIsImV4cCI6MTMwMzg2OTAyMzg3fQ.8xDrHUmtahzBrbyKrAX-Xkr9cUZXpfH5aC-rDh1oQZGWCfVME76YEsUPPoozOOfhHKg6AzV56w-BEq9UtGz_AA
 ENV AWS_KEY=CHANGE_ME
 ENV AWS_SECRET=CHANGE_ME
 ENV QPS_PIPELINE_LOG_LEVEL=INFO
+ENV LANG=en_US.UTF-8
+ENV LANGUAGE=en_US.UTF-8
 
 USER root
 
@@ -20,6 +22,9 @@ USER root
 
 # RUN apk update && apk upgrade && \
 #    apk add --no-cache bash git openssh
+
+# Install net utils
+RUN apk add --update --no-cache bind-tools busybox-extras
 
 # Install Apache Maven
 
@@ -56,10 +61,12 @@ COPY resources/init.groovy.d/ /usr/share/jenkins/ref/init.groovy.d/
 COPY resources/jobs/ /usr/share/jenkins/ref/jobs/
 
 # Configure plugins
-
-COPY resources/scripts/plugins.sh /usr/local/bin/
 COPY resources/configs/plugins.txt /usr/share/jenkins/ref/
-RUN /usr/local/bin/plugins.sh /usr/share/jenkins/ref/plugins.txt
+RUN /usr/local/bin/install-plugins.sh $(cat /usr/share/jenkins/ref/plugins.txt | tr '\n' ' ')
+
+# override default jenkins.sh to be able to upload extra plugins on startup
+COPY resources/scripts/jenkins.sh /usr/local/bin/jenkins.sh
 
 COPY resources/configs/jp.ikedam.jenkins.plugins.extensible_choice_parameter.GlobalTextareaChoiceListProvider.xml /usr/share/jenkins/ref/
 COPY resources/configs/org.jenkinsci.plugins.workflow.libs.GlobalLibraries.xml /usr/share/jenkins/ref/
+
