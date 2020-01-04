@@ -58,17 +58,10 @@
 
 ### Declare required Global Extensible Choices
 * Open Manage Jenkins -> Configure System
-* Click "Add New Choice List" in Extensible Choice: Available Choice Providers
-  * name: gc_GIT_BRANCH
-  * values: master
 * Click "Add New Choice List"
   * name: gc_BUILD_PRIORITY
   * values: 5, 4, 3, 2, 1
   Note: Each value from this doc should be specified in new line!
-* Click "Add New Choice List"
-  * name: gc_BROWSER
-  * values: chrome, firefox
-  Note: safari and ie can be added if your infrastructure support them
 * Click "Add New Choice List"
   * name: gc_CUSTOM_CAPABILITIES
   * values: NULL
