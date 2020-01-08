@@ -1,4 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <com.cloudbees.hudson.plugins.folder.Folder plugin="cloudbees-folder@6.2.1">
-    <description>For more information, please visit this link: https://github.com/qaprosoft/jenkins-master</description>
+    <actions>
+        <description>For more information, please visit this link: https://github.com/qaprosoft/jenkins-master</description>
+    </actions>
 </com.cloudbees.hudson.plugins.folder.Folder>
