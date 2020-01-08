@@ -8,7 +8,7 @@
       </blueOceanUrlObject>
     </io.jenkins.blueocean.service.embedded.BlueOceanUrlAction>
   </actions>
-  <description>For more information, please visit this link: https://github.com/qaprosoft/jenkins-master</description>
+  <description></description>
   <properties>
     <org.jenkinsci.plugins.pipeline.modeldefinition.config.FolderConfig plugin="pipeline-model-definition@1.2.2">
       <dockerLabel></dockerLabel>
