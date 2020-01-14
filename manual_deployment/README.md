@@ -1,10 +1,10 @@
 # Deploy qps-infra setting to 3rd party Jenkins
 
 ### Prerequisites
-* Jenkins instance deployed somehow on your premises environment (Linux OS is highly recommended)
-* Admin privileges to the installed Jenkins
-* Starting from 4.8+ jenkins-master add java option -Dhudson.model.ParametersAction.keepUndefinedParameters=true. Example: [link](https://github.com/qaprosoft/qps-infra/commit/4bddc573d5296150d2de39cff4ebb2a60be9895f)
-
+* Jenkins instance URL
+* Jenkins Admin credentials
+* Jenkins java option on startup: <i>-Dhudson.model.ParametersAction.keepUndefinedParameters=true</i>
+  Note: Option needed starting from 4.8+ jenkins-master. Example: [link](https://github.com/qaprosoft/qps-infra/commit/4bddc573d5296150d2de39cff4ebb2a60be9895f)
 
 ### Install required plugins
 * As of now we certified 1.71 Job Dsl plugin so to install this particular version or downgrade existing please follow:
