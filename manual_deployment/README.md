@@ -3,6 +3,7 @@
 ### Prerequisites
 * Jenkins instance deployed somehow on your premises environment (Linux OS is highly recommended)
 * Admin privileges to the installed Jenkins
+* Starting from 4.8+ jenkins-master add java option -Dhudson.model.ParametersAction.keepUndefinedParameters=true. Example: [link](https://github.com/qaprosoft/qps-infra/commit/4bddc573d5296150d2de39cff4ebb2a60be9895f)
 
 
 ### Install required plugins
