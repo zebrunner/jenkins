@@ -4,6 +4,12 @@
 * Jenkins instance deployed somehow on your premises environment (Linux OS is highly recommended)
 * Admin privileges to the installed Jenkins
 
+### If you use 4.8+ jenkins-master
+Starting from 4.8+ jenkins-master we have to add java option to make onPullrequest--trigger workable<br>
+Add an additional system argument in docker-compose.yml: "JAVA_OPTS=-Dhudson.model.ParametersAction.keepUndefinedParameters=true"<br>
+
+Note: for additional details, follow the [link](https://github.com/qaprosoft/qps-infra/commit/4bddc573d5296150d2de39cff4ebb2a60be9895f)
+
 
 ### Install required plugins
 * As of now we certified 1.71 Job Dsl plugin so to install this particular version or downgrade existing please follow:
