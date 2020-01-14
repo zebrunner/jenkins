@@ -21,13 +21,13 @@
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
-          <name>githubUser</name>
+          <name>scmUser</name>
           <description>GitHub user</description>
           <defaultValue></defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>githubToken</name>
+          <name>scmToken</name>
           <description>GitHub token with read permissions</description>
           <defaultValue></defaultValue>
           <trim>false</trim>
