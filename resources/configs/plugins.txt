@@ -88,7 +88,6 @@ ssh-slaves:1.31.0
 structs:1.20
 subversion:2.13.0
 swarm:3.17
-timestamper:1.8
 token-macro:2.10
 trilead-api:1.0.5
 variant:1.3
