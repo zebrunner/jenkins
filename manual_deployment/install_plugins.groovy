@@ -87,7 +87,6 @@ def qps_plugins = [
 'structs':'1.20',
 'subversion':'2.12.2',
 'swarm':'3.17',
-'timestamper':'1.10',
 'token-macro':'2.8',
 'trilead-api':'1.0.3',
 'variant':'1.3',
