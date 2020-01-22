@@ -89,6 +89,7 @@ def qps_plugins = [
 'swarm':'3.17',
 'token-macro':'2.8',
 'trilead-api':'1.0.3',
+'timestamper':'1.10',
 'variant':'1.3',
 'view-job-filters':'2.1.1',
 'windows-slaves':'1.4',
