@@ -4,7 +4,6 @@ import com.cloudbees.plugins.credentials.common.*
 import com.cloudbees.plugins.credentials.domains.*
 import com.cloudbees.plugins.credentials.impl.*
 import com.cloudbees.jenkins.plugins.sshcredentials.impl.*
-import com.cloudbees.jenkins.plugins.awscredentials.AWSCredentialsImpl
 
 println "--> setting ghprhook creds"
 
@@ -21,7 +20,7 @@ def username = "CHANGE_ME"
 def password = "CHANGE_ME"
 def description = "GitHub Pull Request Builder token"
 
-def ghprbhookCredentials = new AWSCredentialsImpl(
+def ghprbhookCredentials = new UsernamePasswordCredentialsImpl(
         CredentialsScope.GLOBAL,
         id,
         description,
