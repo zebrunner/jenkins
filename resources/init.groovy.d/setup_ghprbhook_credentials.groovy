@@ -1,31 +1,20 @@
 import jenkins.model.*
-import com.cloudbees.plugins.credentials.*
-import com.cloudbees.plugins.credentials.common.*
-import com.cloudbees.plugins.credentials.domains.*
-import com.cloudbees.plugins.credentials.impl.*
-import com.cloudbees.jenkins.plugins.sshcredentials.impl.*
+import java.lang.reflect.Field
+import org.jenkinsci.plugins.ghprb.*
 
-println "--> setting ghprhook creds"
+def descriptor = Jenkins.instance.getDescriptorByType(org.jenkinsci.plugins.ghprb.GhprbTrigger.DescriptorImpl.class)
 
-def global_domain = Domain.global()
+Field auth = descriptor.class.getDeclaredField("githubAuth")
 
-def credentialsStore =
-        Jenkins.instance.getExtensionList(
-                'com.cloudbees.plugins.credentials.SystemCredentialsProvider'
-        )[0].getStore()
+println "--> setting ghprbhook creds"
 
-def env = System.getenv()
-def id = "ghprbhook-token"
-def username = "CHANGE_ME"
-def password = "CHANGE_ME"
-def description = "GitHub Pull Request Builder token"
+auth.setAccessible(true)
 
-def ghprbhookCredentials = new UsernamePasswordCredentialsImpl(
-        CredentialsScope.GLOBAL,
-        id,
-        description,
-        username,
-        password
-)
+githubAuth = new ArrayList<GhprbGitHubAuth>(1)
+githubAuth.add(new GhprbGitHubAuth("https://api.github.com", "ghprbhook-token", "CHANGE_ME", "CHANGE_ME", null))
 
-credentialsStore.addCredentials(global_domain, ghprbhookCredentials)
+auth.set(descriptor, githubAuth)
+
+descriptor.save()
+
+return
