@@ -11,10 +11,13 @@ println "--> setting ghprbhook creds"
 auth.setAccessible(true)
 
 githubAuth = new ArrayList<GhprbGitHubAuth>(1)
-githubAuth.add(new GhprbGitHubAuth("https://api.github.com", "ghprbhook-token", "CHANGE_ME", "CHANGE_ME", null))
+
+// serverAPIUrl, jenkinsUrl, credentialsId, description, id, secret
+githubAuth.add(new GhprbGitHubAuth("https://api.github.com", "", "ghprbhook-token", "GitHub Pull Request Builder token", "CHANGE_ME", "CHANGE_ME"))
 
 auth.set(descriptor, githubAuth)
 
 descriptor.save()
 
 return
+
