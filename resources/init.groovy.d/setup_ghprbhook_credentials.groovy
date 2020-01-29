@@ -10,6 +10,9 @@ println "--> setting ghprbhook creds"
 
 auth.setAccessible(true)
 
+println "MEW_MEW_MEW_MEW_MEW"
+println GhprbGitHubAuth
+
 def githubAuth = new ArrayList<GhprbGitHubAuth>(1)
 
 println "MEW_MEW_MEW" + githubAuth
