@@ -1,6 +1,7 @@
 import jenkins.model.*
 import java.lang.reflect.Field
 import org.jenkinsci.plugins.ghprb.*
+import org.jenkinsci.plugins.ghprb.GhprbGitHubAuth
 
 def descriptor = Jenkins.instance.getDescriptorByType(org.jenkinsci.plugins.ghprb.GhprbTrigger.DescriptorImpl.class)
 
