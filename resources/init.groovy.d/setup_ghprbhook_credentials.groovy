@@ -12,7 +12,7 @@ auth.setAccessible(true)
 
 //def githubAuth = new ArrayList<GhprbGitHubAuth>(1)
 
-println "MEW_MEW_MEW" + githubAuth
+//println "MEW_MEW_MEW" + githubAuth
 
 // serverAPIUrl, jenkinsUrl, credentialsId, description, id, secret
 githubAuth.add(new GhprbGitHubAuth("https://api.github.com", "", "ghprbhook-token", "GitHub Pull Request Builder token", "CHANGE_ME", "CHANGE_ME"))
