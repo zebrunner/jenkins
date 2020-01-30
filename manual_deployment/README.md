@@ -1,9 +1,10 @@
 # Deploy qps-infra setting to 3rd party Jenkins
 
 ### Prerequisites
-* Jenkins instance deployed somehow on your premises environment (Linux OS is highly recommended)
-* Admin privileges to the installed Jenkins
-
+* Jenkins instance URL
+* Jenkins Admin credentials
+* Jenkins java option on startup: <i>-Dhudson.model.ParametersAction.keepUndefinedParameters=true</i>
+  Note: Option needed starting from 4.8+ jenkins-master. Example: [link](https://github.com/qaprosoft/qps-infra/commit/4bddc573d5296150d2de39cff4ebb2a60be9895f)
 
 ### Install required plugins
 * As of now we certified 1.71 Job Dsl plugin so to install this particular version or downgrade existing please follow:
@@ -30,7 +31,9 @@
 * Setup Maven installer by [configMavenAutoInstaller.groovy](https://github.com/qaprosoft/jenkins-master/blob/master/resources/init.groovy.d/configMavenAutoInstaller.groovy) 
   <b>Warning:</b> Please, verify that Manage Jenkins -> Global Tool Configuration -> Maven installations contains declaration for 'M3'!
 * Setup SBT installerby [configSbtAutoInstaller.groovy](https://github.com/qaprosoft/jenkins-master/blob/master/resources/init.groovy.d/configSbtAutoInstaller.groovy) 
-  <b>Warning:</b> Please, verify that Manage Jenkins -> Global Tool Configuration -> 	Sbt installations contains declaration for 'SBT'!
+  <b>Warning:</b> Please, verify that Manage Jenkins -> Global Tool Configuration -> Sbt installations contains declaration for 'SBT'!
+* Setup GitHub Pull Request Builder by [setup_ghprbhook_credentials.groovy](https://github.com/qaprosoft/jenkins-master/blob/master/resources/init.groovy.d/setup_ghprbhook_credentials.groovy)
+  <b>Warning:</b> Please, verify that Manage Jenkins -> Global Tool Configuration -> Setup GitHub Pull Request Builder credential field contains ghprbhook-token!
 * Restart Jenkins
   
 ### Declare QPS-Pipeline library

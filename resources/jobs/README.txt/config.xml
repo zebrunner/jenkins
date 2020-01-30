@@ -1,0 +1,12 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<hudson.model.ExternalJob plugin="external-monitor-job@1.7">
+  <description>Quick Launch steps: https://github.com/qaprosoft/qps-infra/blob/master/README.md</description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <com.synopsys.arc.jenkins.plugins.ownership.jobs.JobOwnerJobProperty plugin="ownership@0.12.1"/>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.31">
+      <autoRebuild>false</autoRebuild>
+      <rebuildDisabled>false</rebuildDisabled>
+    </com.sonyericsson.rebuild.RebuildSettings>
+  </properties>
+</hudson.model.ExternalJob>

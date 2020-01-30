@@ -40,11 +40,11 @@
           <description></description>
           <defaultValue></defaultValue>
         </com.wangyin.parameter.WHideParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
+        <com.wangyin.parameter.WHideParameterDefinition plugin="hidden-parameter@0.0.4">
           <name>securityEnabled</name>
-          <description>Disable when run manually</description>
+          <description></description>
           <defaultValue>false</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
+        </com.wangyin.parameter.WHideParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
     <org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
