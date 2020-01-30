@@ -41,7 +41,7 @@ auth.setAccessible(true)
 
 def githubAuth = new ArrayList<GhprbGitHubAuth>(1)
 
-Secret secret = Secret.fromString(password)
+Secret secret = Secret.fromString('')
 githubAuth.add(new GhprbGitHubAuth("https://api.github.com", "", id, description, username, secret))
 
 auth.set(descriptor, githubAuth)
