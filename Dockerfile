@@ -26,6 +26,8 @@ USER root
 # Install net utils
 RUN apk add --update --no-cache bind-tools busybox-extras
 
+RUN apt-get -y install docker-ce
+
 # Install Apache Maven
 
 ARG MAVEN_VERSION=3.5.4
