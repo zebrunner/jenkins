@@ -28,8 +28,6 @@ RUN apk add --update --no-cache bind-tools busybox-extras
 
 RUN apk add --update docker
 
-RUN apk add --update usermod
-
 # Install Apache Maven
 
 ARG MAVEN_VERSION=3.5.4
