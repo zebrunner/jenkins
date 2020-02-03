@@ -26,7 +26,10 @@ USER root
 # Install net utils
 RUN apk add --update --no-cache bind-tools busybox-extras
 
-RUN apt-get -y install docker-ce
+RUN apk add --update docker
+
+RUN apk add --update usermod
+RUN usermod -aG docker $USER
 
 # Install Apache Maven
 
