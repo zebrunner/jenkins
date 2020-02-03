@@ -27,7 +27,7 @@ USER root
 RUN apk add --update --no-cache bind-tools busybox-extras
 
 RUN apk add --update docker
-RUN addgroup -r docker && useradd -r -g docker docker
+RUN addgroup -S docker && useradd -S -G docker docker
 
 # Install Apache Maven
 
