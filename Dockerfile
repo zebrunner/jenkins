@@ -29,7 +29,6 @@ RUN apk add --update --no-cache bind-tools busybox-extras
 RUN apk add --update docker
 
 RUN apk add --update usermod
-RUN usermod -aG docker $USER
 
 # Install Apache Maven
 
