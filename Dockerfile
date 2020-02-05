@@ -26,6 +26,9 @@ USER root
 # Install net utils
 RUN apk add --update --no-cache bind-tools busybox-extras
 
+RUN apk add --update docker
+RUN adduser jenkins docker
+
 # Install Apache Maven
 
 ARG MAVEN_VERSION=3.5.4
