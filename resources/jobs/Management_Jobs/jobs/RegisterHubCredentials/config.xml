@@ -1,7 +1,7 @@
 <?xml version='1.1' encoding='UTF-8'?>
-<flow-definition plugin="workflow-job@2.31">
+<flow-definition plugin="workflow-job@2.36">
   <actions/>
-  <description>Register personal SCM tokens and their association with jenkins user to support execution vs forked repositories</description>
+  <description></description>
   <keepDependencies>false</keepDependencies>
   <properties>
     <jenkins.model.BuildDiscarderProperty>
@@ -14,27 +14,36 @@
     </jenkins.model.BuildDiscarderProperty>
     <org.jenkinsci.plugins.workflow.job.properties.DisableResumeJobProperty/>
     <com.synopsys.arc.jenkins.plugins.ownership.jobs.JobOwnerJobProperty plugin="ownership@0.12.1"/>
-    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.29">
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.31">
       <autoRebuild>false</autoRebuild>
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>Provider</name>
+          <description>List of integration selenium hub providers</description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>selenium</string>
+              <string>mcloud</string>
+              <string>zebrunner</string>
+              <string>aerokube</string>
+              <string>browserstack</string>
+              <string>lambdatest</string>
+              <string>saucelabs</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>scmUser</name>
-          <description>GitHub user</description>
+          <name>Url</name>
+          <description>Selenium hub url</description>
           <defaultValue></defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>scmToken</name>
-          <description>GitHub token with read permissions</description>
-          <defaultValue></defaultValue>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>jenkinsUser</name>
-          <description>Optional, skip if you register your personal token</description>
+          <name>folderName</name>
+          <description>Tenancy folder name</description>
           <defaultValue></defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
@@ -44,10 +53,10 @@
       <triggers/>
     </org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
   </properties>
-  <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.63">
+  <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.78">
     <script>@Library(&apos;QPS-Pipeline&apos;)
-import com.qaprosoft.jenkins.pipeline.Repository
-new Repository(this).registerCredentials()</script>
+import com.qaprosoft.jenkins.pipeline.Organization
+new Organization(this).registerHubCredentials()</script>
     <sandbox>true</sandbox>
   </definition>
   <triggers/>
