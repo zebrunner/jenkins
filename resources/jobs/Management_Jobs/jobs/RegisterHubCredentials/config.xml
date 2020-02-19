@@ -42,18 +42,6 @@
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>User</name>
-          <description>Selenium hub user</description>
-          <defaultValue></defaultValue>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>Password</name>
-          <description>Selenium hub password</description>
-          <defaultValue></defaultValue>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
           <name>folderName</name>
           <description>Tenancy folder name</description>
           <defaultValue></defaultValue>
@@ -67,8 +55,8 @@
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.78">
     <script>@Library(&apos;QPS-Pipeline&apos;)
-import com.qaprosoft.jenkins.pipeline.Repository
-new Repository(this).registerHubCredentials()</script>
+import com.qaprosoft.jenkins.pipeline.Organization
+new Organization(this).registerHubCredentials()</script>
     <sandbox>true</sandbox>
   </definition>
   <triggers/>
