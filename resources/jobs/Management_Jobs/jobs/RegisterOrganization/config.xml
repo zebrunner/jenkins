@@ -31,7 +31,7 @@
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>zafiraServceURL</name>
+          <name>zafiraServiceURL</name>
           <description></description>
           <defaultValue></defaultValue>
         </hudson.model.StringParameterDefinition>
