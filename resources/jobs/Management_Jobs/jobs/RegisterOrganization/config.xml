@@ -30,11 +30,16 @@
           <defaultValue>com.qaprosoft.jenkins.pipeline.runner.maven.QARunner</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
-        <com.wangyin.parameter.WHideParameterDefinition plugin="hidden-parameter@0.0.4">
-          <name>accessToken</name>
+        <hudson.model.StringParameterDefinition>
+          <name>zafiraServceURL</name>
           <description></description>
           <defaultValue></defaultValue>
-        </com.wangyin.parameter.WHideParameterDefinition>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>zafiraAccessToken</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
         <com.wangyin.parameter.WHideParameterDefinition plugin="hidden-parameter@0.0.4">
           <name>callbackUrl</name>
           <description></description>
