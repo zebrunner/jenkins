@@ -2,14 +2,7 @@
 <flow-definition plugin="workflow-job@2.31">
   <actions/>
   <description>Register SCM organization folder on CI (github, gitlab etc)
-  If you need to register Zafira with not default zafiraServiceURL and zafiraAccessToken follow the next steps:
-    - Open "your_domain/app"
-    - Enter your credentials (Default: admin/changeit)
-    - Click on your profile icon in left-bottom corner
-    - Click "Account and profile"
-    - In Access Token field click on refresh icon - access token will appear in the text field
-    - Copy access token from here and enter it into appropriate RegisterOrganization job parameter
-    - Also copy Service URL and enter it into appropriate RegisterOrganization job parameter
+    To get zafiraServiceURL and zafiraAccessToken login to Zafira and generate token in Account and profile menu.
   </description>
   <keepDependencies>false</keepDependencies>
   <properties>
