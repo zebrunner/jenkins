@@ -35,7 +35,7 @@
         <hudson.model.StringParameterDefinition>
           <name>zafiraServiceURL</name>
           <description></description>
-          <defaultValue>http://demo.qaprosoft.com/zafira-ws</defaultValue>
+          <defaultValue>http://zafira:8080/zafira-ws</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>zafiraAccessToken</name>
