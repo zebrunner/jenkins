@@ -1,7 +1,9 @@
 <?xml version='1.1' encoding='UTF-8'?>
 <flow-definition plugin="workflow-job@2.31">
   <actions/>
-  <description>Register SCM organization folder on CI (github, gitlab etc)</description>
+  <description>Register SCM organization folder on CI (github, gitlab etc)
+    To get zafiraServiceURL and zafiraAccessToken login to Zafira and generate token in Account and profile menu.
+  </description>
   <keepDependencies>false</keepDependencies>
   <properties>
     <org.jenkinsci.plugins.workflow.job.properties.DisableResumeJobProperty/>
@@ -33,12 +35,12 @@
         <hudson.model.StringParameterDefinition>
           <name>zafiraServiceURL</name>
           <description></description>
-          <defaultValue></defaultValue>
+          <defaultValue>http://zafira:8080/zafira-ws</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>zafiraAccessToken</name>
           <description></description>
-          <defaultValue></defaultValue>
+          <defaultValue>eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwicGFzc3dvcmQiOiI5NVZ1b250akhMdkFieG1qQUJuMW1SaGxnb3BSY1pURiIsInRlbmFudCI6InphZmlyYSIsImV4cCI6MTMwNDMzOTg3MjExfQ.SARM591Yw8_fUWJVekUaCvydYgtsbOqaJQ9Zwv_yROmQ-0iToZ30HYBO3IY2KUKbmmqE36tUEjUf62TyT3my5w</defaultValue>
         </hudson.model.StringParameterDefinition>
         <com.wangyin.parameter.WHideParameterDefinition plugin="hidden-parameter@0.0.4">
           <name>callbackUrl</name>
