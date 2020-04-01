@@ -34,12 +34,12 @@
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>zafiraServiceURL</name>
-          <description></description>
+          <description>Get zafiraServiceURL in Zafira account and profile menu</description>
           <defaultValue>http://zafira:8080/zafira-ws</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>zafiraAccessToken</name>
-          <description></description>
+          <description>Generate token in Zafira account and profile menu</description>
           <defaultValue>eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwicGFzc3dvcmQiOiI5NVZ1b250akhMdkFieG1qQUJuMW1SaGxnb3BSY1pURiIsInRlbmFudCI6InphZmlyYSIsImV4cCI6MTMwNDMzOTg3MjExfQ.SARM591Yw8_fUWJVekUaCvydYgtsbOqaJQ9Zwv_yROmQ-0iToZ30HYBO3IY2KUKbmmqE36tUEjUf62TyT3my5w</defaultValue>
         </hudson.model.StringParameterDefinition>
         <com.wangyin.parameter.WHideParameterDefinition plugin="hidden-parameter@0.0.4">
