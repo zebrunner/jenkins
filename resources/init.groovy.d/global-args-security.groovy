@@ -21,7 +21,6 @@ def user = env['ADMIN_USER']
 def pass = env['ADMIN_PASS']
 
 def qpsHost = env['QPS_HOST']
-def zafiraAccessToken = env['ZAFIRA_ACCESS_TOKEN']
 def qpsPipelineGitURL = env['QPS_PIPELINE_GIT_URL']
 def qpsPipelineGitBranch = env['QPS_PIPELINE_GIT_BRANCH']
 
@@ -63,10 +62,6 @@ Thread.start {
 
     if ( qpsHost != null && !envVars.containsKey("QPS_HOST") ) {
       envVars.put("QPS_HOST", qpsHost)
-    }
-
-    if ( zafiraAccessToken != null && !envVars.containsKey("ZAFIRA_ACCESS_TOKEN") ) {
-      envVars.put("ZAFIRA_ACCESS_TOKEN", zafiraAccessToken)
     }
 
     if ( qpsPipelineGitURL != null && !envVars.containsKey("QPS_PIPELINE_GIT_URL") ) {

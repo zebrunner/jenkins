@@ -60,10 +60,6 @@ if ( zafiraServiceUrl != null && !envVars.containsKey("ZAFIRA_SERVICE_URL") ) {
   envVars.put("ZAFIRA_SERVICE_URL", zafiraServiceUrl)
 }
 
-if ( zafiraAccessToken != null && !envVars.containsKey("ZAFIRA_ACCESS_TOKEN") ) {
-  envVars.put("ZAFIRA_ACCESS_TOKEN", zafiraAccessToken)
-}
-
 if ( qpsPipelineGitURL != null && !envVars.containsKey("QPS_PIPELINE_GIT_URL") ) {
   envVars.put("QPS_PIPELINE_GIT_URL", qpsPipelineGitURL)
 }
