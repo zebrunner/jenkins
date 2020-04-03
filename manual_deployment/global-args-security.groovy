@@ -56,10 +56,6 @@ if ( qpsHost != null && !envVars.containsKey("QPS_HOST") ) {
   envVars.put("QPS_HOST", qpsHost)
 }
 
-if ( zafiraServiceUrl != null && !envVars.containsKey("ZAFIRA_SERVICE_URL") ) {
-  envVars.put("ZAFIRA_SERVICE_URL", zafiraServiceUrl)
-}
-
 if ( qpsPipelineGitURL != null && !envVars.containsKey("QPS_PIPELINE_GIT_URL") ) {
   envVars.put("QPS_PIPELINE_GIT_URL", qpsPipelineGitURL)
 }
