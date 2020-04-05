@@ -36,7 +36,7 @@ def qpsPipelineLogLevel = env['QPS_PIPELINE_LOG_LEVEL']
 def instance = Jenkins.getInstance()
 def global_domain = Domain.global()
 
-def credentialsStore = Jenkins.instance.getExtensionList('com.cloudbees.plugins.credentials.SystemCredentialsProvider')[0].getStore()
+def credentialsStore = instance.getExtensionList('com.cloudbees.plugins.credentials.SystemCredentialsProvider')[0].getStore()
 
 def id = "ghprbhook-token"
 def username = "CHANGE_ME"
@@ -118,6 +118,8 @@ Thread.start {
         
     }
 
+    // #166: NPE during disabling CLI
+    // java.lang.NullPointerException: Cannot invoke method get() on null object
     instance.getDescriptor("jenkins.CLI").get().setEnabled(false)
 
     println "--> setting ghprhook creds"
