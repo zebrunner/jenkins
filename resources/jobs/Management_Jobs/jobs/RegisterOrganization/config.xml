@@ -1,9 +1,7 @@
 <?xml version='1.1' encoding='UTF-8'?>
 <flow-definition plugin="workflow-job@2.31">
   <actions/>
-  <description>Register SCM organization folder on CI (github, gitlab etc)
-    To get zafiraServiceURL and zafiraAccessToken login to Zafira and generate token in Account and profile menu.
-  </description>
+  <description>Register SCM organization folder on CI (github, gitlab etc)</description>
   <keepDependencies>false</keepDependencies>
   <properties>
     <org.jenkinsci.plugins.workflow.job.properties.DisableResumeJobProperty/>
