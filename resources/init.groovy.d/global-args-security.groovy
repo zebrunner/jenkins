@@ -103,21 +103,6 @@ Thread.start {
       envVars.put("ADMIN_EMAILS", adminEmails)
     }
 
-    // Setup security
-    if(!envVars.containsKey("JENKINS_SECURITY_INITIALIZED") || envVars.get("JENKINS_SECURITY_INITIALIZED") != "true")
-    {
-
-        def hudsonRealm = new HudsonPrivateSecurityRealm(false)
-        hudsonRealm.createAccount(user, pass)
-        instance.setSecurityRealm(hudsonRealm)
-
-        def strategy = new FullControlOnceLoggedInAuthorizationStrategy()
-        strategy.setAllowAnonymousRead(false)
-        instance.setAuthorizationStrategy(strategy)
-        instance.save()
-        
-    }
-
     // #166: NPE during disabling CLI: java.lang.NullPointerException: Cannot invoke method get() on null object
     // Commented below obsolete codeline
     //instance.getDescriptor("jenkins.CLI").get().setEnabled(false)
@@ -137,8 +122,27 @@ Thread.start {
         descriptor.save()
     }
 
-    //set global var to tru to define that initial setup is finished
-    envVars.put("JENKINS_SECURITY_INITIALIZED", "true")
+
+    println "--> setting security"
+    if(!envVars.containsKey("JENKINS_SECURITY_INITIALIZED") || envVars.get("JENKINS_SECURITY_INITIALIZED") != "true") {
+
+        def hudsonRealm = new HudsonPrivateSecurityRealm(false)
+        hudsonRealm.createAccount(user, pass)
+        instance.setSecurityRealm(hudsonRealm)
+
+        def strategy = new FullControlOnceLoggedInAuthorizationStrategy()
+        strategy.setAllowAnonymousRead(false)
+        instance.setAuthorizationStrategy(strategy)
+        instance.save()
+        
+    }
+
+    // IMPORTANT! don't append any functionality below as settings security restrict a lot of access. Put them above "setting security" step to have full admin privileges
+
+    //set global var to true to define that initial setup is finished
+    if(!envVars.containsKey("JENKINS_SECURITY_INITIALIZED") || envVars.get("JENKINS_SECURITY_INITIALIZED") != "true") {
+        envVars.put("JENKINS_SECURITY_INITIALIZED", "true")
+    }
 
     // Save the state
     instance.save()
