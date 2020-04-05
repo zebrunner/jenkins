@@ -18,6 +18,10 @@ def credentialsStore =
         )[0].getStore()
 
 def env = System.getenv()
+
+// IMPORTANT! corporate url has different format: https://github.mydomain.com/api/v3
+def gitHubApiUrl = "https://api.github.com"
+
 def id = "ghprbhook-token"
 def username = "CHANGE_ME"
 def password = "CHANGE_ME"
@@ -42,7 +46,7 @@ auth.setAccessible(true)
 def githubAuth = new ArrayList<GhprbGitHubAuth>(1)
 
 Secret secret = Secret.fromString('')
-githubAuth.add(new GhprbGitHubAuth("https://api.github.com", "", id, description, username, secret))
+githubAuth.add(new GhprbGitHubAuth(gitHubApiUrl, "", id, description, username, secret))
 
 auth.set(descriptor, githubAuth)
 

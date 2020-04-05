@@ -1,9 +1,15 @@
 import hudson.model.*;
 import jenkins.model.*;
-import hudson.security.*
-import com.cloudbees.plugins.credentials.impl.*;
+import hudson.security.*;
 import com.cloudbees.plugins.credentials.*;
+import com.cloudbees.plugins.credentials.impl.*;
+import com.cloudbees.plugins.credentials.common.*;
 import com.cloudbees.plugins.credentials.domains.*;
+import com.cloudbees.jenkins.plugins.sshcredentials.impl.*;
+import java.lang.reflect.Field;
+import org.jenkinsci.plugins.ghprb.GhprbGitHubAuth;
+import hudson.util.Secret;
+
 
 // Disable Jenkins security that blocks eTAF reports
 System.setProperty("hudson.model.DirectoryBrowserSupport.CSP", "default-src 'self'; script-src 'self' https://ajax.googleapis.com 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self'")
@@ -28,6 +34,23 @@ def qpsPipelineLogLevel = env['QPS_PIPELINE_LOG_LEVEL']
 
 // Constants
 def instance = Jenkins.getInstance()
+def global_domain = Domain.global()
+
+def credentialsStore = instance.getExtensionList('com.cloudbees.plugins.credentials.SystemCredentialsProvider')[0].getStore()
+
+def id = "ghprbhook-token"
+def username = "CHANGE_ME"
+def password = "CHANGE_ME"
+def description = "GitHub Pull Request Builder token"
+
+def ghprbhookCredentials = new UsernamePasswordCredentialsImpl(
+    CredentialsScope.GLOBAL,
+    id,
+    description,
+    username,
+    password
+)
+
 
 //https://github.com/qaprosoft/jenkins-master/issues/12 - remove default 5 sec quite period for Jenkins
 instance.setQuietPeriod(0)
@@ -80,10 +103,28 @@ Thread.start {
       envVars.put("ADMIN_EMAILS", adminEmails)
     }
 
+    // #166: NPE during disabling CLI: java.lang.NullPointerException: Cannot invoke method get() on null object
+    // Commented below obsolete codeline
+    //instance.getDescriptor("jenkins.CLI").get().setEnabled(false)
 
-    // Setup security
-    if(!envVars.containsKey("JENKINS_SECURITY_INITIALIZED") || envVars.get("JENKINS_SECURITY_INITIALIZED") != "true")
-    {
+    println "--> setting ghprhook creds"
+    if(!envVars.containsKey("JENKINS_SECURITY_INITIALIZED") || envVars.get("JENKINS_SECURITY_INITIALIZED") != "true") {
+        credentialsStore.addCredentials(global_domain, ghprbhookCredentials)
+        def descriptor = Jenkins.instance.getDescriptorByType(org.jenkinsci.plugins.ghprb.GhprbTrigger.DescriptorImpl.class)
+        Field auth = descriptor.class.getDeclaredField("githubAuth")
+        auth.setAccessible(true)
+        def githubAuth = new ArrayList<GhprbGitHubAuth>(1)
+
+        Secret secret = Secret.fromString('')
+        githubAuth.add(new GhprbGitHubAuth("https://api.github.com", "", id, description, username, secret))
+        auth.set(descriptor, githubAuth)
+
+        descriptor.save()
+    }
+
+
+    println "--> setting security"
+    if(!envVars.containsKey("JENKINS_SECURITY_INITIALIZED") || envVars.get("JENKINS_SECURITY_INITIALIZED") != "true") {
 
         def hudsonRealm = new HudsonPrivateSecurityRealm(false)
         hudsonRealm.createAccount(user, pass)
@@ -94,10 +135,15 @@ Thread.start {
         instance.setAuthorizationStrategy(strategy)
         instance.save()
         
+    }
+
+    // IMPORTANT! don't append any functionality below as settings security restrict a lot of access. Put them above "setting security" step to have full admin privileges
+
+    //set global var to true to define that initial setup is finished
+    if(!envVars.containsKey("JENKINS_SECURITY_INITIALIZED") || envVars.get("JENKINS_SECURITY_INITIALIZED") != "true") {
         envVars.put("JENKINS_SECURITY_INITIALIZED", "true")
     }
 
-    instance.getDescriptor("jenkins.CLI").get().setEnabled(false)
     // Save the state
     instance.save()
 }
