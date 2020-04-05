@@ -38,7 +38,6 @@ def global_domain = Domain.global()
 
 def credentialsStore = Jenkins.instance.getExtensionList('com.cloudbees.plugins.credentials.SystemCredentialsProvider')[0].getStore()
 
-def env = System.getenv()
 def id = "ghprbhook-token"
 def username = "CHANGE_ME"
 def password = "CHANGE_ME"
