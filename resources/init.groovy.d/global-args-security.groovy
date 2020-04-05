@@ -118,9 +118,9 @@ Thread.start {
         
     }
 
-    // #166: NPE during disabling CLI
-    // java.lang.NullPointerException: Cannot invoke method get() on null object
-    instance.getDescriptor("jenkins.CLI").get().setEnabled(false)
+    // #166: NPE during disabling CLI: java.lang.NullPointerException: Cannot invoke method get() on null object
+    // Commented below obsolete codeline
+    //instance.getDescriptor("jenkins.CLI").get().setEnabled(false)
 
     println "--> setting ghprhook creds"
     if(!envVars.containsKey("JENKINS_SECURITY_INITIALIZED") || envVars.get("JENKINS_SECURITY_INITIALIZED") != "true") {
