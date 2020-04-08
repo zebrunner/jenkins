@@ -5,7 +5,7 @@ import hudson.tools.ToolProperty;
 import hudson.tools.ToolPropertyDescriptor;
 import hudson.util.DescribableList;
 
-def gradleDesc = jenkins.model.Jenkins.instance.getExtensionList(hudson.plugins.gradle.Gradle)[0]
+def gradleDesc = jenkins.model.Jenkins.instance.getExtensionList(hudson.plugins.gradle.GradleInstallation.DescriptorImpl.class)[0]
 
 def installSourceProperty = new InstallSourceProperty()
 
