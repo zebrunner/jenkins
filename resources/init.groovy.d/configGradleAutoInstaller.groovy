@@ -9,7 +9,7 @@ def gradleDesc = jenkins.model.Jenkins.instance.getExtensionList(hudson.plugins.
 
 def installSourceProperty = new InstallSourceProperty()
 
-def autoInstaller = new GradleInstaller("6.2.2")
+def autoInstaller = new GradleInstaller("6.3")
 installSourceProperty.installers.add(autoInstaller)
 
 def proplist = new DescribableList<ToolProperty<?>, ToolPropertyDescriptor>()
