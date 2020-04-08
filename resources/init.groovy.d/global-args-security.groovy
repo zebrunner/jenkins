@@ -61,10 +61,12 @@ Thread.start {
 
     // Base URL
     println "--> Setting Base URL"
-    jlc = JenkinsLocationConfiguration.get()
-    jlc.setUrl(rootURL)
-    jlc.setAdminAddress(rootEmail)
-    jlc.save()
+    if(!envVars.containsKey("JENKINS_SECURITY_INITIALIZED") || envVars.get("JENKINS_SECURITY_INITIALIZED") != "true") {
+        jlc = JenkinsLocationConfiguration.get()
+        jlc.setUrl(rootURL)
+        jlc.setAdminAddress(rootEmail)
+        jlc.save()
+    }
 
     // Global Environment Variables
     // Source: https://groups.google.com/forum/#!topic/jenkinsci-users/KgCGuDmED1Q
