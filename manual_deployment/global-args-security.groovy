@@ -11,6 +11,7 @@ System.setProperty("hudson.model.ParametersAction.keepUndefinedParameters", "tru
 
 // Variables
 def env = System.getenv()
+def rootURL = env['ROOT_URL']
 
 // comma sepratated string of qps-infra administrators. Persons who will receive system failures notification about qps-infra jobdsl/pipeline.
 //TODO: update with actual values for your CI
@@ -51,6 +52,12 @@ if ( envVarsNodePropertyList == null || envVarsNodePropertyList.size() == 0 ) {
   envVars = envVarsNodePropertyList.get(0).getEnvVars()
 }
 
+if(!envVars.containsKey("JENKINS_SECURITY_INITIALIZED") || envVars.get("JENKINS_SECURITY_INITIALIZED") != "true") {
+  jlc = JenkinsLocationConfiguration.get()
+  jlc.setUrl(rootURL)
+  jlc.setAdminAddress(rootEmail)
+  jlc.save()
+}
 
 if ( qpsHost != null && !envVars.containsKey("QPS_HOST") ) {
   envVars.put("QPS_HOST", qpsHost)
