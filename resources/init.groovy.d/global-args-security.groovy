@@ -59,13 +59,6 @@ instance.setNumExecutors(10)
 Thread.start {
     println "--> Configuring General Settings"
 
-    // Base URL
-    println "--> Setting Base URL"
-    jlc = JenkinsLocationConfiguration.get()
-    jlc.setUrl(rootURL)
-    jlc.setAdminAddress(rootEmail)
-    jlc.save()
-
     // Global Environment Variables
     // Source: https://groups.google.com/forum/#!topic/jenkinsci-users/KgCGuDmED1Q
     globalNodeProperties = instance.getGlobalNodeProperties()
@@ -82,6 +75,14 @@ Thread.start {
       envVars = envVarsNodePropertyList.get(0).getEnvVars()
     }
 
+    // Base URL
+    println "--> Setting Base URL"
+    if(!envVars.containsKey("JENKINS_SECURITY_INITIALIZED") || envVars.get("JENKINS_SECURITY_INITIALIZED") != "true") {
+        jlc = JenkinsLocationConfiguration.get()
+        jlc.setUrl(rootURL)
+        jlc.setAdminAddress(rootEmail)
+        jlc.save()
+    }
 
     if ( qpsHost != null && !envVars.containsKey("QPS_HOST") ) {
       envVars.put("QPS_HOST", qpsHost)
