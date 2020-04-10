@@ -27,8 +27,8 @@
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>zafiraRefreshToken</name>
-          <description>Zafira refresh token</description>
+          <name>zafiraAccessToken</name>
+          <description>Zafira access token</description>
           <defaultValue></defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
