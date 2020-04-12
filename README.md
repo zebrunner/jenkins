@@ -2,9 +2,9 @@
 
 ### How to run
 ```
-docker run -p 8083:8083 -p 50000:50000 \
+docker run -p 8080:8080 -p 50000:50000 \
           -v ~/jenkins_home:/var/jenkins_home -v ~/.m2:/root/.m2 -v ~/.ssh:/var/jenkins_home/.ssh 
-          -e JENKINS_OPTS="--httpPort=-1 --httpsPort=8083 --httpsCertificate=/var/jenkins_home/ssl.crt --httpsPrivateKey=/var/jenkins_home/ssl.key" \
+          -e JENKINS_OPTS="--httpPort=8080" \
           -d --rm --name jenkins qaprosoft/jenkins-master:latest
 ```
 
