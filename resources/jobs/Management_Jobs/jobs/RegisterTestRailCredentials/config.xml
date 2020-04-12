@@ -28,10 +28,7 @@
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>url</name>
-          <description>Test Rail API URLl with trailing slash at the end
-
-
-</description>
+          <description>Test Rail API URLl with trailing slash at the end</description>
           <defaultValue>https://&lt;CHANGE_ME&gt;.testrail.com?/api/v2/</defaultValue>
           <trim>true</trim>
         </hudson.model.StringParameterDefinition>
