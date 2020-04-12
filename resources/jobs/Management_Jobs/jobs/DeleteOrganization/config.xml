@@ -1,12 +1,12 @@
 <?xml version='1.1' encoding='UTF-8'?>
-<flow-definition plugin="workflow-job@2.31">
+<flow-definition plugin="workflow-job@2.36">
   <actions/>
   <description>Delete SCM organization folder on CI</description>
   <keepDependencies>false</keepDependencies>
   <properties>
     <org.jenkinsci.plugins.workflow.job.properties.DisableResumeJobProperty/>
     <com.synopsys.arc.jenkins.plugins.ownership.jobs.JobOwnerJobProperty plugin="ownership@0.12.1"/>
-    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.29">
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.31">
       <autoRebuild>false</autoRebuild>
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
@@ -16,12 +16,12 @@
           <name>folderName</name>
           <description>Organization folder name</description>
           <defaultValue></defaultValue>
-          <trim>false</trim>
+          <trim>true</trim>
         </hudson.model.StringParameterDefinition>
         <com.wangyin.parameter.WHideParameterDefinition plugin="hidden-parameter@0.0.4">
           <name>accessToken</name>
           <description></description>
-          <defaultValue>sldfnlwfnlkjwnefkwjef</defaultValue>
+          <defaultValue></defaultValue>
         </com.wangyin.parameter.WHideParameterDefinition>
         <com.wangyin.parameter.WHideParameterDefinition plugin="hidden-parameter@0.0.4">
           <name>callbackUrl</name>
@@ -34,7 +34,7 @@
       <triggers/>
     </org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
   </properties>
-  <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.63">
+  <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.78">
     <script>@Library(&apos;QPS-Pipeline&apos;)
 import com.qaprosoft.jenkins.pipeline.Organization;
 new Organization(this).delete()</script>

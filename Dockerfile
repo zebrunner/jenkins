@@ -1,14 +1,17 @@
 FROM jenkins/jenkins:2.214-alpine
 
-ENV ROOT_URL=http://localhost:8083/jenkins
+ENV ROOT_URL=http://localhost:8080/jenkins
 ENV ROOT_EMAIL=qps-auto@qaprosoft.com
 ENV ADMIN_EMAILS=qps-auto@qaprosoft.com
 ENV ADMIN_USER=admin
 ENV ADMIN_PASS=qaprosoft
+ENV GHPRBHOOK_USER=CHANGE_ME
+ENV GHPRBHOOK_PASS=CHANGE_ME
 ENV QPS_HOST=localhost
 ENV QPS_PIPELINE_GIT_URL=https://github.com/qaprosoft/qps-pipeline.git
-ENV QPS_PIPELINE_GIT_BRANCH=4.10.1
-ENV JENKINS_OPTS="--prefix=/jenkins --httpPort=-1 --httpsPort=8083 --httpsKeyStore=/var/jenkins_home/keystore.jks --httpsKeyStorePassword=password"
+ENV QPS_PIPELINE_GIT_BRANCH=4.10.2
+ENV JENKINS_OPTS="--prefix=/jenkins --httpPort=8080"
+#ENV JENKINS_OPTS="--prefix=/jenkins --httpPort=-1 --httpsPort=8083 --httpsKeyStore=/var/jenkins_home/keystore.jks --httpsKeyStorePassword=password"
 ENV AWS_KEY=CHANGE_ME
 ENV AWS_SECRET=CHANGE_ME
 ENV QPS_PIPELINE_LOG_LEVEL=INFO
