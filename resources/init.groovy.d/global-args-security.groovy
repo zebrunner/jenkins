@@ -39,8 +39,8 @@ def global_domain = Domain.global()
 def credentialsStore = instance.getExtensionList('com.cloudbees.plugins.credentials.SystemCredentialsProvider')[0].getStore()
 
 def id = "ghprbhook-token"
-def username = "CHANGE_ME"
-def password = "CHANGE_ME"
+def username = env['GHPRBHOOK_USER']
+def password = env['GHPRBHOOK_PASS']
 def description = "GitHub Pull Request Builder token"
 
 def ghprbhookCredentials = new UsernamePasswordCredentialsImpl(
