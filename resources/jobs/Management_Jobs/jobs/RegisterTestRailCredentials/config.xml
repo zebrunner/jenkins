@@ -26,24 +26,24 @@
           <defaultValue></defaultValue>
           <trim>true</trim>
         </hudson.model.StringParameterDefinition>
-        <hudson.model.ChoiceParameterDefinition>
-          <name>provider</name>
-          <description>List of integration selenium hub providers</description>
-          <choices class="java.util.Arrays$ArrayList">
-            <a class="string-array">
-              <string>selenium</string>
-              <string>mcloud</string>
-              <string>zebrunner</string>
-              <string>aerokube</string>
-              <string>browserstack</string>
-              <string>lambdatest</string>
-              <string>saucelabs</string>
-            </a>
-          </choices>
-        </hudson.model.ChoiceParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>url</name>
-          <description>Selenium hub url</description>
+          <description>Test Rail API URLl with trailing slash at the end
+
+
+</description>
+          <defaultValue>https://&lt;CHANGE_ME&gt;.testrail.com?/api/v2/</defaultValue>
+          <trim>true</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>username</name>
+          <description>TestRail username</description>
+          <defaultValue></defaultValue>
+          <trim>true</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>password</name>
+          <description>TestRail password</description>
           <defaultValue></defaultValue>
           <trim>true</trim>
         </hudson.model.StringParameterDefinition>
@@ -56,7 +56,7 @@
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.78">
     <script>@Library(&apos;QPS-Pipeline&apos;)
 import com.qaprosoft.jenkins.pipeline.Organization
-new Organization(this).registerHubCredentials()</script>
+new Organization(this).registerTestRailCredentials()</script>
     <sandbox>true</sandbox>
   </definition>
   <triggers/>
