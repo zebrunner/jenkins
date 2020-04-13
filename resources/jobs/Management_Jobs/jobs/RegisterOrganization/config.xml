@@ -48,6 +48,11 @@
           <defaultValue></defaultValue>
         </com.wangyin.parameter.WHideParameterDefinition>
         <com.wangyin.parameter.WHideParameterDefinition plugin="hidden-parameter@0.0.4">
+          <name>accessToken</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </com.wangyin.parameter.WHideParameterDefinition>
+        <com.wangyin.parameter.WHideParameterDefinition plugin="hidden-parameter@0.0.4">
           <name>securityEnabled</name>
           <description></description>
           <defaultValue>false</defaultValue>
