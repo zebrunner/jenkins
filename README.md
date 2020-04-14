@@ -7,7 +7,7 @@ docker run -p 8080:8080 -p 50000:50000 \
           -e JENKINS_OPTS="--prefix=/jenkins --httpPort=8080" \
           -d --rm --name jenkins qaprosoft/jenkins-master:latest
 ```
-Note: shared folder $HOME/jenkins_home, $HOME/.m2 and $HOME/.ssh must exist and belong to your current user. Use "chown" to fix it if neccessary.
+Note: shared folder <i>$HOME/jenkins_home, $HOME/.m2 and $HOME/.ssh</i> must exist and belong to your current user. Use "chown" to fix it if neccessary.
 
 ### How to authorize
 1. Open http://hostname:8080/jenkins
