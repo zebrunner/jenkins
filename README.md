@@ -12,6 +12,13 @@ Note: shared folder $HOME/jenkins_home, $HOME/.m2 and $HOME/.ssh must exist and 
 ### How to authorize
 1. Open http://hostname:8080/jenkins
 2. Login using admin/qaprosoft credentials
+
+### How to use
+Follow configuration guide in [qps-infra](https://qaprosoft.github.io/qps-infra) to reuse Jenkins effectively for automation.
+
+### Manual deployment steps for 3rd party Jenkins Setup
+In order to configure existing Jenkins with automation Pipeline/JobDSL follow detailed [guide](https://github.com/qaprosoft/jenkins-master/blob/master/manual_deployment/README.md)
+
 ### Read plugins from remote Jenkins
 ```
 #!/bin/bash
@@ -19,9 +26,6 @@ Note: shared folder $HOME/jenkins_home, $HOME/.m2 and $HOME/.ssh must exist and 
 JENKINS_HOST=<username>:<password>@localhost:8080
 curl -sSL "http://$JENKINS_HOST/pluginManager/api/xml?depth=1&xpath=/*/*/shortName|/*/*/version&wrapper=plugins" | perl -pe 's/.*?<shortName>([\w-]+).*?<version>([^<]+)()(<\/\w+>)+/\1 \2\n/g'|sed 's/ /:/'
 ```
-
-### Manual deployment steps for 3rd party Jenkins Setup
-Follow detailed [guide](https://github.com/qaprosoft/jenkins-master/blob/master/manual_deployment/README.md)
 
 ### F.A.Q
 Q: Unable to start any job due to the:
@@ -34,4 +38,3 @@ rm -rf ~/.m2/repository
 cd ~/tools/qps-infra
 rm -rf ./jenkins/.groovy/grapes
 ```
-
