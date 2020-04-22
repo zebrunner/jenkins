@@ -1,0 +1,58 @@
+version: '3.7'
+networks:
+  default:
+    external:
+      name: qps-infra
+services:
+  jenkins-master:
+    image: qaprosoft/jenkins-master:${TAG_JENKINS_MASTER}
+    container_name: qps-jenkins
+    env_file:
+     - variables.env
+    environment:
+      - "JAVA_OPTS=-Dhudson.model.ParametersAction.keepUndefinedParameters=true"
+    volumes:
+     # to add extra plugins follow this steps: https://github.com/qaprosoft/jenkins-master/releases/tag/4.6
+     - jenkins-volume:/var/jenkins_home
+     - m2-volume:/var/jenkins_home/.m2
+    ports:
+     - "8080:8080"
+     - "50000:50000"
+    restart: always
+  jenkins-slave-api:
+    image: qaprosoft/jenkins-slave:${TAG_JENKINS_SLAVE}
+    container_name: qps-jenkins-slave-api
+    env_file:
+     - variables.env
+    environment:
+     - JENKINS_SLAVE_NAME=jenkins-slave-api
+     - JENKINS_SLAVE_WORKERS=3
+     - JENKINS_SLAVE_LABELS=qps-slave api qa docker
+    volumes:
+     - m2-volume:/root/.m2
+     - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+     - "8001:8000"
+    depends_on:
+     - "jenkins-master"
+    restart: always
+  jenkins-slave-web:
+    image: qaprosoft/jenkins-slave:${TAG_JENKINS_SLAVE}
+    container_name: qps-jenkins-slave-web
+    env_file:
+     - variables.env
+    environment:
+     - JENKINS_SLAVE_NAME=jenkins-slave-web
+     - JENKINS_SLAVE_WORKERS=2
+     - JENKINS_SLAVE_LABELS=qps-slave web qa
+    volumes:
+     - m2-volume:/root/.m2
+    ports:
+     - "8000:8000"
+    depends_on:
+     - "jenkins-master"
+    restart: always
+volumes:
+  jenkins-volume:
+  m2-volume:
+
