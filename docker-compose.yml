@@ -13,10 +13,9 @@ services:
       - "JAVA_OPTS=-Dhudson.model.ParametersAction.keepUndefinedParameters=true"
     volumes:
      # to add extra plugins follow this steps: https://github.com/qaprosoft/jenkins-master/releases/tag/4.6
-     - jenkins-volume:/var/jenkins_home
-     - m2-volume:/var/jenkins_home/.m2
+     - data-volume:/var/jenkins_home:rw
+     - m2-volume:/var/jenkins_home/.m2:rw
     ports:
-     - "8080:8080"
      - "50000:50000"
     restart: always
   jenkins-slave-api:
@@ -29,7 +28,7 @@ services:
      - JENKINS_SLAVE_WORKERS=3
      - JENKINS_SLAVE_LABELS=qps-slave api qa docker
     volumes:
-     - m2-volume:/root/.m2
+     - m2-volume:/root/.m2:rw
      - /var/run/docker.sock:/var/run/docker.sock
     ports:
      - "8001:8000"
@@ -46,13 +45,13 @@ services:
      - JENKINS_SLAVE_WORKERS=2
      - JENKINS_SLAVE_LABELS=qps-slave web qa
     volumes:
-     - m2-volume:/root/.m2
+     - m2-volume:/root/.m2:rw
     ports:
      - "8000:8000"
     depends_on:
      - "jenkins-master"
     restart: always
 volumes:
-  jenkins-volume:
+  data-volume:
   m2-volume:
 
