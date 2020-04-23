@@ -30,8 +30,7 @@ RUN apk add --update --no-cache bind-tools busybox-extras
 
 # Install Apache Maven
 
-ARG MAVEN_VERSION=3.5.4
-ARG USER_HOME_DIR="/root"
+ARG MAVEN_VERSION=3.6.3
 ARG SHA=ce50b1c91364cb77efe3776f756a6d92b76d9038b0a0782f7d53acf1e997a14d
 ARG BASE_URL=https://apache.osuosl.org/maven/maven-3/${MAVEN_VERSION}/binaries
 
@@ -43,14 +42,11 @@ RUN mkdir -p /usr/share/maven /usr/share/maven/ref \
   && ln -s /usr/share/maven/bin/mvn /usr/bin/mvn
 
 ENV MAVEN_HOME /usr/share/maven
-ENV MAVEN_CONFIG "$USER_HOME_DIR/.m2"
 
 COPY resources/scripts/mvn-entrypoint.sh /usr/local/bin/mvn-entrypoint.sh
 COPY resources/configs/settings-docker.xml /usr/share/maven/ref/
 
-VOLUME "$USER_HOME_DIR/.m2"
-
-RUN chown -R jenkins "$USER_HOME_DIR" /usr/share/maven /usr/share/maven/ref
+RUN chown -R jenkins /usr/share/maven /usr/share/maven/ref
 RUN chmod a+w /etc/ssl/certs/java/cacerts
 
 RUN /usr/local/bin/mvn-entrypoint.sh
