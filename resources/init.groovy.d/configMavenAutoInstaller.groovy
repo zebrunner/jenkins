@@ -7,7 +7,7 @@ import hudson.util.DescribableList;
 def mavenDesc = jenkins.model.Jenkins.instance.getExtensionList(hudson.tasks.Maven.DescriptorImpl.class)[0]
 
 def isp = new InstallSourceProperty()
-def autoInstaller = new hudson.tasks.Maven.MavenInstaller("3.6.0")
+def autoInstaller = new hudson.tasks.Maven.MavenInstaller("3.6.3")
 isp.installers.add(autoInstaller)
 
 def proplist = new DescribableList<ToolProperty<?>, ToolPropertyDescriptor>()
