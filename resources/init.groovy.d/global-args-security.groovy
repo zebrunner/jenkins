@@ -1,6 +1,8 @@
 import hudson.model.*;
 import jenkins.model.*;
 import hudson.security.*;
+import hudson.plugins.sonar.*;
+import hudson.plugins.sonar.model.TriggersConfig;
 import com.cloudbees.plugins.credentials.*;
 import com.cloudbees.plugins.credentials.impl.*;
 import com.cloudbees.plugins.credentials.common.*;
@@ -32,6 +34,14 @@ def qpsPipelineGitBranch = env['QPS_PIPELINE_GIT_BRANCH']
 
 def qpsPipelineLogLevel = env['QPS_PIPELINE_LOG_LEVEL']
 
+// def sonarName = env['SONAR_NAME']
+// def sonarServerUrl = env['QPS_HOST'] + "/sonarqube"
+// def sonarCredentialsId = env['SONAR_TOKEN']
+// def sonarMojoVersion = env['SONAR_MOJO_VERSION']
+// def sonarAdditionalProps = env['SONAR_ADDITIONAL_PROPS']
+// def sonarAdditionalAnalysisProps = env['SONAR_ADDITIONAL_ANALYSIS_PROPS']
+// def sonarTriggers = new TriggersConfig()
+
 // Constants
 def instance = Jenkins.getInstance()
 def global_domain = Domain.global()
@@ -50,7 +60,6 @@ def ghprbhookCredentials = new UsernamePasswordCredentialsImpl(
     username,
     password
 )
-
 
 //https://github.com/qaprosoft/jenkins-master/issues/12 - remove default 5 sec quite period for Jenkins
 instance.setQuietPeriod(0)
@@ -124,6 +133,29 @@ Thread.start {
     }
 
 
+    // SonarQube plugin config, source: https://github.com/ridakk/jenkins/blob/master/groovy-scripts/setup-sonarqube-plugin.groovy
+    println "--> setting SonarQube plugin"
+    if(!envVars.containsKey("JENKINS_SECURITY_INITIALIZED") || envVars.get("JENKINS_SECURITY_INITIALIZED") != "true") {
+        def SonarGlobalConfiguration sonarConfig = instance.getDescriptor(SonarGlobalConfiguration.class)
+        def sonar = new SonarInstallation("sonar-ci", qpsHost + '/sonarqube', '', '', '', new TriggersConfig(), '')
+
+        def sonarInstallations = sonarConfig.getInstallations()
+        def sonarInstExist = false
+        sonarInstallations.each{
+          installation = (SonarInstallation) it
+          if (sonar.getName() == installation.getName()) {
+            sonarInstExist = true
+            println("Found existing installation: " + installation.getName())
+          }
+        }
+        if (!sonarInstExist) {
+          sonarInstallations += sonar
+          sonarConfig.setInstallations((SonarInstallation[]) sonarInstallations)
+          sonarConfig.save()
+        }
+    }
+
+
     println "--> setting security"
     if(!envVars.containsKey("JENKINS_SECURITY_INITIALIZED") || envVars.get("JENKINS_SECURITY_INITIALIZED") != "true") {
 
@@ -135,7 +167,7 @@ Thread.start {
         strategy.setAllowAnonymousRead(false)
         instance.setAuthorizationStrategy(strategy)
         instance.save()
-        
+
     }
 
     // IMPORTANT! don't append any functionality below as settings security restrict a lot of access. Put them above "setting security" step to have full admin privileges
