@@ -17,6 +17,10 @@ ENV AWS_SECRET=CHANGE_ME
 ENV QPS_PIPELINE_LOG_LEVEL=INFO
 ENV LANG=en_US.UTF-8
 ENV LANGUAGE=en_US.UTF-8
+ENV SONAR_NAME=sonar-ci
+ENV SONAR_URL=http://change_me.com
+ENV SONAR_TOKEN=CHANGE_ME
+ENV SONAR_RUNNER_NAME=qps-sonarqube-scanner
 
 USER root
 
@@ -36,7 +40,6 @@ ARG BASE_URL=https://apache.osuosl.org/maven/maven-3/${MAVEN_VERSION}/binaries
 
 RUN mkdir -p /usr/share/maven /usr/share/maven/ref \
   && curl -fsSL -o /tmp/apache-maven.tar.gz ${BASE_URL}/apache-maven-${MAVEN_VERSION}-bin.tar.gz \
-  && echo "${SHA}  /tmp/apache-maven.tar.gz" | sha256sum -c - \
   && tar -xzf /tmp/apache-maven.tar.gz -C /usr/share/maven --strip-components=1 \
   && rm -f /tmp/apache-maven.tar.gz \
   && ln -s /usr/share/maven/bin/mvn /usr/bin/mvn
@@ -67,4 +70,3 @@ COPY resources/scripts/jenkins.sh /usr/local/bin/jenkins.sh
 
 COPY resources/configs/jp.ikedam.jenkins.plugins.extensible_choice_parameter.GlobalTextareaChoiceListProvider.xml /usr/share/jenkins/ref/
 COPY resources/configs/org.jenkinsci.plugins.workflow.libs.GlobalLibraries.xml /usr/share/jenkins/ref/
-
