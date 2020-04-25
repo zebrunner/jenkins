@@ -1,4 +1,4 @@
-FROM jenkins/jenkins:2.233-alpine
+FROM jenkins/jenkins:2.214-alpine
 
 ENV ROOT_URL=http://localhost:8080/jenkins
 ENV ROOT_EMAIL=qps-auto@qaprosoft.com
@@ -9,9 +9,8 @@ ENV GHPRBHOOK_USER=CHANGE_ME
 ENV GHPRBHOOK_PASS=CHANGE_ME
 ENV QPS_HOST=localhost
 ENV QPS_PIPELINE_GIT_URL=https://github.com/qaprosoft/qps-pipeline.git
-ENV QPS_PIPELINE_GIT_BRANCH=4.10.2
+ENV QPS_PIPELINE_GIT_BRANCH=4.10.3
 ENV JENKINS_OPTS="--prefix=/jenkins --httpPort=8080"
-#ENV JENKINS_OPTS="--prefix=/jenkins --httpPort=-1 --httpsPort=8083 --httpsKeyStore=/var/jenkins_home/keystore.jks --httpsKeyStorePassword=password"
 ENV AWS_KEY=CHANGE_ME
 ENV AWS_SECRET=CHANGE_ME
 ENV QPS_PIPELINE_LOG_LEVEL=INFO
@@ -28,10 +27,12 @@ USER root
 # Install net utils
 RUN apk add --update --no-cache bind-tools busybox-extras
 
+#======================
 # Install Apache Maven
+#======================
 
 ARG MAVEN_VERSION=3.6.3
-ARG SHA=ce50b1c91364cb77efe3776f756a6d92b76d9038b0a0782f7d53acf1e997a14d
+ARG SHA=26ad91d751b3a9a53087aefa743f4e16a17741d3915b219cf74112bf87a438c5
 ARG BASE_URL=https://apache.osuosl.org/maven/maven-3/${MAVEN_VERSION}/binaries
 
 RUN mkdir -p /usr/share/maven /usr/share/maven/ref \
@@ -42,6 +43,7 @@ RUN mkdir -p /usr/share/maven /usr/share/maven/ref \
   && ln -s /usr/share/maven/bin/mvn /usr/bin/mvn
 
 ENV MAVEN_HOME /usr/share/maven
+ENV MAVEN_CONFIG "/var/jenkins_home/.m2"
 
 COPY resources/scripts/mvn-entrypoint.sh /usr/local/bin/mvn-entrypoint.sh
 COPY resources/configs/settings-docker.xml /usr/share/maven/ref/
