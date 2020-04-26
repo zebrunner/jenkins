@@ -10,7 +10,8 @@ def env = System.getenv()
 def sonarName = env['SONAR_NAME']
 def sonarUrl = env['SONAR_URL']
 def sonarToken = env['SONAR_TOKEN']
-def sonarRunnerName = env['SONAR_RUNNER_NAME']
+def sonarRunnerName = env['RUNNER_NAME']
+def sonarRunnerVersion = env['RUNNER_VERSION']
 
 // Constants
 def instance = Jenkins.getInstance()
@@ -40,10 +41,10 @@ Thread.start {
       println "--> setting up SonarRunner"
       def runnerInstDesc = instance.getDescriptor("hudson.plugins.sonar.SonarRunnerInstallation")
       def runnerInstaller = new SonarRunnerInstaller(sonarRunnerVersion)
-      def installSourceProperty = new InstallSourceProperty([sonarRunnerInstaller])
+      def installSourceProperty = new InstallSourceProperty([runnerInstaller])
       def runnerInst = new SonarRunnerInstallation(sonarRunnerName, "", [installSourceProperty])
 
-      def runnerInstallations = descSonarRunnerInst.getInstallations()
+      def runnerInstallations = runnerInstDesc.getInstallations()
       def runnerInstExists = false
       runnerInstallations.each{
         installation = (SonarRunnerInstallation) it
@@ -55,7 +56,7 @@ Thread.start {
 
       if (!runnerInstExists) {
         runnerInstallations += runnerInst
-        runnerInstDesc.setInstallations((SonnarRunnerInstallation[]) runnerInstallations)
+        runnerInstDesc.setInstallations((SonarRunnerInstallation[]) runnerInstallations)
         runnerInstDesc.save()
       }
 

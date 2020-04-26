@@ -19,7 +19,8 @@ ENV LANGUAGE=en_US.UTF-8
 ENV SONAR_NAME=sonar-ci
 ENV SONAR_URL=http://change_me.com
 ENV SONAR_TOKEN=CHANGE_ME
-ENV SONAR_RUNNER_NAME=qps-sonarqube-scanner
+ENV RUNNER_NAME=qps-sonarqube-scanner
+ENV RUNNER_VERSION=4.2
 
 USER root
 
