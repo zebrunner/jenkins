@@ -51,7 +51,6 @@ def ghprbhookCredentials = new UsernamePasswordCredentialsImpl(
     password
 )
 
-
 //https://github.com/qaprosoft/jenkins-master/issues/12 - remove default 5 sec quite period for Jenkins
 instance.setQuietPeriod(0)
 instance.setNumExecutors(10)
@@ -123,7 +122,6 @@ Thread.start {
         descriptor.save()
     }
 
-
     println "--> setting security"
     if(!envVars.containsKey("JENKINS_SECURITY_INITIALIZED") || envVars.get("JENKINS_SECURITY_INITIALIZED") != "true") {
 
@@ -135,7 +133,7 @@ Thread.start {
         strategy.setAllowAnonymousRead(false)
         instance.setAuthorizationStrategy(strategy)
         instance.save()
-        
+
     }
 
     // IMPORTANT! don't append any functionality below as settings security restrict a lot of access. Put them above "setting security" step to have full admin privileges

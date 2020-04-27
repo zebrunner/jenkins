@@ -16,6 +16,11 @@ ENV AWS_SECRET=CHANGE_ME
 ENV QPS_PIPELINE_LOG_LEVEL=INFO
 ENV LANG=en_US.UTF-8
 ENV LANGUAGE=en_US.UTF-8
+ENV SONAR_NAME=sonar-ci
+ENV SONAR_URL=http://sonarqube:9000/sonarqube
+ENV SONAR_TOKEN=CHANGE_ME
+ENV RUNNER_NAME=qps-sonarqube-scanner
+ENV RUNNER_VERSION=4.2
 
 USER root
 
@@ -69,4 +74,3 @@ COPY resources/scripts/jenkins.sh /usr/local/bin/jenkins.sh
 
 COPY resources/configs/jp.ikedam.jenkins.plugins.extensible_choice_parameter.GlobalTextareaChoiceListProvider.xml /usr/share/jenkins/ref/
 COPY resources/configs/org.jenkinsci.plugins.workflow.libs.GlobalLibraries.xml /usr/share/jenkins/ref/
-
