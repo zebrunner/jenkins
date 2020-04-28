@@ -60,7 +60,7 @@ def sonarQubeCredentials = new UsernamePasswordCredentialsImpl(
   CredentialsScope.GLOBAL,
   idSonar,
   sonarDesc,
-  sonarName,
+  sonarUser,
   sonarPass
 )
 
