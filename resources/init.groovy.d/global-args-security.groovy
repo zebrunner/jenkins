@@ -43,6 +43,11 @@ def username = env['GHPRBHOOK_USER']
 def password = env['GHPRBHOOK_PASS']
 def description = "GitHub Pull Request Builder token"
 
+def idSonar = "sonarqube-token"
+def sonarUser = env['SONAR_USER']
+def sonarPass = env['SONAR_PASS']
+def sonarDesc = "SonarQube Authentication token"
+
 def ghprbhookCredentials = new UsernamePasswordCredentialsImpl(
     CredentialsScope.GLOBAL,
     id,
@@ -50,6 +55,15 @@ def ghprbhookCredentials = new UsernamePasswordCredentialsImpl(
     username,
     password
 )
+
+def sonarQubeCredentials = new UsernamePasswordCredentialsImpl(
+  CredentialsScope.GLOBAL,
+  idSonar,
+  sonarDesc,
+  sonarName,
+  sonarPass
+)
+
 
 //https://github.com/qaprosoft/jenkins-master/issues/12 - remove default 5 sec quite period for Jenkins
 instance.setQuietPeriod(0)
@@ -120,6 +134,11 @@ Thread.start {
         auth.set(descriptor, githubAuth)
 
         descriptor.save()
+    }
+
+    if(!envVars.containsKey("JENKINS_SECURITY_INITIALIZED") || envVars.get("JENKINS_SECURITY_INITIALIZED") != "true") {
+        println "--> setting sonarqube creds"
+        credentialsStore.addCredentials(global_domain, sonarQubeCredentials)
     }
 
     println "--> setting security"
