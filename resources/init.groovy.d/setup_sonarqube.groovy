@@ -9,7 +9,8 @@ def env = System.getenv()
 // Variables
 def sonarName = env['SONAR_NAME']
 def sonarUrl = env['SONAR_URL']
-def sonarToken = env['SONAR_TOKEN']
+def sonarUser = env['SONAR_USER']
+def sonarPassword = env['SONAR_PASS']
 def sonarRunnerName = env['RUNNER_NAME']
 def sonarRunnerVersion = env['RUNNER_VERSION']
 
@@ -21,7 +22,7 @@ Thread.start {
       // source: https://github.com/ridakk/jenkins/blob/master/groovy-scripts/setup-sonarqube-plugin.groovy
       println "--> setting SonarQube plugin"
       def SonarGlobalConfiguration sonarConfig = instance.getDescriptor(SonarGlobalConfiguration.class)
-      def sonar = new SonarInstallation(sonarName, sonarUrl, sonarToken, '', '', new TriggersConfig(), '')
+      def sonar = new SonarInstallation(sonarName, sonarUrl, sonarName + sonarPassword, '', '', new TriggersConfig(), '')
 
       def sonarInstallations = sonarConfig.getInstallations()
       def sonarInstExist = false
