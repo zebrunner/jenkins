@@ -10,6 +10,7 @@ def env = System.getenv()
 def sonarName = env['SONAR_NAME']
 def sonarUrl = env['SONAR_URL']
 def sonarRunnerVersion = env['SONAR_RUNNER_VERSION']
+def sonarRunnerName = env['SONAR_RUNNER_NAME']
 
 // Constants
 def instance = Jenkins.getInstance()
