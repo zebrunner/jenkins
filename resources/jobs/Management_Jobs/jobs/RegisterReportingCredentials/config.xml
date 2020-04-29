@@ -29,14 +29,14 @@
         </hudson.model.StringParameterDefinition>
         <!-- TODO: https://github.com/qaprosoft/jenkins-master/issues/204 -->
         <hudson.model.StringParameterDefinition>
-          <name>reportingServiceUrl</name>
-          <description>Zafira service url</description>
+          <name>reportingServiceURL</name>
+          <description>reporting service url</description>
           <defaultValue></defaultValue>
           <trim>true</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>reportingAccessToken</name>
-          <description>Zafira access token</description>
+          <description>reporting access token</description>
           <defaultValue></defaultValue>
           <trim>true</trim>
         </hudson.model.StringParameterDefinition>
