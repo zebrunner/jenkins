@@ -33,7 +33,7 @@
 	<!-- TODO: https://github.com/qaprosoft/jenkins-master/issues/204 -->
         <hudson.model.StringParameterDefinition>
           <name>reportingServiceURL</name>
-          <description>Get repirtingServiceURL in Zebrunner account and profile menu</description>
+          <description>Get reportingServiceURL in Zebrunner account and profile menu</description>
           <defaultValue>http://reporting-service:8080/reporting-service</defaultValue>
           <trim>true</trim>
         </hudson.model.StringParameterDefinition>
