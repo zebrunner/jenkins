@@ -109,5 +109,5 @@
   Note: make sure you have slave with "api" label to be able to run tests
 * Run qaprosoft/Web-Demo-Test job with default parameters<br>
   Note: make sure you have slave with "web" label to be able to run tests
-* verify that runs are registered successfully in Zafira
+* verify that runs are registered successfully in Reporting Tool
   
