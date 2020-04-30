@@ -29,7 +29,7 @@
         </hudson.model.StringParameterDefinition>
         <!-- TODO: https://github.com/qaprosoft/jenkins-master/issues/204 -->
         <hudson.model.StringParameterDefinition>
-          <name>reportingServiceURL</name>
+          <name>reportingServiceUrl</name>
           <description>reporting service url</description>
           <defaultValue></defaultValue>
           <trim>true</trim>
