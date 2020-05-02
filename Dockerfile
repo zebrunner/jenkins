@@ -7,6 +7,7 @@ ENV ADMIN_USER=admin
 ENV ADMIN_PASS=qaprosoft
 ENV GHPRBHOOK_USER=CHANGE_ME
 ENV GHPRBHOOK_PASS=CHANGE_ME
+ENV INFRA_HOST=localhost
 ENV QPS_HOST=localhost
 ENV QPS_PIPELINE_GIT_URL=https://github.com/qaprosoft/qps-pipeline.git
 ENV QPS_PIPELINE_GIT_BRANCH=develop
