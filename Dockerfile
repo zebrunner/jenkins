@@ -11,6 +11,7 @@ ENV QPS_HOST=localhost
 ENV QPS_PIPELINE_GIT_URL=https://github.com/qaprosoft/qps-pipeline.git
 ENV QPS_PIPELINE_GIT_BRANCH=develop
 ENV JENKINS_OPTS="--prefix=/jenkins --httpPort=8080"
+ENV JAVA_OPTS="-Dhudson.model.ParametersAction.keepUndefinedParameters=true"
 ENV AWS_KEY=CHANGE_ME
 ENV AWS_SECRET=CHANGE_ME
 ENV QPS_PIPELINE_LOG_LEVEL=INFO
