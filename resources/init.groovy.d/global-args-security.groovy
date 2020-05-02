@@ -27,7 +27,6 @@ def user = env['ADMIN_USER']
 def pass = env['ADMIN_PASS']
 
 def infraHost = env['INFRA_HOST']
-def qpsHost = env['QPS_HOST']
 def qpsPipelineGitURL = env['QPS_PIPELINE_GIT_URL']
 def qpsPipelineGitBranch = env['QPS_PIPELINE_GIT_BRANCH']
 
@@ -100,10 +99,6 @@ Thread.start {
 
     if ( infraHost != null && !envVars.containsKey("INFRA_HOST") ) {
       envVars.put("INFRA_HOST", infraHost)
-    }
-
-    if ( qpsHost != null && !envVars.containsKey("QPS_HOST") ) {
-      envVars.put("QPS_HOST", qpsHost)
     }
 
     if ( qpsPipelineGitURL != null && !envVars.containsKey("QPS_PIPELINE_GIT_URL") ) {
