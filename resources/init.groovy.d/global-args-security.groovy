@@ -26,7 +26,7 @@ def adminEmails = env['ADMIN_EMAILS']
 def user = env['ADMIN_USER']
 def pass = env['ADMIN_PASS']
 
-def qpsHost = env['QPS_HOST']
+def infraHost = env['INFRA_HOST']
 def qpsPipelineGitURL = env['QPS_PIPELINE_GIT_URL']
 def qpsPipelineGitBranch = env['QPS_PIPELINE_GIT_BRANCH']
 
@@ -97,8 +97,8 @@ Thread.start {
         jlc.save()
     }
 
-    if ( qpsHost != null && !envVars.containsKey("QPS_HOST") ) {
-      envVars.put("QPS_HOST", qpsHost)
+    if ( infraHost != null && !envVars.containsKey("INFRA_HOST") ) {
+      envVars.put("INFRA_HOST", infraHost)
     }
 
     if ( qpsPipelineGitURL != null && !envVars.containsKey("QPS_PIPELINE_GIT_URL") ) {

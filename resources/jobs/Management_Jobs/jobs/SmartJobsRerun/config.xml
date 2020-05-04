@@ -50,13 +50,13 @@ owner</description>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>hashcode</name>
-          <description>[Optional] mostly for integration with Zafira Reporting Tool to be able to re-execute only jobs which tests failed due to the absolutely the SAME reason.</description>
+          <description>[Optional] mostly for integration with Reporting Tool to be able to re-execute only jobs which tests failed due to the absolutely the SAME reason.</description>
           <defaultValue></defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>cause</name>
-          <description>[Optional] mostly for integration with Zafira Reporting Tool to be able to re-execute only jobs which tests failed due to the SIMILAR reason.</description>
+          <description>[Optional] mostly for integration with Reporting Tool to be able to re-execute only jobs which tests failed due to the SIMILAR reason.</description>
           <defaultValue></defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
