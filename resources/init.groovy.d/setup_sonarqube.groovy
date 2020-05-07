@@ -19,7 +19,7 @@ Thread.start {
       // SonarQube plugin config
       // source: https://github.com/ridakk/jenkins/blob/master/groovy-scripts/setup-sonarqube-plugin.groovy
       def SonarGlobalConfiguration sonarConfig = instance.getDescriptor(SonarGlobalConfiguration.class)
-      def sonar = new SonarInstallation(sonarName, sonarUrl, "sonar-token", null, '', '', '', '', new TriggersConfig())
+      def sonar = new SonarInstallation(sonarName, sonarUrl, null, null, '', '', '', '', new TriggersConfig())
 
       def sonarInstallations = sonarConfig.getInstallations()
       def sonarInstExist = false
