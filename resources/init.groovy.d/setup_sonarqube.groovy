@@ -1,8 +1,8 @@
 import hudson.model.*
 import jenkins.model.*
+import hudson.tools.*
 import hudson.plugins.sonar.*
 import hudson.plugins.sonar.model.TriggersConfig
-import hudson.tools.*
 
 def env = System.getenv()
 
@@ -18,9 +18,8 @@ def instance = Jenkins.getInstance()
 Thread.start {
       // SonarQube plugin config
       // source: https://github.com/ridakk/jenkins/blob/master/groovy-scripts/setup-sonarqube-plugin.groovy
-      println "--> setting SonarQube plugin"
       def SonarGlobalConfiguration sonarConfig = instance.getDescriptor(SonarGlobalConfiguration.class)
-      def sonar = new SonarInstallation(sonarName, sonarUrl, "sonarqube-token", null, '', '', '', '', new TriggersConfig())
+      def sonar = new SonarInstallation(sonarName, sonarUrl, null, null, '', '', '', '', new TriggersConfig())
 
       def sonarInstallations = sonarConfig.getInstallations()
       def sonarInstExist = false
@@ -32,12 +31,12 @@ Thread.start {
         }
       }
       if (!sonarInstExist) {
+        println "--> setting SonarQube plugin"
         sonarInstallations += sonar
         sonarConfig.setInstallations((SonarInstallation[]) sonarInstallations)
         sonarConfig.save()
       }
 
-      println "--> setting up SonarRunner"
       def runnerInstDesc = instance.getDescriptor("hudson.plugins.sonar.SonarRunnerInstallation")
       def runnerInstaller = new SonarRunnerInstaller(sonarRunnerVersion)
       def installSourceProperty = new InstallSourceProperty([runnerInstaller])
@@ -54,6 +53,7 @@ Thread.start {
       }
 
       if (!runnerInstExists) {
+        println "--> setting up SonarRunner"
         runnerInstallations += runnerInst
         runnerInstDesc.setInstallations((SonarRunnerInstallation[]) runnerInstallations)
         runnerInstDesc.save()
