@@ -47,7 +47,6 @@
         <hudson.model.StringParameterDefinition>
           <name>sonarGithubOAuth</name>
           <description>Sonar Github OAuth token</description>
-          <!-- TODO: reuse valid value for admin user -->
           <defaultValue></defaultValue>
           <trim>true</trim>
         </hudson.model.StringParameterDefinition>
