@@ -44,6 +44,13 @@
           <defaultValue>eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwicGFzc3dvcmQiOiJXNSs1N0FwTmN0UDd1ZlNYdy8xazhZdGUvNVFKUkFZUCIsInRlbmFudCI6InphZmlyYSIsImV4cCI6MTMwNDM2ODQ2OTM3fQ.T0WsjjDldQyYbacw2eD54gztHbgbdEcGoLGOHh1QXkqu7Gk0_Z4DPM-rjLP_hQnRaphmND-jsscRjbuvWG3sfQ</defaultValue>
           <trim>true</trim>
         </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>sonarGithubOAuth</name>
+          <description>Sonar Github OAuth token</description>
+          <!-- TODO: reuse valid value for admin user -->
+          <defaultValue></defaultValue>
+          <trim>true</trim>
+        </hudson.model.StringParameterDefinition>
         <com.wangyin.parameter.WHideParameterDefinition plugin="hidden-parameter@0.0.4">
           <name>callbackUrl</name>
           <description></description>
