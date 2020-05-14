@@ -6,6 +6,8 @@ import com.cloudbees.plugins.credentials.impl.*;
 import com.cloudbees.plugins.credentials.common.*;
 import com.cloudbees.plugins.credentials.domains.*;
 import com.cloudbees.jenkins.plugins.sshcredentials.impl.*;
+import org.jenkinsci.plugins.workflow.flow.GlobalDefaultFlowDurabilityLevel;
+import org.jenkinsci.plugins.workflow.flow.FlowDurabilityHint;
 import java.lang.reflect.Field;
 import org.jenkinsci.plugins.ghprb.GhprbGitHubAuth;
 import hudson.util.Secret;
@@ -133,6 +135,13 @@ Thread.start {
         instance.setAuthorizationStrategy(strategy)
         instance.save()
 
+    }
+
+    if(!envVars.containsKey("JENKINS_SECURITY_INITIALIZED") || envVars.get("JENKINS_SECURITY_INITIALIZED") != "true") {
+      println "--> setting pipeline speed/durability settings"
+      
+      GlobalDefaultFlowDurabilityLevel.DescriptorImpl level = instance.getExtensionList(GlobalDefaultFlowDurabilityLevel.DescriptorImpl.class).get(0);
+      level.setDurabilityHint(FlowDurabilityHint.PERFORMANCE_OPTIMIZED);
     }
 
     // IMPORTANT! don't append any functionality below as settings security restrict a lot of access. Put them above "setting security" step to have full admin privileges
