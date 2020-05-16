@@ -6,10 +6,11 @@ import com.cloudbees.plugins.credentials.impl.*;
 import com.cloudbees.plugins.credentials.common.*;
 import com.cloudbees.plugins.credentials.domains.*;
 import com.cloudbees.jenkins.plugins.sshcredentials.impl.*;
+import org.jenkinsci.plugins.workflow.flow.GlobalDefaultFlowDurabilityLevel;
+import org.jenkinsci.plugins.workflow.flow.FlowDurabilityHint;
 import java.lang.reflect.Field;
 import org.jenkinsci.plugins.ghprb.GhprbGitHubAuth;
 import hudson.util.Secret;
-
 
 // Disable Jenkins security that blocks eTAF reports
 System.setProperty("hudson.model.DirectoryBrowserSupport.CSP", "default-src 'self'; script-src 'self' https://ajax.googleapis.com 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self'")
@@ -26,7 +27,7 @@ def adminEmails = env['ADMIN_EMAILS']
 def user = env['ADMIN_USER']
 def pass = env['ADMIN_PASS']
 
-def qpsHost = env['QPS_HOST']
+def infraHost = env['INFRA_HOST']
 def qpsPipelineGitURL = env['QPS_PIPELINE_GIT_URL']
 def qpsPipelineGitBranch = env['QPS_PIPELINE_GIT_BRANCH']
 
@@ -50,7 +51,6 @@ def ghprbhookCredentials = new UsernamePasswordCredentialsImpl(
     username,
     password
 )
-
 
 //https://github.com/qaprosoft/jenkins-master/issues/12 - remove default 5 sec quite period for Jenkins
 instance.setQuietPeriod(0)
@@ -84,8 +84,8 @@ Thread.start {
         jlc.save()
     }
 
-    if ( qpsHost != null && !envVars.containsKey("QPS_HOST") ) {
-      envVars.put("QPS_HOST", qpsHost)
+    if ( infraHost != null && !envVars.containsKey("INFRA_HOST") ) {
+      envVars.put("INFRA_HOST", infraHost)
     }
 
     if ( qpsPipelineGitURL != null && !envVars.containsKey("QPS_PIPELINE_GIT_URL") ) {
@@ -123,7 +123,6 @@ Thread.start {
         descriptor.save()
     }
 
-
     println "--> setting security"
     if(!envVars.containsKey("JENKINS_SECURITY_INITIALIZED") || envVars.get("JENKINS_SECURITY_INITIALIZED") != "true") {
 
@@ -135,7 +134,14 @@ Thread.start {
         strategy.setAllowAnonymousRead(false)
         instance.setAuthorizationStrategy(strategy)
         instance.save()
-        
+
+    }
+
+    if(!envVars.containsKey("JENKINS_SECURITY_INITIALIZED") || envVars.get("JENKINS_SECURITY_INITIALIZED") != "true") {
+      println "--> setting pipeline speed/durability settings"
+      
+      GlobalDefaultFlowDurabilityLevel.DescriptorImpl level = instance.getExtensionList(GlobalDefaultFlowDurabilityLevel.DescriptorImpl.class).get(0);
+      level.setDurabilityHint(FlowDurabilityHint.PERFORMANCE_OPTIMIZED);
     }
 
     // IMPORTANT! don't append any functionality below as settings security restrict a lot of access. Put them above "setting security" step to have full admin privileges

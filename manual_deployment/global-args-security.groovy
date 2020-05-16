@@ -21,7 +21,7 @@ def rootURL = null
 def adminEmails = "admin@mydomain.com,admin2@mydonain.com"
 
 //TODO: update with actual fully qualified domain name or ip address
-def qpsHost = "CHANGE_ME"
+def infraHost = "CHANGE_ME"
 
 //TODO: generate and replace zafira token
 def zafiraServiceUrl = "http://CHANGE_ME/zafira-ws"
@@ -65,8 +65,8 @@ if(!envVars.containsKey("JENKINS_SECURITY_INITIALIZED") || envVars.get("JENKINS_
   jlc.save()
 }
 
-if ( qpsHost != null && !envVars.containsKey("QPS_HOST") ) {
-  envVars.put("QPS_HOST", qpsHost)
+if ( infraHost != null && !envVars.containsKey("INFRA_HOST") ) {
+  envVars.put("INFRA_HOST", infraHost)
 }
 
 if ( qpsPipelineGitURL != null && !envVars.containsKey("QPS_PIPELINE_GIT_URL") ) {

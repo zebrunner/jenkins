@@ -1,0 +1,38 @@
+version: '3.7'
+networks:
+  default:
+    external:
+      name: infra
+services:
+  jenkins-master:
+    image: "qaprosoft/jenkins-master:${TAG_JENKINS_MASTER}"
+    container_name: jenkins-master
+    environment:
+      - "AMIN_USER=${ADMIN_USER}"
+      - "ADMIN_PASS=${ADMIN_PASS}"
+    volumes:
+     - "data-volume:/var/jenkins_home:rw"
+    ports:
+     - "8080:8080"
+     - "50000:50000"
+    restart: always
+  jenkins-slave:
+    image: "qaprosoft/jenkins-slave:${TAG_JENKINS_SLAVE}"
+    container_name: jenkins-slave
+    environment:
+     - "JENKINS_MASTER_URL=http://jenkins-master:8080/jenkins"
+     - "JENKINS_MASTER_USERNAME=${ADMIN_USER}"
+     - "JENKINS_MASTER_PASSWORD=${ADMIN_PASS}"
+     - "JENKINS_SLAVE_NAME=jenkins-slave"
+     - "JENKINS_SLAVE_WORKERS=5"
+     - "JENKINS_SLAVE_LABELS=maven api web docker"
+    volumes:
+     - "/var/run/docker.sock:/var/run/docker.sock"
+    ports:
+     - "8001:8000"
+    depends_on:
+     - "jenkins-master"
+    restart: always
+volumes:
+  data-volume:
+

@@ -1,4 +1,5 @@
 <?xml version='1.1' encoding='UTF-8'?>
+<!-- TODO: https://github.com/qaprosoft/jenkins-master/issues/205 -->
 <flow-definition plugin="workflow-job@2.36">
   <actions/>
   <description></description>
@@ -26,15 +27,16 @@
           <defaultValue></defaultValue>
           <trim>true</trim>
         </hudson.model.StringParameterDefinition>
+        <!-- TODO: https://github.com/qaprosoft/jenkins-master/issues/204 -->
         <hudson.model.StringParameterDefinition>
-          <name>zafiraServiceURL</name>
-          <description>Zafira service url</description>
+          <name>reportingServiceUrl</name>
+          <description>reporting service url</description>
           <defaultValue></defaultValue>
           <trim>true</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>zafiraAccessToken</name>
-          <description>Zafira access token</description>
+          <name>reportingAccessToken</name>
+          <description>reporting access token</description>
           <defaultValue></defaultValue>
           <trim>true</trim>
         </hudson.model.StringParameterDefinition>
@@ -47,7 +49,7 @@
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.78">
     <script>@Library(&apos;QPS-Pipeline&apos;)
 import com.qaprosoft.jenkins.pipeline.Organization
-new Organization(this).registerZafiraCredentials()</script>
+new Organization(this).registerReportingCredentials()</script>
     <sandbox>true</sandbox>
   </definition>
   <triggers/>
