@@ -43,7 +43,6 @@ javadoc:1.5
 jdk-tool:1.4
 job-dsl:1.77
 jobConfigHistory:2.26
-job-dsl-plugin:1.77
 jquery-detached:1.2.1
 jsch:0.1.55.2
 junit:1.29
