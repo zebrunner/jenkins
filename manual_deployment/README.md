@@ -7,6 +7,14 @@
   Note: Option needed starting from 4.8+ jenkins-master. Example: [link](https://github.com/qaprosoft/qps-infra/commit/4bddc573d5296150d2de39cff4ebb2a60be9895f)
 
 ### Install required plugins
+* As of now we certified 1.71 Job Dsl plugin so to install this particular version or downgrade existing please follow:
+  * Open https://updates.jenkins.io/download/plugins/job-dsl/
+  * Download 1.71 job-dsl.hpi
+  * Go to Manage Jenkins -> Manage Plugins -> Advanced
+  * In Upload Plugin area choose file from your computer
+  * Click on Upload button
+  * Restart Jenkins<br>
+  Note: verify that 1.71 Job Dsl is installed
 * Open Manage Jenkins -> Script Console
 * Execute [install_plugins.groovy](https://github.com/qaprosoft/jenkins-master/blob/master/manual_deployment/install_plugins.groovy) script manually
 * Restart Jenkins
