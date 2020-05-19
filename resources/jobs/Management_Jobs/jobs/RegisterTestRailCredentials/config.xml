@@ -44,6 +44,18 @@
           <defaultValue></defaultValue>
           <trim>true</trim>
         </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>pipelineLibrary</name>
+          <description>Groovy JobDSL/Pipeline library, for example: https://github.com/qaprosoft/qps-pipeline/releases</description>
+          <defaultValue>QPS-Pipeline</defaultValue>
+          <trim>true</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>runnerClass</name>
+          <description></description>
+          <defaultValue>com.qaprosoft.jenkins.pipeline.runner.maven.QARunner</defaultValue>
+          <trim>true</trim>
+        </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
     <org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
