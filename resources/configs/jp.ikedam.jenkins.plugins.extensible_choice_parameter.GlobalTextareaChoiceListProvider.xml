@@ -33,6 +33,7 @@
         <string>com.qaprosoft.jenkins.pipeline.runner.maven.TestNG</string>
         <string>com.qaprosoft.jenkins.pipeline.runner.maven.JUnit</string>
         <string>com.qaprosoft.jenkins.pipeline.runner.maven.Runner</string>
+        <string>com.qaprosoft.jenkins.pipeline.runner.maven.QARunner</string>
       </choiceList>
       <allowAddEditedValue>true</allowAddEditedValue>
     </jp.ikedam.jenkins.plugins.extensible__choice__parameter.GlobalTextareaChoiceListEntry>
