@@ -21,7 +21,7 @@
 * Declare required aws-jacoco-token [setup_aws_credentials.groovy](https://github.com/qaprosoft/jenkins-master/blob/master/resources/init.groovy.d/setup_aws_credentials.groovy)<br>
   Note: valid value can be added manually if needed
 * Setup Maven installer by [configMavenAutoInstaller.groovy](https://github.com/qaprosoft/jenkins-master/blob/master/resources/init.groovy.d/configMavenAutoInstaller.groovy) 
-  ->  Verify that Manage Jenkins  -> Global Tool Configuration  -> Maven installations contains declaration for 'M3'
+  ->  Verify that Manage Jenkins  -> Global Tool Configuration     -> Maven installations contains declaration for 'M3'
 * Setup SBT installerby [configSbtAutoInstaller.groovy](https://github.com/qaprosoft/jenkins-master/blob/master/resources/init.groovy.d/configSbtAutoInstaller.groovy) 
   -> Verify that Manage Jenkins -> Global Tool Configuration -> Sbt installations contains declaration for 'SBT'
 * Setup GitHub Pull Request Builder by [setup_ghprbhook_credentials.groovy](https://github.com/qaprosoft/jenkins-master/blob/master/manual_deployment/setup_ghprbhook_credentials.groovy)-> verify that Manage Jenkins -> Global Tool Configuration -> Setup GitHub Pull Request Builder credential field contains 'ghprbhook-token'
