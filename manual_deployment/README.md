@@ -17,7 +17,7 @@
   <b>Warning:</b> Please, verify that Manage Jenkins -> Configure Global Security -> Enable script security for Job DSL scripts is unchecked!
 * Declare required global variables by [global-args-security.groovy](https://github.com/qaprosoft/jenkins-master/blob/master/manual_deployment/global-args-security.groovy)<br>
   -> Verify that Manage Jenkins -> Configure System has such golbal variables defined: ADMIN_EMAILS, JENKINS_SECURITY_INITIALIZED, INFRA_HOST, QPS_PIPELINE_GIT_BRANCH, QPS_PIPELINE_GIT_URL, QPS_PIPELINE_LOG_LEVEL<br>
-  Note: Make sure to replace "CHANGE_ME" variables values onto the valid data
+  Note: Make sure to replace "CHANGE_ME" variables values to the valid data
 * Declare required aws-jacoco-token [setup_aws_credentials.groovy](https://github.com/qaprosoft/jenkins-master/blob/master/resources/init.groovy.d/setup_aws_credentials.groovy)<br>
   Note: valid value can be added manually if needed
 * Setup Maven installer by [configMavenAutoInstaller.groovy](https://github.com/qaprosoft/jenkins-master/blob/master/resources/init.groovy.d/configMavenAutoInstaller.groovy) 
