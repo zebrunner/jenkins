@@ -25,7 +25,6 @@
 * Setup SBT installerby [configSbtAutoInstaller.groovy](https://github.com/qaprosoft/jenkins-master/blob/master/resources/init.groovy.d/configSbtAutoInstaller.groovy) 
   <b>Warning:</b> Please, verify that Manage Jenkins -> Global Tool Configuration -> Sbt installations contains declaration for 'SBT'!
 * Setup GitHub Pull Request Builder by [setup_ghprbhook_credentials.groovy](https://github.com/qaprosoft/jenkins-master/blob/master/manual_deployment/setup_ghprbhook_credentials.groovy)
-  <b>Warning:</b> Please, verify that Manage Jenkins -> Global Tool Configuration -> Setup GitHub Pull Request Builder credential field contains ghprbhook-token!
 * Restart Jenkins
   
 ### Declare QPS-Pipeline library
