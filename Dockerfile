@@ -31,7 +31,7 @@ USER root
 #    apk add --no-cache bash git openssh
 
 # Install net utils
-RUN apk add --update --no-cache bind-tools busybox-extras
+RUN apk add --update --no-cache bind-tools busybox-extras nano
 
 #======================
 # Install Apache Maven
