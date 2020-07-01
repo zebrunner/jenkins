@@ -36,28 +36,6 @@ Thread.start {
         sonarConfig.setInstallations((SonarInstallation[]) sonarInstallations)
         sonarConfig.save()
       }
-
-      def runnerInstDesc = instance.getDescriptor("hudson.plugins.sonar.SonarRunnerInstallation")
-      def runnerInstaller = new SonarRunnerInstaller(sonarRunnerVersion)
-      def installSourceProperty = new InstallSourceProperty([runnerInstaller])
-      def runnerInst = new SonarRunnerInstallation(sonarRunnerName, "", [installSourceProperty])
-
-      def runnerInstallations = runnerInstDesc.getInstallations()
-      def runnerInstExists = false
-      runnerInstallations.each{
-        installation = (SonarRunnerInstallation) it
-        if (runnerInst.getName() == installation.getName()) {
-          runnerInstExists = true
-          println("Found existing SonarRunner installation: " + installation.getName())
-        }
-      }
-
-      if (!runnerInstExists) {
-        println "--> setting up SonarRunner"
-        runnerInstallations += runnerInst
-        runnerInstDesc.setInstallations((SonarRunnerInstallation[]) runnerInstallations)
-        runnerInstDesc.save()
-      }
-
+      
       instance.save()
 }
