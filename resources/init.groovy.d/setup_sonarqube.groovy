@@ -8,9 +8,7 @@ def env = System.getenv()
 
 // Variables
 def sonarName = env['SONAR_NAME']
-def sonarUrl = env['SONAR_URL']
-def sonarRunnerVersion = env['SONAR_RUNNER_VERSION']
-def sonarRunnerName = env['SONAR_RUNNER_NAME']
+def sonarUrl = "$SONAR_URL"
 
 // Constants
 def instance = Jenkins.getInstance()
@@ -18,6 +16,7 @@ def instance = Jenkins.getInstance()
 Thread.start {
       // SonarQube plugin config
       // source: https://github.com/ridakk/jenkins/blob/master/groovy-scripts/setup-sonarqube-plugin.groovy
+      // deleted runner installation as in 5.1 we use maven to execute sonar analysis
       def SonarGlobalConfiguration sonarConfig = instance.getDescriptor(SonarGlobalConfiguration.class)
       def sonar = new SonarInstallation(sonarName, sonarUrl, null, null, '', '', '', '', new TriggersConfig())
 
