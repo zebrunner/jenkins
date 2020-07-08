@@ -53,6 +53,11 @@
           <description></description>
           <defaultValue>false</defaultValue>
         </com.wangyin.parameter.WHideParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>customPipeline</name>
+          <description>Jenkinsfile that contains the definition of a Jenkins Pipeline and is checked into your organisation folder</description>
+          <defaultValue>false</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
     <org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
