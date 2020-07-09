@@ -1,8 +1,7 @@
 <?xml version='1.1' encoding='UTF-8'?>
 <hudson.model.ExternalJob plugin="external-monitor-job@1.7">
   <description>
-    Quick Launch steps: https://github.com/qaprosoft/qps-infra/blob/master/README.md
-    Guide: https://qaprosoft.github.io/qps-infra/config-guide/
+    Guide: https://qaprosoft.github.io/qps-infra/
   </description>
   <keepDependencies>false</keepDependencies>
   <properties>

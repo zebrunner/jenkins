@@ -33,6 +33,8 @@ def qpsPipelineGitBranch = env['QPS_PIPELINE_GIT_BRANCH']
 
 def qpsPipelineLogLevel = env['QPS_PIPELINE_LOG_LEVEL']
 
+def sonarUrl = env['SONAR_URL']
+
 // Constants
 def instance = Jenkins.getInstance()
 def global_domain = Domain.global()
@@ -102,6 +104,10 @@ Thread.start {
 
     if ( adminEmails != null && !envVars.containsKey("ADMIN_EMAILS") ) {
       envVars.put("ADMIN_EMAILS", adminEmails)
+    }
+
+    if (sonarUrl != null && !envVars.containsKey("SONAR_URL")) {
+        envVars.put("SONAR_URL", sonarUrl)
     }
 
     // #166: NPE during disabling CLI: java.lang.NullPointerException: Cannot invoke method get() on null object
