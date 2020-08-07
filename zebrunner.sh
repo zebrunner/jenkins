@@ -9,7 +9,6 @@
     fi
 
     local url="$ZBR_PROTOCOL://$ZBR_HOSTNAME:$ZBR_PORT/jenkins"
-    echo url: $url
     sed -i "s#http://localhost:8080/jenkins#${url}#g" ${BASEDIR}/variables.env
 
     if [[ ! -z $ZBR_SONAR_URL ]]; then
@@ -141,9 +140,6 @@ case "$1" in
 
         if [[ -z $ZBR_PROTOCOL || -z $ZBR_HOSTNAME || -z $ZBR_PORT ]]; then
           set_global_settings
-        else
-          # use-case when reporting is configured from zebrunner server (community edition).
-          echo "[OPTIONAL] TODO: we have to disable 8080 port sharing for jenkins-master!"
         fi
 
         setup
