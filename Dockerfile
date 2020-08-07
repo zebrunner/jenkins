@@ -9,7 +9,7 @@ ENV GHPRBHOOK_USER=CHANGE_ME
 ENV GHPRBHOOK_PASS=CHANGE_ME
 ENV INFRA_HOST=localhost
 ENV QPS_PIPELINE_GIT_URL=https://github.com/qaprosoft/qps-pipeline.git
-ENV QPS_PIPELINE_GIT_BRANCH=5.0
+ENV QPS_PIPELINE_GIT_BRANCH=5.1
 ENV JENKINS_OPTS="--prefix=/jenkins --httpPort=8080"
 ENV JAVA_OPTS="-Dhudson.model.ParametersAction.keepUndefinedParameters=true"
 ENV AWS_KEY=CHANGE_ME
@@ -28,7 +28,7 @@ USER root
 #    apk add --no-cache bash git openssh
 
 # Install net utils
-RUN apk add --update --no-cache bind-tools busybox-extras
+RUN apk add --update --no-cache bind-tools busybox-extras nano
 
 #======================
 # Install Apache Maven
