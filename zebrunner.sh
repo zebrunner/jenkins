@@ -7,7 +7,6 @@
     fi
 
     local url="$ZBR_PROTOCOL://$ZBR_HOSTNAME:$ZBR_PORT/jenkins"
-    echo url: $url
     sed -i "s#http://localhost:8080/jenkins#${url}#g" variables.env
 
     if [[ ! -z $ZBR_SONAR_URL ]]; then
