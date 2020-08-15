@@ -60,7 +60,8 @@
     fi
 
     source .env
-    docker run --rm --volumes-from jenkins-master -v $(pwd)/backup:/var/backup/backup "qaprosoft/jenkins-master:${TAG_JENKINS_MASTER}" tar -czvf /var/backup/jenkins-master.tar.gz /var/jenkins_home
+    cp variables.env variables.env.bak
+    docker run --rm --volumes-from jenkins-master -v $(pwd)/backup:/var/backup "ubuntu" tar -czvf /var/backup/jenkins-master.tar.gz /var/jenkins_home
   }
 
   restore() {
@@ -68,8 +69,11 @@
       exit 0
     fi
 
+    stop
     source .env
-    docker run --rm --volumes-from jenkins-master -v $(pwd)/backup:/var/backup "qaprosoft/jenkins-master:${TAG_JENKINS_MASTER}" bash -c "cd / && tar -xzvf /var/backup/jenkins-master.tar.gz"
+    cp variables.env.bak variables.env
+    docker run --rm --volumes-from jenkins-master -v $(pwd)/backup:/var/backup "ubuntu" bash -c "cd / && tar -xzvf /var/backup/jenkins-master.tar.gz"
+    down
   }
 
   echo_warning() {
