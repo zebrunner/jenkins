@@ -59,7 +59,6 @@
       exit 0
     fi
 
-    source .env
     cp variables.env variables.env.bak
     docker run --rm --volumes-from jenkins-master -v $(pwd)/backup:/var/backup "ubuntu" tar -czvf /var/backup/jenkins-master.tar.gz /var/jenkins_home
   }
@@ -70,7 +69,6 @@
     fi
 
     stop
-    source .env
     cp variables.env.bak variables.env
     docker run --rm --volumes-from jenkins-master -v $(pwd)/backup:/var/backup "ubuntu" bash -c "cd / && tar -xzvf /var/backup/jenkins-master.tar.gz"
     down
