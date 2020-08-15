@@ -1,12 +1,10 @@
 #!/bin/bash
 
   setup() {
-    if [[ ! -f variables.env.original ]]; then
-      #make a backup of the original file
-      cp variables.env variables.env.original
-    fi
-
+    # PREREQUISITES: valid values inside ZBR_PROTOCOL, ZBR_HOSTNAME and ZBR_PORT env vars!
     local url="$ZBR_PROTOCOL://$ZBR_HOSTNAME:$ZBR_PORT/jenkins"
+
+    cp variables.env.original variables.env
     sed -i "s#http://localhost:8080/jenkins#${url}#g" variables.env
 
     if [[ ! -z $ZBR_SONAR_URL ]]; then
@@ -15,6 +13,16 @@
 
   }
 
+  shutdown() {
+    if [[ -f .disabled ]]; then
+      exit 0
+    fi
+
+    docker-compose --env-file .env -f docker-compose.yml down -v
+    rm variables.env
+  }
+
+
   start() {
     if [[ -f .disabled ]]; then
       exit 0
@@ -22,6 +30,10 @@
 
     # create infra network only if not exist
     docker network inspect infra >/dev/null 2>&1 || docker network create infra
+
+    if [[ ! -f variables.env ]]; then
+      cp variables.env.original variables.env
+    fi
 
     docker-compose --env-file .env -f docker-compose.yml up -d
   }
@@ -42,36 +54,33 @@
     docker-compose --env-file .env -f docker-compose.yml down
   }
 
-  shutdown() {
-    if [[ -f .disabled ]]; then
-      exit 0
-    fi
-
-    docker-compose --env-file .env -f docker-compose.yml down -v
-
-    if [[ -f variables.env.original ]]; then
-      mv variables.env.original variables.env
-    fi
-
-  }
-
   backup() {
     if [[ -f .disabled ]]; then
       exit 0
     fi
+
+    source .env
+    cp variables.env variables.env.bak
+    docker run --rm --volumes-from jenkins-master -v $(pwd)/backup:/var/backup "ubuntu" tar -czvf /var/backup/jenkins-master.tar.gz /var/jenkins_home
   }
 
   restore() {
     if [[ -f .disabled ]]; then
       exit 0
     fi
+
+    stop
+    source .env
+    cp variables.env.bak variables.env
+    docker run --rm --volumes-from jenkins-master -v $(pwd)/backup:/var/backup "ubuntu" bash -c "cd / && tar -xzvf /var/backup/jenkins-master.tar.gz"
+    down
   }
 
   echo_warning() {
     echo "
       WARNING! $1"
-
   }
+
   echo_telegram() {
     echo "
       For more help join telegram channel: https://t.me/zebrunner
