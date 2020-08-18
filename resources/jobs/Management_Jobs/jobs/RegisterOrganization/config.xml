@@ -18,18 +18,16 @@
           <defaultValue></defaultValue>
           <trim>true</trim>
         </hudson.model.StringParameterDefinition>
-	<!-- TODO: https://github.com/qaprosoft/jenkins-master/issues/204 -->
         <hudson.model.StringParameterDefinition>
           <name>reportingServiceUrl</name>
-          <description>Get reportingServiceUrl in Zebrunner account and profile menu</description>
-          <defaultValue>http://reporting-service:8080/reporting-service</defaultValue>
+          <description>Get ServiceUrl in Zebrunner "Account and profile menu"</description>
+          <defaultValue></defaultValue>
           <trim>true</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>reportingAccessToken</name>
-          <description>Generate token in Zebrunner account and profile menu</description>
-	  <!-- TODO: reuse valid value for admin user -->
-          <defaultValue>eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwicGFzc3dvcmQiOiJXNSs1N0FwTmN0UDd1ZlNYdy8xazhZdGUvNVFKUkFZUCIsInRlbmFudCI6InphZmlyYSIsImV4cCI6MTMwNDM2ODQ2OTM3fQ.T0WsjjDldQyYbacw2eD54gztHbgbdEcGoLGOHh1QXkqu7Gk0_Z4DPM-rjLP_hQnRaphmND-jsscRjbuvWG3sfQ</defaultValue>
+          <description>Generate token in Zebrunner "Account and profile menu"</description>
+          <defaultValue></defaultValue>
           <trim>true</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
