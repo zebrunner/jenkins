@@ -6,7 +6,7 @@
 
     cp variables.env.original variables.env
     sed -i "s#http://localhost:8080/jenkins#${url}#g" variables.env
-    sed -i "s#INFRA_HOST=localhost:8080#${ZBR_INFRA_HOST}#g" variables.env
+    sed -i "s#INFRA_HOST=localhost:8080#INFRA_HOST=${ZBR_INFRA_HOST}#g" variables.env
 
     if [[ ! -z $ZBR_SONAR_URL ]]; then
       sed -i "s#SONAR_URL=#SONAR_URL=${ZBR_SONAR_URL}#g" variables.env
