@@ -20,7 +20,7 @@
     fi
 
     docker-compose --env-file .env -f docker-compose.yml down -v
-    rm variables.env
+    rm -f variables.env
   }
 
 
