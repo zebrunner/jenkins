@@ -1,4 +1,4 @@
-FROM jenkins/jenkins:2.237-alpine
+FROM jenkins/jenkins:2.237-jdk11
 
 ENV ROOT_URL=http://localhost:8080/jenkins
 ENV ROOT_EMAIL=qps-auto@qaprosoft.com
@@ -27,8 +27,9 @@ USER root
 # RUN apk update && apk upgrade && \
 #    apk add --no-cache bash git openssh
 
-# Install net utils
-RUN apk add --update --no-cache bind-tools busybox-extras nano
+# Install utils
+RUN apt-get update && \
+	apt-get install -qqy iputils-ping telnet nano
 
 #======================
 # Install Apache Maven
@@ -52,7 +53,7 @@ COPY resources/scripts/mvn-entrypoint.sh /usr/local/bin/mvn-entrypoint.sh
 COPY resources/configs/settings-docker.xml /usr/share/maven/ref/
 
 RUN chown -R jenkins /usr/share/maven /usr/share/maven/ref
-RUN chmod a+w /etc/ssl/certs/java/cacerts
+RUN chmod a+w /usr/local/openjdk-11/lib/security/cacerts
 
 RUN /usr/local/bin/mvn-entrypoint.sh
 
