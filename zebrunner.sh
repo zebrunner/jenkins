@@ -6,6 +6,7 @@
 
     cp variables.env.original variables.env
     sed -i "s#http://localhost:8080/jenkins#${url}#g" variables.env
+    sed -i "s#INFRA_HOST=localhost:8080#INFRA_HOST=${ZBR_INFRA_HOST}#g" variables.env
 
     if [[ ! -z $ZBR_SONAR_URL ]]; then
       sed -i "s#SONAR_URL=#SONAR_URL=${ZBR_SONAR_URL}#g" variables.env
@@ -19,7 +20,7 @@
     fi
 
     docker-compose --env-file .env -f docker-compose.yml down -v
-    rm variables.env
+    rm -f variables.env
   }
 
 
@@ -107,7 +108,7 @@ cd ${BASEDIR}
 
 case "$1" in
     setup)
-        if [[ ! -z $ZBR_PROTOCOL || ! -z $ZBR_HOSTNAME || ! -z $ZBR_PORT ]]; then
+        if [[ $ZBR_INSTALLER -eq 1 ]]; then
           setup
         else
           echo_warning "Setup procedure is supported only as part of Zebrunner Server (Community Edition)!"
