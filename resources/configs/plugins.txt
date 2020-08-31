@@ -101,7 +101,7 @@ workflow-aggregator:2.6
 workflow-api:2.40
 workflow-basic-steps:2.20
 workflow-cps-global-lib:2.17
-workflow-cps:2.80
+workflow-cps:2.82
 workflow-durable-task-step:2.36
 workflow-job:2.39
 workflow-multibranch:2.22
