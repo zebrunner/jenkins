@@ -17,37 +17,39 @@ def credentialsStore =
                 'com.cloudbees.plugins.credentials.SystemCredentialsProvider'
         )[0].getStore()
 
-def env = System.getenv()
+def envVars = Jenkins.instance.getGlobalNodeProperties()[0].getEnvVars()
 
-// IMPORTANT! corporate url has different format: https://github.mydomain.com/api/v3
-def gitHubApiUrl = "https://api.github.com"
+if(!envVars['JENKINS_SECURITY_INITIALIZED'] || envVars['JENKINS_SECURITY_INITIALIZED'] != "true") {
+        // IMPORTANT! corporate url has different format: https://github.mydomain.com/api/v3
+        def gitHubApiUrl = "https://api.github.com"
 
-def id = "ghprbhook-token"
-def username = "CHANGE_ME"
-def password = "CHANGE_ME"
-def description = "GitHub Pull Request Builder token"
+        def id = "ghprbhook-token"
+        def username = "CHANGE_ME"
+        def password = "CHANGE_ME"
+        def description = "GitHub Pull Request Builder token"
 
-def ghprbhookCredentials = new UsernamePasswordCredentialsImpl(
-        CredentialsScope.GLOBAL,
-        id,
-        description,
-        username,
-        password
-)
+        def ghprbhookCredentials = new UsernamePasswordCredentialsImpl(
+                CredentialsScope.GLOBAL,
+                id,
+                description,
+                username,
+                password
+        )
 
-credentialsStore.addCredentials(global_domain, ghprbhookCredentials)
+        credentialsStore.addCredentials(global_domain, ghprbhookCredentials)
 
-def descriptor = Jenkins.instance.getDescriptorByType(org.jenkinsci.plugins.ghprb.GhprbTrigger.DescriptorImpl.class)
+        def descriptor = Jenkins.instance.getDescriptorByType(org.jenkinsci.plugins.ghprb.GhprbTrigger.DescriptorImpl.class)
 
-Field auth = descriptor.class.getDeclaredField("githubAuth")
+        Field auth = descriptor.class.getDeclaredField("githubAuth")
 
-auth.setAccessible(true)
+        auth.setAccessible(true)
 
-def githubAuth = new ArrayList<GhprbGitHubAuth>(1)
+        def githubAuth = new ArrayList<GhprbGitHubAuth>(1)
 
-Secret secret = Secret.fromString('')
-githubAuth.add(new GhprbGitHubAuth(gitHubApiUrl, "", id, description, username, secret))
+        Secret secret = Secret.fromString('')
+        githubAuth.add(new GhprbGitHubAuth(gitHubApiUrl, "", id, description, username, secret))
 
-auth.set(descriptor, githubAuth)
+        auth.set(descriptor, githubAuth)
 
-descriptor.save()
+        descriptor.save()
+}
