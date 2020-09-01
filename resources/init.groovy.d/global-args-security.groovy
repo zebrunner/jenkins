@@ -116,13 +116,12 @@ Thread.start {
         auth.setAccessible(true)
         def githubAuth = new ArrayList<GhprbGitHubAuth>(1)
 
-        Secret secret = Secret.fromString('')
         if(!envVars.containsKey("JENKINS_SECURITY_INITIALIZED") || envVars.get("JENKINS_SECURITY_INITIALIZED") != "true") {
+            Secret secret = Secret.fromString('')
             githubAuth.add(new GhprbGitHubAuth("https://api.github.com", "", id, description, username, secret))
+            auth.set(descriptor, githubAuth)
+            descriptor.save()
         }
-        auth.set(descriptor, githubAuth)
-
-        descriptor.save()
     }
 
     println "--> setting security"
