@@ -114,8 +114,12 @@ Thread.start {
     // Commented below obsolete codeline
     //instance.getDescriptor("jenkins.CLI").get().setEnabled(false)
 
-    println "--> setting ghprhook creds"
     if(!envVars.containsKey("JENKINS_SECURITY_INITIALIZED") || envVars.get("JENKINS_SECURITY_INITIALIZED") != "true") {
+        println "111111111"
+        println envVars.get("JENKINS_SECURITY_INITIALIZED")
+
+        println "--> setting ghprhook creds"
+
         credentialsStore.addCredentials(global_domain, ghprbhookCredentials)
         def descriptor = Jenkins.instance.getDescriptorByType(org.jenkinsci.plugins.ghprb.GhprbTrigger.DescriptorImpl.class)
         Field auth = descriptor.class.getDeclaredField("githubAuth")
@@ -127,10 +131,8 @@ Thread.start {
         auth.set(descriptor, githubAuth)
 
         descriptor.save()
-    }
 
-    println "--> setting security"
-    if(!envVars.containsKey("JENKINS_SECURITY_INITIALIZED") || envVars.get("JENKINS_SECURITY_INITIALIZED") != "true") {
+        println "--> setting security"
 
         def hudsonRealm = new HudsonPrivateSecurityRealm(false)
         hudsonRealm.createAccount(user, pass)
@@ -141,9 +143,6 @@ Thread.start {
         instance.setAuthorizationStrategy(strategy)
         instance.save()
 
-    }
-
-    if(!envVars.containsKey("JENKINS_SECURITY_INITIALIZED") || envVars.get("JENKINS_SECURITY_INITIALIZED") != "true") {
       println "--> setting pipeline speed/durability settings"
       
       GlobalDefaultFlowDurabilityLevel.DescriptorImpl level = instance.getExtensionList(GlobalDefaultFlowDurabilityLevel.DescriptorImpl.class).get(0);
