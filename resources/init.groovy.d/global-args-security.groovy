@@ -77,11 +77,6 @@ Thread.start {
       envVars = envVarsNodePropertyList.get(0).getEnvVars()
     }
 
-    //set global var if it absent
-    if(!envVars.containsKey("JENKINS_SECURITY_INITIALIZED")) {
-        envVars.put("JENKINS_SECURITY_INITIALIZED", "")
-    }
-
     // Base URL
     println "--> Setting Base URL"
     if(!envVars.containsKey("JENKINS_SECURITY_INITIALIZED") || envVars.get("JENKINS_SECURITY_INITIALIZED") != "true") {
@@ -158,7 +153,7 @@ Thread.start {
     // IMPORTANT! don't append any functionality below as settings security restrict a lot of access. Put them above "setting security" step to have full admin privileges
 
     //set global var to true to define that initial setup is finished
-    if(!envVars.containsKey("JENKINS_SECURITY_INITIALIZED") || envVars.get("JENKINS_SECURITY_INITIALIZED") != "true") {
+    if(!envVars.containsKey("JENKINS_SECURITY_INITIALIZED")) {
         envVars.put("JENKINS_SECURITY_INITIALIZED", "true")
     }
 
