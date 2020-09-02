@@ -77,11 +77,9 @@ Thread.start {
       envVars = envVarsNodePropertyList.get(0).getEnvVars()
     }
 
-    // IMPORTANT! don't append any functionality below as settings security restrict a lot of access. Put them above "setting security" step to have full admin privileges
-
-    //set global var to true to define that initial setup is finished
-    if(!envVars.containsKey("JENKINS_SECURITY_INITIALIZED") || envVars.get("JENKINS_SECURITY_INITIALIZED") != "true") {
-        envVars.put("JENKINS_SECURITY_INITIALIZED", "true")
+    //set global var if it absent
+    if(!envVars.containsKey("JENKINS_SECURITY_INITIALIZED")) {
+        envVars.put("JENKINS_SECURITY_INITIALIZED", "")
     }
 
     // Base URL
@@ -155,6 +153,13 @@ Thread.start {
       
       GlobalDefaultFlowDurabilityLevel.DescriptorImpl level = instance.getExtensionList(GlobalDefaultFlowDurabilityLevel.DescriptorImpl.class).get(0);
       level.setDurabilityHint(FlowDurabilityHint.PERFORMANCE_OPTIMIZED);
+    }
+
+    // IMPORTANT! don't append any functionality below as settings security restrict a lot of access. Put them above "setting security" step to have full admin privileges
+
+    //set global var to true to define that initial setup is finished
+    if(!envVars.containsKey("JENKINS_SECURITY_INITIALIZED") || envVars.get("JENKINS_SECURITY_INITIALIZED") != "true") {
+        envVars.put("JENKINS_SECURITY_INITIALIZED", "true")
     }
 
     // Save the state
