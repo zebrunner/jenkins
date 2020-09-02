@@ -121,15 +121,21 @@ Thread.start {
         println "--> setting ghprhook creds"
 
         credentialsStore.addCredentials(global_domain, ghprbhookCredentials)
+        println "222222222"
         def descriptor = Jenkins.instance.getDescriptorByType(org.jenkinsci.plugins.ghprb.GhprbTrigger.DescriptorImpl.class)
+        println "333333333"
         Field auth = descriptor.class.getDeclaredField("githubAuth")
+        println "4444444444"
         auth.setAccessible(true)
+        println "5555555555"
         def githubAuth = new ArrayList<GhprbGitHubAuth>(1)
-
+        println "6666666666"
         Secret secret = Secret.fromString('')
+        println "7777777777"
         githubAuth.add(new GhprbGitHubAuth("https://api.github.com", "", id, description, username, secret))
+        println "8888888888"
         auth.set(descriptor, githubAuth)
-
+        println "9999999999"
         descriptor.save()
 
         println "--> setting security"
