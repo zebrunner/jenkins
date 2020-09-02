@@ -1,5 +1,4 @@
 import hudson.model.*;
-import hudson.security.GlobalMatrixAuthorizationStrategy;
 import jenkins.model.*;
 import hudson.security.*;
 import com.cloudbees.plugins.credentials.*;
@@ -120,7 +119,7 @@ Thread.start {
         println envVars.get("JENKINS_SECURITY_INITIALIZED")
 
         println "--> setting ghprhook creds"
-        GlobalMatrixAuthorizationStrategy.dangerousPermissions = true
+
         credentialsStore.addCredentials(global_domain, ghprbhookCredentials)
         def descriptor = Jenkins.instance.getDescriptorByType(org.jenkinsci.plugins.ghprb.GhprbTrigger.DescriptorImpl.class)
         Field auth = descriptor.class.getDeclaredField("githubAuth")
