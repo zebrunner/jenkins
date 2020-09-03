@@ -54,10 +54,6 @@ def ghprbhookCredentials = new UsernamePasswordCredentialsImpl(
     password
 )
 
-//https://github.com/qaprosoft/jenkins-master/issues/12 - remove default 5 sec quite period for Jenkins
-instance.setQuietPeriod(0)
-instance.setNumExecutors(10)
-
 Thread.start {
     println "--> Configuring General Settings"
 
@@ -79,72 +75,86 @@ Thread.start {
 
     // Base URL
     println "--> Setting Base URL"
-    if(!envVars.containsKey("JENKINS_SECURITY_INITIALIZED") || envVars.get("JENKINS_SECURITY_INITIALIZED") != "true") {
-        jlc = JenkinsLocationConfiguration.get()
-        jlc.setUrl(rootURL)
-        jlc.setAdminAddress(rootEmail)
-        jlc.save()
+    println "JENKINS_SECURITY_INITIALIZED: " + envVars.get("JENKINS_SECURITY_INITIALIZED")
+
+    if(envVars.containsKey("JENKINS_SECURITY_INITIALIZED") && "true".equalsIgnoreCase(envVars.get("JENKINS_SECURITY_INITIALIZED"))) {
+        println "Zebrunner jenkins initialization already happened. Nothing to do for now."
+        return
     }
 
+    //https://github.com/qaprosoft/jenkins-master/issues/12 - remove default 5 sec quite period for Jenkins
+    instance.setQuietPeriod(0)
+    instance.setNumExecutors(10)
+
+    jlc = JenkinsLocationConfiguration.get()
+    jlc.setUrl(rootURL)
+    jlc.setAdminAddress(rootEmail)
+    jlc.save()
+
     if ( infraHost != null && !envVars.containsKey("INFRA_HOST") ) {
+      println "INFRA_HOST: " + infraHost
       envVars.put("INFRA_HOST", infraHost)
     }
 
-    if ( qpsPipelineGitURL != null && !envVars.containsKey("QPS_PIPELINE_GIT_URL") ) {
+    if ( qpsPipelineGitURL != null ) {
+      println "QPS_PIPELINE_GIT_URL: " + qpsPipelineGitURL
       envVars.put("QPS_PIPELINE_GIT_URL", qpsPipelineGitURL)
     }
 
-    if ( qpsPipelineGitBranch != null && !envVars.containsKey("QPS_PIPELINE_GIT_BRANCH") ) {
+    if ( qpsPipelineGitBranch != null ) {
+      println "QPS_PIPELINE_GIT_BRANCH: " + qpsPipelineGitBranch
       envVars.put("QPS_PIPELINE_GIT_BRANCH", qpsPipelineGitBranch)
     }
 
-    if ( qpsPipelineLogLevel != null && !envVars.containsKey("QPS_PIPELINE_LOG_LEVEL") ) {
+    if ( qpsPipelineLogLevel != null ) {
+      println "QPS_PIPELINE_LOG_LEVEL: " + qpsPipelineLogLevel
       envVars.put("QPS_PIPELINE_LOG_LEVEL", qpsPipelineLogLevel)
     }
 
-    if ( adminEmails != null && !envVars.containsKey("ADMIN_EMAILS") ) {
+    if ( adminEmails != null ) {
+      println "ADMIN_EMAILS: " + adminEmails
       envVars.put("ADMIN_EMAILS", adminEmails)
     }
 
-    if (sonarUrl != null && !envVars.containsKey("SONAR_URL")) {
-        envVars.put("SONAR_URL", sonarUrl)
+    if (sonarUrl != null ) {
+      println "SONAR_URL: " + sonarUrl
+      envVars.put("SONAR_URL", sonarUrl)
     }
 
     // #166: NPE during disabling CLI: java.lang.NullPointerException: Cannot invoke method get() on null object
     // Commented below obsolete codeline
     //instance.getDescriptor("jenkins.CLI").get().setEnabled(false)
 
-    if(!envVars.containsKey("JENKINS_SECURITY_INITIALIZED") || envVars.get("JENKINS_SECURITY_INITIALIZED") != "true") {
-        println "--> setting ghprhook creds"
+    println "--> setting ghprhook creds"
 
-        credentialsStore.addCredentials(global_domain, ghprbhookCredentials)
-        def descriptor = Jenkins.instance.getDescriptorByType(org.jenkinsci.plugins.ghprb.GhprbTrigger.DescriptorImpl.class)
-        Field auth = descriptor.class.getDeclaredField("githubAuth")
-        auth.setAccessible(true)
-        def githubAuth = new ArrayList<GhprbGitHubAuth>(1)
+    credentialsStore.addCredentials(global_domain, ghprbhookCredentials)
+    def descriptor = Jenkins.instance.getDescriptorByType(org.jenkinsci.plugins.ghprb.GhprbTrigger.DescriptorImpl.class)
+    Field auth = descriptor.class.getDeclaredField("githubAuth")
+    auth.setAccessible(true)
+    def githubAuth = new ArrayList<GhprbGitHubAuth>(1)
 
-        Secret secret = Secret.fromString('')
-        githubAuth.add(new GhprbGitHubAuth("https://api.github.com", "", id, description, username, secret))
-        auth.set(descriptor, githubAuth)
+    Secret secret = Secret.fromString('')
+    githubAuth.add(new GhprbGitHubAuth("https://api.github.com", "", id, description, username, secret))
+    auth.set(descriptor, githubAuth)
 
-        descriptor.save()
+    descriptor.save()
 
-        println "--> setting security"
+    println "--> setting security"
 
-        def hudsonRealm = new HudsonPrivateSecurityRealm(false)
-        hudsonRealm.createAccount(user, pass)
-        instance.setSecurityRealm(hudsonRealm)
+    def hudsonRealm = new HudsonPrivateSecurityRealm(false)
+    hudsonRealm.createAccount(user, pass)
+    instance.setSecurityRealm(hudsonRealm)
 
-        def strategy = new FullControlOnceLoggedInAuthorizationStrategy()
-        strategy.setAllowAnonymousRead(false)
-        instance.setAuthorizationStrategy(strategy)
-        instance.save()
+    def strategy = new FullControlOnceLoggedInAuthorizationStrategy()
+    strategy.setAllowAnonymousRead(false)
+    instance.setAuthorizationStrategy(strategy)
+    instance.save()
 
-      println "--> setting pipeline speed/durability settings"
+    println "--> setting pipeline speed/durability settings"
       
-      GlobalDefaultFlowDurabilityLevel.DescriptorImpl level = instance.getExtensionList(GlobalDefaultFlowDurabilityLevel.DescriptorImpl.class).get(0);
-      level.setDurabilityHint(FlowDurabilityHint.PERFORMANCE_OPTIMIZED);
-    }
+    GlobalDefaultFlowDurabilityLevel.DescriptorImpl level = instance.getExtensionList(GlobalDefaultFlowDurabilityLevel.DescriptorImpl.class).get(0);
+    level.setDurabilityHint(FlowDurabilityHint.PERFORMANCE_OPTIMIZED);
+    
 
     // IMPORTANT! don't append any functionality below as settings security restrict a lot of access. Put them above "setting security" step to have full admin privileges
 
