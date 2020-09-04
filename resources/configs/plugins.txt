@@ -109,3 +109,4 @@ workflow-scm-step:2.11
 workflow-step-api:2.22
 workflow-support:3.5
 ws-cleanup:0.38
+generic-webhook-trigger:1.67
