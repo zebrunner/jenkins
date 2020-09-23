@@ -76,8 +76,12 @@
   }
 
   version() {
-      source .env
-      echo "${TAG_JENKINS_MASTER}"
+    if [[ -f .disabled ]]; then
+      exit 0
+    fi
+  
+    source .env
+    echo "${TAG_JENKINS_MASTER}"
   }
 
   echo_warning() {
