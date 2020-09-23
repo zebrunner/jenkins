@@ -81,7 +81,7 @@
     fi
   
     source .env
-    echo "${TAG_JENKINS_MASTER}"
+    echo "Jenkins - ${TAG_JENKINS_MASTER}"
   }
 
   echo_warning() {
