@@ -52,7 +52,6 @@ COPY resources/scripts/mvn-entrypoint.sh /usr/local/bin/mvn-entrypoint.sh
 COPY resources/configs/settings-docker.xml /usr/share/maven/ref/
 
 RUN chown -R jenkins /usr/share/maven /usr/share/maven/ref
-RUN chmod a+w /etc/ssl/certs/java/cacerts
 
 RUN /usr/local/bin/mvn-entrypoint.sh
 
