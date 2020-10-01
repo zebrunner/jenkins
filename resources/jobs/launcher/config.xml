@@ -1,0 +1,78 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<flow-definition plugin="workflow-job@2.39">
+  <actions/>
+  <description>Custom job launcher</description>
+  <logRotator class="hudson.tasks.LogRotator">
+    <daysToKeep>-1</daysToKeep>
+    <numToKeep>30</numToKeep>
+    <artifactDaysToKeep>-1</artifactDaysToKeep>
+    <artifactNumToKeep>-1</artifactNumToKeep>
+  </logRotator>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <org.jenkinsci.plugins.workflow.job.properties.DisableResumeJobProperty/>
+    <org.jenkinsci.plugins.workflow.job.properties.DurabilityHintJobProperty>
+      <hint>PERFORMANCE_OPTIMIZED</hint>
+    </org.jenkinsci.plugins.workflow.job.properties.DurabilityHintJobProperty>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <com.wangyin.parameter.WHideParameterDefinition plugin="hidden-parameter@0.0.4">
+          <name>scmURL</name>
+          <description></description>
+          <defaultValue>GitHub repository https URL with token (read permissions only is enough)</defaultValue>
+        </com.wangyin.parameter.WHideParameterDefinition>
+        <jp.ikedam.jenkins.plugins.extensible__choice__parameter.ExtensibleChoiceParameterDefinition plugin="extensible-choice-parameter@1.6.0">
+          <name>ci_run_id</name>
+          <description></description>
+          <editable>true</editable>
+          <choiceListProvider class="jp.ikedam.jenkins.plugins.extensible_choice_parameter.SystemGroovyChoiceListProvider">
+            <groovyScript plugin="script-security@1.74">
+              <script>import static java.util.UUID.randomUUID
+return [randomUUID()]</script>
+              <sandbox>true</sandbox>
+            </groovyScript>
+            <usePredefinedVariables>false</usePredefinedVariables>
+          </choiceListProvider>
+        </jp.ikedam.jenkins.plugins.extensible__choice__parameter.ExtensibleChoiceParameterDefinition>
+        <com.wangyin.parameter.WHideParameterDefinition plugin="hidden-parameter@0.0.4">
+          <name>queue_registration</name>
+          <description></description>
+          <defaultValue>false</defaultValue>
+        </com.wangyin.parameter.WHideParameterDefinition>
+        <com.wangyin.parameter.WHideParameterDefinition plugin="hidden-parameter@0.0.4">
+          <name>rerun_failures</name>
+          <description></description>
+          <defaultValue>false</defaultValue>
+        </com.wangyin.parameter.WHideParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>branch</name>
+          <description>SCM repository branch to run against</description>
+          <defaultValue>master</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>suite</name>
+          <description>TestNG suite file name (without &quot;.xml&quot; extension)</description>
+          <defaultValue>api</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>zafiraFields</name>
+          <description>Custom parameters to run job with</description>
+          <defaultValue>platform=API,thread_count=5</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+    <com.synopsys.arc.jenkins.plugins.ownership.jobs.JobOwnerJobProperty plugin="ownership@0.13.0"/>
+  </properties>
+  <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.82">
+    <script>@Library(&apos;QPS-Pipeline&apos;)
+import com.qaprosoft.jenkins.pipeline.runner.maven.TestNG;
+new com.qaprosoft.jenkins.pipeline.runner.maven.TestNG(this).runJob()</script>
+    <sandbox>true</sandbox>
+  </definition>
+  <triggers/>
+  <authToken>ciStart</authToken>
+  <disabled>false</disabled>
+</flow-definition>
