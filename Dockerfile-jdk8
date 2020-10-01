@@ -1,4 +1,4 @@
-FROM jenkins/jenkins:2.254-alpine
+FROM jenkins/jenkins:2.259-alpine
 
 ENV ROOT_URL=http://localhost:8080/jenkins
 ENV ROOT_EMAIL=qps-auto@qaprosoft.com
