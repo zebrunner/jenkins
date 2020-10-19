@@ -5,7 +5,6 @@
       <name>Zebrunner-CE</name>
       <retriever class="org.jenkinsci.plugins.workflow.libs.SCMSourceRetriever">
         <scm class="jenkins.plugins.git.GitSCMSource" plugin="git@4.4.4">
-          <id>f0777a71-0dbd-4c53-ba40-d6f1c01647a7</id>
           <remote>https://github.com/zebrunner/pipeline-ce.git</remote>
           <credentialsId></credentialsId>
           <traits>
