@@ -67,9 +67,9 @@ return [randomUUID()]</script>
     <com.synopsys.arc.jenkins.plugins.ownership.jobs.JobOwnerJobProperty plugin="ownership@0.13.0"/>
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.82">
-    <script>@Library(&apos;QPS-Pipeline&apos;)
-import com.qaprosoft.jenkins.pipeline.runner.maven.TestNG;
-new com.qaprosoft.jenkins.pipeline.runner.maven.TestNG(this).runJob()</script>
+    <script>@Library(&apos;Zebrunner-CE@develop&apos;)
+import com.zebrunner.jenkins.pipeline.runner.maven.TestNG;
+new com.zebrunner.jenkins.pipeline.runner.maven.TestNG(this).runJob()</script>
     <sandbox>true</sandbox>
   </definition>
   <triggers/>

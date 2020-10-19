@@ -18,12 +18,12 @@
       <parameterDefinitions>
         <jp.ikedam.jenkins.plugins.extensible__choice__parameter.ExtensibleChoiceParameterDefinition plugin="extensible-choice-parameter@1.6.0">
           <name>pipelineLibrary</name>
-          <description>Groovy JobDSL/Pipeline library, for example: https://github.com/qaprosoft/qps-pipeline/releases</description>
+          <description>Groovy JobDSL/Pipeline library, for example: https://github.com/zebrunner/pipeline-ce/releases</description>
           <editable>true</editable>
           <choiceListProvider class="jp.ikedam.jenkins.plugins.extensible_choice_parameter.GlobalTextareaChoiceListProvider">
             <whenToAdd>Triggered</whenToAdd>
             <name>gc_PIPELINE_LIBRARY</name>
-            <defaultChoice>QPS-Pipeline</defaultChoice>
+            <defaultChoice>Zebrunner-CE</defaultChoice>
           </choiceListProvider>
         </jp.ikedam.jenkins.plugins.extensible__choice__parameter.ExtensibleChoiceParameterDefinition>
         <jp.ikedam.jenkins.plugins.extensible__choice__parameter.ExtensibleChoiceParameterDefinition plugin="extensible-choice-parameter@1.6.0">
@@ -33,7 +33,7 @@
           <choiceListProvider class="jp.ikedam.jenkins.plugins.extensible_choice_parameter.GlobalTextareaChoiceListProvider">
             <whenToAdd>Triggered</whenToAdd>
             <name>gc_RUNNER_CLASS</name>
-            <defaultChoice>com.qaprosoft.jenkins.pipeline.runner.maven.TestNG</defaultChoice>
+            <defaultChoice>com.zebrunner.jenkins.pipeline.runner.maven.TestNG</defaultChoice>
           </choiceListProvider>
         </jp.ikedam.jenkins.plugins.extensible__choice__parameter.ExtensibleChoiceParameterDefinition>
         <com.wangyin.parameter.WHideParameterDefinition plugin="hidden-parameter@0.0.4">
@@ -87,8 +87,8 @@
     <com.synopsys.arc.jenkins.plugins.ownership.jobs.JobOwnerJobProperty plugin="ownership@0.13.0"/>
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.82">
-    <script>@Library(&apos;QPS-Pipeline&apos;)
-import com.qaprosoft.jenkins.pipeline.Repository;
+    <script>@Library(&apos;Zebrunner-CE@develop&apos;)
+import com.zebrunner.jenkins.pipeline.Repository;
 new Repository(this).register()</script>
     <sandbox>true</sandbox>
   </definition>
