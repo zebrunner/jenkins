@@ -28,10 +28,10 @@ def user = env['ADMIN_USER']
 def pass = env['ADMIN_PASS']
 
 def infraHost = env['INFRA_HOST']
-def qpsPipelineGitURL = env['QPS_PIPELINE_GIT_URL']
-def qpsPipelineGitBranch = env['QPS_PIPELINE_GIT_BRANCH']
+def zbrPipelineURL = env['ZEBRUNNER_PIPELINE']
+def zbrPipelineVersion = env['ZEBRUNNER_VERSION']
 
-def qpsPipelineLogLevel = env['QPS_PIPELINE_LOG_LEVEL']
+def zbrLogLevel = env['ZEBRUNNER_LOG_LEVEL']
 
 def sonarUrl = env['SONAR_URL']
 
@@ -96,19 +96,19 @@ Thread.start {
       envVars.put("INFRA_HOST", infraHost)
     }
 
-    if ( qpsPipelineGitURL != null ) {
-      println "QPS_PIPELINE_GIT_URL: " + qpsPipelineGitURL
-      envVars.put("QPS_PIPELINE_GIT_URL", qpsPipelineGitURL)
+    if ( zbrPipelineURL != null ) {
+      println "ZEBRUNNER_PIPELINE: " + zbrPipelineURL
+      envVars.put("ZEBRUNNER_PIPELINE", zbrPipelineURL)
     }
 
-    if ( qpsPipelineGitBranch != null ) {
-      println "QPS_PIPELINE_GIT_BRANCH: " + qpsPipelineGitBranch
-      envVars.put("QPS_PIPELINE_GIT_BRANCH", qpsPipelineGitBranch)
+    if ( zbrPipelineVersion != null ) {
+      println "ZEBRUNNER_VERSION: " + zbrPipelineVersion
+      envVars.put("ZEBRUNNER_VERSION", zbrPipelineVersion)
     }
 
-    if ( qpsPipelineLogLevel != null ) {
-      println "QPS_PIPELINE_LOG_LEVEL: " + qpsPipelineLogLevel
-      envVars.put("QPS_PIPELINE_LOG_LEVEL", qpsPipelineLogLevel)
+    if ( zbrLogLevel != null ) {
+      println "ZEBRUNNER_LOG_LEVEL: " + zbrLogLevel
+      envVars.put("ZEBRUNNER_LOG_LEVEL", zbrLogLevel)
     }
 
     if ( adminEmails != null ) {
