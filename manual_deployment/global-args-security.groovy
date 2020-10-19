@@ -23,10 +23,10 @@ def adminEmails = "admin@mydomain.com,admin2@mydonain.com"
 //TODO: update with actual fully qualified domain name or ip address
 def infraHost = "CHANGE_ME"
 
-def qpsPipelineGitURL = "https://github.com/qaprosoft/qps-pipeline.git"
-def qpsPipelineGitBranch = "5.0"
+def zbrPipelineURL = "https://github.com/zebrunner/pipeline-ce.git"
+def zbrPipelineVersion = "1.1"
 
-def qpsPipelineLogLevel = "INFO"
+def zbrLogLevel = "INFO"
 
 // Constants
 def instance = Jenkins.getInstance()
@@ -65,16 +65,16 @@ if ( infraHost != null && !envVars.containsKey("INFRA_HOST") ) {
   envVars.put("INFRA_HOST", infraHost)
 }
 
-if ( qpsPipelineGitURL != null && !envVars.containsKey("QPS_PIPELINE_GIT_URL") ) {
-  envVars.put("QPS_PIPELINE_GIT_URL", qpsPipelineGitURL)
+if ( zbrPipelineURL != null && !envVars.containsKey("ZEBRUNNER_PIPELINE") ) {
+  envVars.put("ZEBRUNNER_PIPELINE", zbrPipelineURL)
 }
 
-if ( qpsPipelineGitBranch != null && !envVars.containsKey("QPS_PIPELINE_GIT_BRANCH") ) {
-  envVars.put("QPS_PIPELINE_GIT_BRANCH", qpsPipelineGitBranch)
+if ( zbrPipelineVersion != null && !envVars.containsKey("ZEBRUNNER_VERSION") ) {
+  envVars.put("ZEBRUNNER_VERSION", zbrPipelineVersion)
 }
 
-if ( qpsPipelineLogLevel != null && !envVars.containsKey("QPS_PIPELINE_LOG_LEVEL") ) {
-  envVars.put("QPS_PIPELINE_LOG_LEVEL", qpsPipelineLogLevel)
+if ( zbrLogLevel != null && !envVars.containsKey("ZEBRUNNER_LOG_LEVEL") ) {
+  envVars.put("ZEBRUNNER_LOG_LEVEL", zbrLogLevel)
 }
 
 if ( adminEmails != null && !envVars.containsKey("ADMIN_EMAILS") ) {
