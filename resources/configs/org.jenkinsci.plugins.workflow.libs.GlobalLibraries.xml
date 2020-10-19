@@ -2,6 +2,24 @@
 <org.jenkinsci.plugins.workflow.libs.GlobalLibraries plugin="workflow-cps-global-lib@2.8">
   <libraries>
     <org.jenkinsci.plugins.workflow.libs.LibraryConfiguration>
+      <name>Zebrunner-CE</name>
+      <retriever class="org.jenkinsci.plugins.workflow.libs.SCMSourceRetriever">
+        <scm class="jenkins.plugins.git.GitSCMSource" plugin="git@4.4.4">
+          <id>f0777a71-0dbd-4c53-ba40-d6f1c01647a7</id>
+          <remote>https://github.com/zebrunner/pipeline-ce.git</remote>
+          <credentialsId></credentialsId>
+          <traits>
+            <jenkins.plugins.git.traits.BranchDiscoveryTrait/>
+          </traits>
+        </scm>
+      </retriever>
+      <defaultVersion>master</defaultVersion>
+      <implicit>false</implicit>
+      <allowVersionOverride>true</allowVersionOverride>
+      <includeInChangesets>false</includeInChangesets>
+    </org.jenkinsci.plugins.workflow.libs.LibraryConfiguration>
+    <!-- TODO: remove below old pipeline later -->
+    <org.jenkinsci.plugins.workflow.libs.LibraryConfiguration>
       <name>QPS-Pipeline</name>
       <retriever class="org.jenkinsci.plugins.workflow.libs.SCMRetriever">
         <scm class="hudson.plugins.git.GitSCM" plugin="git@3.5.1">
