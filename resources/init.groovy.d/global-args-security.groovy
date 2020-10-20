@@ -6,11 +6,9 @@ import com.cloudbees.plugins.credentials.impl.*;
 import com.cloudbees.plugins.credentials.common.*;
 import com.cloudbees.plugins.credentials.domains.*;
 import com.cloudbees.jenkins.plugins.sshcredentials.impl.*;
-import org.jenkinsci.plugins.plaincredentials.impl.StringCredentialsImpl;
 import org.jenkinsci.plugins.workflow.flow.GlobalDefaultFlowDurabilityLevel;
 import org.jenkinsci.plugins.workflow.flow.FlowDurabilityHint;
 import java.lang.reflect.Field;
-import hudson.util.Secret;
 
 // Disable Jenkins security that blocks eTAF reports
 System.setProperty("hudson.model.DirectoryBrowserSupport.CSP", "default-src 'self'; script-src 'self' https://ajax.googleapis.com 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self'")
@@ -40,17 +38,6 @@ def instance = Jenkins.getInstance()
 def global_domain = Domain.global()
 
 def credentialsStore = instance.getExtensionList('com.cloudbees.plugins.credentials.SystemCredentialsProvider')[0].getStore()
-
-def id = "generic-webhook-token"
-def description = "Scm generic webhook token"
-def secret = env['GENERIC_WEBHOOK_SECRET']
-
-def genericWebhookCreds = new StringCredentialsImpl(
-    CredentialsScope.GLOBAL,
-    id,
-    description,
-    Secret.fromString(secret)
-)
 
 Thread.start {
     println "--> Configuring General Settings"
@@ -122,9 +109,6 @@ Thread.start {
     // #166: NPE during disabling CLI: java.lang.NullPointerException: Cannot invoke method get() on null object
     // Commented below obsolete codeline
     //instance.getDescriptor("jenkins.CLI").get().setEnabled(false)
-
-    println "--> setting generic-webhook creds"
-    credentialsStore.addCredentials(global_domain, genericWebhookCreds)
 
     println "--> setting security"
     def hudsonRealm = new HudsonPrivateSecurityRealm(false)
