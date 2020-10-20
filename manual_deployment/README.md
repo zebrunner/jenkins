@@ -16,7 +16,7 @@
   Note: for details visit https://issues.jenkins-ci.org/browse/JENKINS-40961 and https://github.com/jenkinsci/job-dsl-plugin/wiki/Migration#migrating-to-160<br>
   -> Verify that Manage Jenkins -> Configure Global Security -> Enable script security for Job DSL scripts is unchecked!
 * Declare required global variables by [global-args-security.groovy](https://github.com/qaprosoft/jenkins-master/blob/master/manual_deployment/global-args-security.groovy)<br>
-  -> Verify that Manage Jenkins -> Configure System has such golbal variables defined: ADMIN_EMAILS, JENKINS_SECURITY_INITIALIZED, INFRA_HOST, QPS_PIPELINE_GIT_BRANCH, QPS_PIPELINE_GIT_URL, QPS_PIPELINE_LOG_LEVEL<br>
+  -> Verify that Manage Jenkins -> Configure System has such golbal variables defined: ADMIN_EMAILS, JENKINS_SECURITY_INITIALIZED, INFRA_HOST, ZEBRUNNER_PIPELINE, ZEBRUNNER_VERSION, ZEBRUNNER_LOG_LEVEL<br>
   Note: Make sure to replace "CHANGE_ME" variables values to the valid data
 * Declare required aws-jacoco-token [setup_aws_credentials.groovy](https://github.com/qaprosoft/jenkins-master/blob/master/resources/init.groovy.d/setup_aws_credentials.groovy)<br>
   Note: valid value can be added manually if needed
@@ -27,23 +27,19 @@
 * Setup GitHub Pull Request Builder by [setup_ghprbhook_credentials.groovy](https://github.com/qaprosoft/jenkins-master/blob/master/manual_deployment/setup_ghprbhook_credentials.groovy)-> verify that Manage Jenkins -> Global Tool Configuration -> Setup GitHub Pull Request Builder credential field contains 'ghprbhook-token'
 * Restart Jenkins
   
-### Declare QPS-Pipeline library
+### Declare Zebrunner-CE library
 * Open Manage Jenkins -> Configure System
-* Add into the <b>Global Pipeline Libraries</b> QPS-Pipeline entry
-  * Name: QPS-Pipeline
+* Add into the <b>Global Pipeline Libraries</b> Zebrunner-CE entry
+  * Name: Zebrunner-CE
   * Default version: master
   * Load implicitly: false
   * Allow default version to be overridden: true
   * Include @Library changes in job recent changes: false
-  * Choose "Legacy SCM->Git" options
-  * Repository URL: ${QPS_PIPELINE_GIT_URL}
-  * Credentials: none
-  * Branches to build: ${QPS_PIPELINE_GIT_BRANCH}
-  * Repository browser: (Auto)
-  * Additional Behaviours: none
+  * Choose "Modern SCM->Git" options
+  * Repository URL: https://github.com/zebrunner/pipeline-ce.git
 * Save changes
 
-![Alt text](./qps-pipeline-library.png?raw=true "QPS-Pipeline library")
+![Alt text](./qps-pipeline-library.png?raw=true "Zebrunner-CE library")
 
 ### Adjust Pipeline Speed/Durability Settings
 * Open Manage Jenkins -> Configure System
