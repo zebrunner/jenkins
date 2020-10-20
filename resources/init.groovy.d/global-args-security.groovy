@@ -6,6 +6,7 @@ import com.cloudbees.plugins.credentials.impl.*;
 import com.cloudbees.plugins.credentials.common.*;
 import com.cloudbees.plugins.credentials.domains.*;
 import com.cloudbees.jenkins.plugins.sshcredentials.impl.*;
+import org.jenkinsci.plugins.plaincredentials.impl.StringCredentialsImpl;
 import org.jenkinsci.plugins.workflow.flow.GlobalDefaultFlowDurabilityLevel;
 import org.jenkinsci.plugins.workflow.flow.FlowDurabilityHint;
 import java.lang.reflect.Field;
