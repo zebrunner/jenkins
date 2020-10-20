@@ -9,7 +9,6 @@ import com.cloudbees.jenkins.plugins.sshcredentials.impl.*;
 import org.jenkinsci.plugins.workflow.flow.GlobalDefaultFlowDurabilityLevel;
 import org.jenkinsci.plugins.workflow.flow.FlowDurabilityHint;
 import java.lang.reflect.Field;
-import org.jenkinsci.plugins.ghprb.GhprbGitHubAuth;
 import hudson.util.Secret;
 
 // Disable Jenkins security that blocks eTAF reports
@@ -41,17 +40,15 @@ def global_domain = Domain.global()
 
 def credentialsStore = instance.getExtensionList('com.cloudbees.plugins.credentials.SystemCredentialsProvider')[0].getStore()
 
-def id = "ghprbhook-token"
-def username = env['GHPRBHOOK_USER']
-def password = env['GHPRBHOOK_PASS']
-def description = "GitHub Pull Request Builder token"
+def id = "generic-webhook-token"
+def description = "Scm generic webhook token"
+def secret = env['GENERIC_WEBHOOK_SECRET']
 
-def ghprbhookCredentials = new UsernamePasswordCredentialsImpl(
+def genericWebhookCreds = new StringCredentialsImpl(
     CredentialsScope.GLOBAL,
     id,
     description,
-    username,
-    password
+    Secret.fromString(secret)
 )
 
 Thread.start {
@@ -125,22 +122,10 @@ Thread.start {
     // Commented below obsolete codeline
     //instance.getDescriptor("jenkins.CLI").get().setEnabled(false)
 
-    println "--> setting ghprhook creds"
-
-    credentialsStore.addCredentials(global_domain, ghprbhookCredentials)
-    def descriptor = Jenkins.instance.getDescriptorByType(org.jenkinsci.plugins.ghprb.GhprbTrigger.DescriptorImpl.class)
-    Field auth = descriptor.class.getDeclaredField("githubAuth")
-    auth.setAccessible(true)
-    def githubAuth = new ArrayList<GhprbGitHubAuth>(1)
-
-    Secret secret = Secret.fromString('')
-    githubAuth.add(new GhprbGitHubAuth("https://api.github.com", "", id, description, username, secret))
-    auth.set(descriptor, githubAuth)
-
-    descriptor.save()
+    println "--> setting generic-webhook creds"
+    credentialsStore.addCredentials(global_domain, genericWebhookCreds)
 
     println "--> setting security"
-
     def hudsonRealm = new HudsonPrivateSecurityRealm(false)
     hudsonRealm.createAccount(user, pass)
     instance.setSecurityRealm(hudsonRealm)
@@ -151,10 +136,9 @@ Thread.start {
     instance.save()
 
     println "--> setting pipeline speed/durability settings"
-      
     GlobalDefaultFlowDurabilityLevel.DescriptorImpl level = instance.getExtensionList(GlobalDefaultFlowDurabilityLevel.DescriptorImpl.class).get(0);
     level.setDurabilityHint(FlowDurabilityHint.PERFORMANCE_OPTIMIZED);
-    
+
 
     // IMPORTANT! don't append any functionality below as settings security restrict a lot of access. Put them above "setting security" step to have full admin privileges
 
