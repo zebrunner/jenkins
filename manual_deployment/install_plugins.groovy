@@ -30,7 +30,7 @@ def qps_plugins = [
 'embeddable-build-status':'2.0.3',
 'extensible-choice-parameter':'1.6.0',
 'external-monitor-job':'1.7',
-'ghprb':'1.42.1',
+'generic-webhook-trigger':'1.68',
 'git-client':'3.4.2',
 'git-server':'1.9',
 'git':'4.4.1',
