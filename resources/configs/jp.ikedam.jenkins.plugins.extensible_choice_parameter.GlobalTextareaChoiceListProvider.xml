@@ -35,5 +35,16 @@
       </choiceList>
       <allowAddEditedValue>true</allowAddEditedValue>
     </jp.ikedam.jenkins.plugins.extensible__choice__parameter.GlobalTextareaChoiceListEntry>
+    <jp.ikedam.jenkins.plugins.extensible__choice__parameter.GlobalTextareaChoiceListEntry>
+      <name>gc_GIT_TYPE</name>
+      <choiceList class="java.util.Arrays$ArrayList">
+        <a class="string-array">
+          <string>github</string>
+          <string>gitlab</string>
+          <string>bitbucket</string>
+        </a>
+      </choiceList>
+      <allowAddEditedValue>true</allowAddEditedValue>
+    </jp.ikedam.jenkins.plugins.extensible__choice__parameter.GlobalTextareaChoiceListEntry>
   </choiceListEntryList>
 </jp.ikedam.jenkins.plugins.extensible__choice__parameter.GlobalTextareaChoiceListProvider_-DescriptorImpl>
