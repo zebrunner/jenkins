@@ -39,7 +39,7 @@ handlebars:1.1.1
 hidden-parameter:0.0.4
 htmlpublisher:1.23
 http_request:1.8.26
-jackson2-api:2.11.2
+jackson2-api:2.11.0
 javadoc:1.6
 jaxb:2.3.0.1
 jdk-tool:1.4
@@ -47,7 +47,7 @@ jobConfigHistory:2.26
 job-dsl:1.77
 jquery-detached:1.2.1
 jsch:0.1.55.2
-junit:1.37
+junit:1.34
 ldap:1.26
 lockable-resources:2.10
 mailer:1.32.1
@@ -83,7 +83,7 @@ s3:0.11.5
 sbt:1.5
 scm-api:2.6.4
 script-security:1.75
-slack:2.42
+slack:2.41
 sonar:2.12
 ssh-credentials:1.18.1
 ssh-slaves:1.31.2
