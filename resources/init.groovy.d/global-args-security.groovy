@@ -39,97 +39,86 @@ def global_domain = Domain.global()
 
 def credentialsStore = instance.getExtensionList('com.cloudbees.plugins.credentials.SystemCredentialsProvider')[0].getStore()
 
-Thread.start {
-    println "--> Configuring General Settings"
+// Global Environment Variables
+// Source: https://groups.google.com/forum/#!topic/jenkinsci-users/KgCGuDmED1Q
+globalNodeProperties = instance.getGlobalNodeProperties()
+envVarsNodePropertyList = globalNodeProperties.getAll(hudson.slaves.EnvironmentVariablesNodeProperty.class)
 
-    // Global Environment Variables
-    // Source: https://groups.google.com/forum/#!topic/jenkinsci-users/KgCGuDmED1Q
-    globalNodeProperties = instance.getGlobalNodeProperties()
-    envVarsNodePropertyList = globalNodeProperties.getAll(hudson.slaves.EnvironmentVariablesNodeProperty.class)
+newEnvVarsNodeProperty = null
+envVars = null
 
-    newEnvVarsNodeProperty = null
-    envVars = null
-
-    if ( envVarsNodePropertyList == null || envVarsNodePropertyList.size() == 0 ) {
-      newEnvVarsNodeProperty = new hudson.slaves.EnvironmentVariablesNodeProperty();
-      globalNodeProperties.add(newEnvVarsNodeProperty)
-      envVars = newEnvVarsNodeProperty.getEnvVars()
-    } else {
-      envVars = envVarsNodePropertyList.get(0).getEnvVars()
-    }
-
-    // Base URL
-    println "--> Setting Base URL"
-    println "JENKINS_SECURITY_INITIALIZED: " + envVars.get("JENKINS_SECURITY_INITIALIZED")
-
-    if(envVars.containsKey("JENKINS_SECURITY_INITIALIZED") && "true".equalsIgnoreCase(envVars.get("JENKINS_SECURITY_INITIALIZED"))) {
-        println "Zebrunner jenkins initialization already happened. Nothing to do for now."
-        return
-    }
-
-    //https://github.com/qaprosoft/jenkins-master/issues/12 - remove default 5 sec quite period for Jenkins
-    instance.setQuietPeriod(0)
-    instance.setNumExecutors(10)
-
-    jlc = JenkinsLocationConfiguration.get()
-    jlc.setUrl(rootURL)
-    jlc.setAdminAddress(rootEmail)
-    jlc.save()
-
-    if ( infraHost != null && !envVars.containsKey("INFRA_HOST") ) {
-      println "INFRA_HOST: " + infraHost
-      envVars.put("INFRA_HOST", infraHost)
-    }
-
-    if ( zbrPipelineURL != null ) {
-      println "ZEBRUNNER_PIPELINE: " + zbrPipelineURL
-      envVars.put("ZEBRUNNER_PIPELINE", zbrPipelineURL)
-    }
-
-    if ( zbrPipelineVersion != null ) {
-      println "ZEBRUNNER_VERSION: " + zbrPipelineVersion
-      envVars.put("ZEBRUNNER_VERSION", zbrPipelineVersion)
-    }
-
-    if ( zbrLogLevel != null ) {
-      println "ZEBRUNNER_LOG_LEVEL: " + zbrLogLevel
-      envVars.put("ZEBRUNNER_LOG_LEVEL", zbrLogLevel)
-    }
-
-    if ( adminEmails != null ) {
-      println "ADMIN_EMAILS: " + adminEmails
-      envVars.put("ADMIN_EMAILS", adminEmails)
-    }
-
-    if (sonarUrl != null ) {
-      println "SONAR_URL: " + sonarUrl
-      envVars.put("SONAR_URL", sonarUrl)
-    }
-
-    // #166: NPE during disabling CLI: java.lang.NullPointerException: Cannot invoke method get() on null object
-    // Commented below obsolete codeline
-    //instance.getDescriptor("jenkins.CLI").get().setEnabled(false)
-
-    println "--> setting security"
-    def hudsonRealm = new HudsonPrivateSecurityRealm(false)
-    hudsonRealm.createAccount(user, pass)
-    instance.setSecurityRealm(hudsonRealm)
-
-    def strategy = new FullControlOnceLoggedInAuthorizationStrategy()
-    strategy.setAllowAnonymousRead(false)
-    instance.setAuthorizationStrategy(strategy)
-    instance.save()
-
-    println "--> setting pipeline speed/durability settings"
-    GlobalDefaultFlowDurabilityLevel.DescriptorImpl level = instance.getExtensionList(GlobalDefaultFlowDurabilityLevel.DescriptorImpl.class).get(0);
-    level.setDurabilityHint(FlowDurabilityHint.PERFORMANCE_OPTIMIZED);
-
-
-    // IMPORTANT! don't append any functionality below as settings security restrict a lot of access. Put them above "setting security" step to have full admin privileges
-
-    //set global var to true to define that initial setup is finished
-    envVars.put("JENKINS_SECURITY_INITIALIZED", "true")
-
-    // Save the state
-    instance.save()
+if ( envVarsNodePropertyList == null || envVarsNodePropertyList.size() == 0 ) {
+  newEnvVarsNodeProperty = new hudson.slaves.EnvironmentVariablesNodeProperty();
+  globalNodeProperties.add(newEnvVarsNodeProperty)
+  envVars = newEnvVarsNodeProperty.getEnvVars()
+} else {
+  envVars = envVarsNodePropertyList.get(0).getEnvVars()
 }
+
+if(envVars.containsKey("JENKINS_SECURITY_INITIALIZED") && "false".equalsIgnoreCase(envVars.get("JENKINS_SECURITY_INITIALIZED"))) {
+  println "Apply Zebrunner Pipeline 1.0 settings"
+
+  //https://github.com/qaprosoft/jenkins-master/issues/12 - remove default 5 sec quite period for Jenkins
+  instance.setQuietPeriod(0)
+  instance.setNumExecutors(10)
+
+  jlc = JenkinsLocationConfiguration.get()
+  jlc.setUrl(rootURL)
+  jlc.setAdminAddress(rootEmail)
+  jlc.save()
+
+  println "INFRA_HOST: " + infraHost
+  envVars.put("INFRA_HOST", infraHost)
+
+  println "ADMIN_EMAILS: " + adminEmails
+  envVars.put("ADMIN_EMAILS", adminEmails)
+
+  println "SONAR_URL: " + sonarUrl
+  envVars.put("SONAR_URL", sonarUrl)
+
+  // #166: NPE during disabling CLI: java.lang.NullPointerException: Cannot invoke method get() on null object
+  // Commented below obsolete codeline
+  //instance.getDescriptor("jenkins.CLI").get().setEnabled(false)
+
+  println "--> setting security"
+  def hudsonRealm = new HudsonPrivateSecurityRealm(false)
+  hudsonRealm.createAccount(user, pass)
+  instance.setSecurityRealm(hudsonRealm)
+
+  def strategy = new FullControlOnceLoggedInAuthorizationStrategy()
+  strategy.setAllowAnonymousRead(false)
+  instance.setAuthorizationStrategy(strategy)
+  instance.save()
+
+  println "--> setting pipeline speed/durability settings"
+  GlobalDefaultFlowDurabilityLevel.DescriptorImpl level = instance.getExtensionList(GlobalDefaultFlowDurabilityLevel.DescriptorImpl.class).get(0);
+  level.setDurabilityHint(FlowDurabilityHint.PERFORMANCE_OPTIMIZED);
+
+  // IMPORTANT! don't append any functionality below as settings security restrict a lot of access. Put them above "setting security" step to have full admin privileges
+
+  //set global var to true to define that initial setup is finished
+  envVars.put("JENKINS_SECURITY_INITIALIZED", "true")
+
+} else {
+  println "Zebrunner Jenkins global initialization already happened."
+}
+
+if(!envVars.containsKey("ZEBRUNNER_VERSION")) {
+  println "Apply Zebrunner Pipeline 1.1 settings"
+
+  println "Put Zebrunner Pipeline log level: " + zbrLogLevel
+  envVars.put("ZEBRUNNER_LOG_LEVEL", zbrLogLevel)
+}
+
+// TODO: in case of major upgrade with changes in general settings - put steps HERE based on ZEBRUNNER_VERSION property
+
+
+// Forcibly migrate to the latest version of Zebrunner Pipeline during restart
+println "Put Zebrunner Pipeline URL: " + zbrPipelineURL
+envVars.put("ZEBRUNNER_PIPELINE", zbrPipelineURL)
+
+println "Put Zebrunner Pipeline version: " + zbrPipelineVersion
+envVars.put("ZEBRUNNER_VERSION", zbrPipelineVersion)
+
+// Save the state
+instance.save()
