@@ -27,7 +27,7 @@ USER root
 
 # Install utils
 RUN apt-get update && \
-	apt-get install -qqy iputils-ping telnet nano
+	apt-get install -qqy iputils-ping telnet nano procps
 
 #======================
 # Install Apache Maven
