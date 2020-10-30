@@ -74,9 +74,9 @@ owner</description>
     </hudson.model.ParametersDefinitionProperty>
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.63">
-    <script>@Library(&apos;QPS-Pipeline&apos;)
-import com.qaprosoft.jenkins.pipeline.runner.maven.QARunner;
-new QARunner(this).rerunJobs()</script>
+    <script>@Library(&apos;Zebrunner-CE@1.1&apos;)
+import com.zebrunner.jenkins.pipeline.runner.maven.TestNG;
+new TestNG(this).rerunJobs()</script>
     <sandbox>true</sandbox>
   </definition>
   <triggers/>

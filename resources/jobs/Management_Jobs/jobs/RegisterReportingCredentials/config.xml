@@ -1,5 +1,4 @@
 <?xml version='1.1' encoding='UTF-8'?>
-<!-- TODO: https://github.com/qaprosoft/jenkins-master/issues/205 -->
 <flow-definition plugin="workflow-job@2.36">
   <actions/>
   <description></description>
@@ -46,8 +45,8 @@
     </org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.78">
-    <script>@Library(&apos;QPS-Pipeline&apos;)
-import com.qaprosoft.jenkins.pipeline.Organization
+    <script>@Library(&apos;Zebrunner-CE@1.1&apos;)
+import com.zebrunner.jenkins.pipeline.Organization
 new Organization(this).registerReportingCredentials()</script>
     <sandbox>true</sandbox>
   </definition>

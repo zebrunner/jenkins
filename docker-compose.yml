@@ -16,7 +16,7 @@ services:
      - "50000:50000"
     restart: always
   jenkins-slave:
-    image: "qaprosoft/jenkins-slave:${TAG_JENKINS_SLAVE}"
+    image: "zebrunner/jenkins-slave:${TAG_JENKINS_SLAVE}"
     container_name: jenkins-slave
     env_file:
       - variables.env

@@ -1,24 +1,22 @@
 FROM jenkins/jenkins:2.259-jdk11
 
 ENV ROOT_URL=http://localhost:8080/jenkins
-ENV ROOT_EMAIL=qps-auto@qaprosoft.com
-ENV ADMIN_EMAILS=qps-auto@qaprosoft.com
+ENV ROOT_EMAIL=qps-auto@zebrunner.com
+ENV ADMIN_EMAILS=qps-auto@zebrunner.com
 ENV ADMIN_USER=admin
-ENV ADMIN_PASS=qaprosoft
-ENV GHPRBHOOK_USER=CHANGE_ME
-ENV GHPRBHOOK_PASS=CHANGE_ME
+ENV ADMIN_PASS=changeit
+ENV GENERIC_WEBHOOK_SECRET=CHANGE_ME
 ENV INFRA_HOST=localhost
-ENV QPS_PIPELINE_GIT_URL=https://github.com/qaprosoft/qps-pipeline.git
-ENV QPS_PIPELINE_GIT_BRANCH=5.3
+ENV ZEBRUNNER_PIPELINE=https://github.com/zebrunner/pipeline-ce.git
+ENV ZEBRUNNER_VERSION=1.1
+ENV ZEBRUNNER_LOG_LEVEL=INFO
 ENV JENKINS_OPTS="--prefix=/jenkins --httpPort=8080"
 ENV JAVA_OPTS="-Dhudson.model.ParametersAction.keepUndefinedParameters=true"
 ENV AWS_KEY=CHANGE_ME
 ENV AWS_SECRET=CHANGE_ME
-ENV QPS_PIPELINE_LOG_LEVEL=INFO
 ENV LANG=en_US.UTF-8
 ENV LANGUAGE=en_US.UTF-8
 ENV SONAR_URL=
-
 
 USER root
 
@@ -29,7 +27,7 @@ USER root
 
 # Install utils
 RUN apt-get update && \
-	apt-get install -qqy iputils-ping telnet nano
+	apt-get install -qqy iputils-ping telnet nano procps
 
 #======================
 # Install Apache Maven
