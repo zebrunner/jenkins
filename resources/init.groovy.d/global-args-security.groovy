@@ -55,7 +55,7 @@ if ( envVarsNodePropertyList == null || envVarsNodePropertyList.size() == 0 ) {
   envVars = envVarsNodePropertyList.get(0).getEnvVars()
 }
 
-if(envVars.containsKey("JENKINS_SECURITY_INITIALIZED") && "false".equalsIgnoreCase(envVars.get("JENKINS_SECURITY_INITIALIZED"))) {
+if(!envVars.containsKey("JENKINS_SECURITY_INITIALIZED") || "false".equalsIgnoreCase(envVars.get("JENKINS_SECURITY_INITIALIZED"))) {
   println "Apply Zebrunner Pipeline 1.0 settings"
 
   //https://github.com/qaprosoft/jenkins-master/issues/12 - remove default 5 sec quite period for Jenkins
