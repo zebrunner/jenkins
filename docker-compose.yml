@@ -31,8 +31,8 @@ services:
      - "jenkins-master"
     restart: always
 #  jenkins-slave-docker:
-#    image: "zebrunner/jenkins-slave:${TAG_JENKINS_SLAVE}"
-#    container_name: jenkins-slave
+#    image: "zebrunner/jenkins-slave:${TAG_JENKINS_SLAVE}-docker"
+#    container_name: jenkins-slave-docker
 #    env_file:
 #      - variables.env
 #    environment:
