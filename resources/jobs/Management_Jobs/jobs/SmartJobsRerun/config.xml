@@ -37,7 +37,7 @@ owner</description>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>scmURL</name>
+          <name>repoUrl</name>
           <description>[Optional] if provided then only jobs/suites which belong to this particular repo could be re-executed </description>
           <defaultValue></defaultValue>
           <trim>false</trim>
