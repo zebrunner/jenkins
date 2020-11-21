@@ -1,8 +1,7 @@
-<?xml version='1.1' encoding='UTF-8'?>
-<flow-definition plugin="workflow-job@2.31">
+<?xml version="1.1" encoding="UTF-8" standalone="no"?><flow-definition plugin="workflow-job@2.40">
   <actions/>
-  <description>Smart job to rebuild any milestone/cron/regression pipeline based on provided parameters:&#xd;
-scm&#xd;
+  <description>Smart job to rebuild any milestone/cron/regression pipeline based on provided parameters:&#13;
+scm&#13;
 owner</description>
   <keepDependencies>false</keepDependencies>
   <properties>
@@ -14,50 +13,56 @@ owner</description>
         <artifactNumToKeep>-1</artifactNumToKeep>
       </strategy>
     </jenkins.model.BuildDiscarderProperty>
-    <com.synopsys.arc.jenkins.plugins.ownership.jobs.JobOwnerJobProperty plugin="ownership@0.12.1"/>
+    <com.synopsys.arc.jenkins.plugins.ownership.jobs.JobOwnerJobProperty plugin="ownership@0.13.0"/>
     <org.jenkinsci.plugins.workflow.job.properties.DurabilityHintJobProperty>
       <hint>PERFORMANCE_OPTIMIZED</hint>
     </org.jenkinsci.plugins.workflow.job.properties.DurabilityHintJobProperty>
-    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.29">
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.31">
       <autoRebuild>false</autoRebuild>
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
+          <name>folderName</name>
+          <description>Tenancy folder name</description>
+          <defaultValue/>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
           <name>upstreamJobId</name>
           <description>Parent pipeline job id. All children job results will be analyzed and some of them re-executed.</description>
-          <defaultValue></defaultValue>
+          <defaultValue/>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>upstreamJobBuildNumber</name>
           <description>Parent pipeline job build number</description>
-          <defaultValue></defaultValue>
+          <defaultValue/>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>repoUrl</name>
           <description>[Optional] if provided then only jobs/suites which belong to this particular repo could be re-executed </description>
-          <defaultValue></defaultValue>
+          <defaultValue/>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>owner</name>
           <description>[Optional] if provided then only jobs/suites which belong to this particular user could be re-executed </description>
-          <defaultValue></defaultValue>
+          <defaultValue/>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>hashcode</name>
           <description>[Optional] mostly for integration with Reporting Tool to be able to re-execute only jobs which tests failed due to the absolutely the SAME reason.</description>
-          <defaultValue></defaultValue>
+          <defaultValue/>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>cause</name>
           <description>[Optional] mostly for integration with Reporting Tool to be able to re-execute only jobs which tests failed due to the SIMILAR reason.</description>
-          <defaultValue></defaultValue>
+          <defaultValue/>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
@@ -72,9 +77,10 @@ owner</description>
         </hudson.model.BooleanParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
+    
   </properties>
-  <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.63">
-    <script>@Library(&apos;Zebrunner-CE@1.1&apos;)
+  <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.86">
+    <script>@Library('Zebrunner-CE@develop')
 import com.zebrunner.jenkins.pipeline.runner.maven.TestNG;
 new TestNG(this).rerunJobs()</script>
     <sandbox>true</sandbox>
