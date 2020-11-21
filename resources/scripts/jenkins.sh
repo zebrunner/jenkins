@@ -1,8 +1,26 @@
 #! /bin/bash -e
 
-#upload extra plugins at run-time
-if [[ -f /usr/share/jenkins/ref/extra_plugins.txt ]] ; then
-    /usr/local/bin/install-plugins.sh $(cat /usr/share/jenkins/ref/extra_plugins.txt | tr '\n' ' ')
+# upload default plugins at run-time during first initialization only
+if [[ -f /var/jenkins_home/plugins.txt.installed ]]; then
+  echo "Zebrunner Jenkins plugins already installed."
+else
+  echo "/var/jenkins_home/plugins.txt.installed not exists!"
+  if [[ -f /usr/share/jenkins/ref/plugins.txt ]]; then
+    echo "Installing plugins from plugins.txt..."
+    /bin/jenkins-plugin-cli --plugin-file /usr/share/jenkins/ref/plugins.txt
+    cp /usr/share/jenkins/ref/plugins.txt /var/jenkins_home/plugins.txt.installed
+  fi
+fi
+
+# upload extra plugins at run-time during first initialization only
+if [[ -f /var/jenkins_home/extra_plugins.txt.installed ]]; then
+  echo "Zebrunner Jenkins extra-plugins already installed."
+else
+  if [[ -f /usr/share/jenkins/ref/extra_plugins.txt ]] ; then
+    echo "Installing plugins from extra_plugins.txt..."
+    /bin/jenkins-plugin-cli --plugin-file /usr/share/jenkins/ref/extra_plugins.txt
+    cp /usr/share/jenkins/ref/extra_plugins.txt /var/jenkins_home/extra_plugins.txt.installed
+  fi
 fi
 
 : "${JENKINS_WAR:="/usr/share/jenkins/jenkins.war"}"
