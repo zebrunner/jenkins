@@ -64,6 +64,7 @@ COPY resources/jobs/ /usr/share/jenkins/ref/jobs/
 
 # Configure plugins
 COPY resources/configs/plugins.txt /usr/share/jenkins/ref/
+RUN /bin/jenkins-plugin-cli --plugin-file /usr/share/jenkins/ref/plugins.txt
 
 # override default jenkins.sh to be able to upload extra plugins on startup
 COPY resources/scripts/jenkins.sh /usr/local/bin/jenkins.sh

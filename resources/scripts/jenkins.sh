@@ -1,17 +1,5 @@
 #! /bin/bash -e
 
-# upload default plugins at run-time during first initialization only
-if [[ -f /var/jenkins_home/plugins.txt.installed ]]; then
-  echo "Zebrunner Jenkins plugins already installed."
-else
-  echo "/var/jenkins_home/plugins.txt.installed not exists!"
-  if [[ -f /usr/share/jenkins/ref/plugins.txt ]]; then
-    echo "Installing plugins from plugins.txt..."
-    /bin/jenkins-plugin-cli --plugin-file /usr/share/jenkins/ref/plugins.txt
-    cp /usr/share/jenkins/ref/plugins.txt /var/jenkins_home/plugins.txt.installed
-  fi
-fi
-
 # upload extra plugins at run-time during first initialization only
 if [[ -f /var/jenkins_home/extra_plugins.txt.installed ]]; then
   echo "Zebrunner Jenkins extra-plugins already installed."
