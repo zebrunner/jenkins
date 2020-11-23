@@ -23,11 +23,11 @@
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <com.wangyin.parameter.WHideParameterDefinition plugin="hidden-parameter@0.0.4">
-          <name>repoURL</name>
+          <name>repoUrl</name>
           <description/>
           <defaultValue>repository url (read permissions is enough)</defaultValue>
         </com.wangyin.parameter.WHideParameterDefinition>
-        <jp.ikedam.jenkins.plugins.extensible__choice__parameter.ExtensibleChoiceParameterDefinition plugin="extensible-choice-parameter@1.6.0">
+        <jp.ikedam.jenkins.plugins.extensible__choice__parameter.ExtensibleChoiceParameterDefinition plugin="extensible-choice-parameter@1.7.0">
           <name>ci_run_id</name>
           <description/>
           <editable>true</editable>
@@ -73,7 +73,7 @@ return [randomUUID()]</script>
     </hudson.model.ParametersDefinitionProperty>
     
   </properties>
-  <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.83">
+  <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.86">
     <script>@Library('Zebrunner-CE@1.3')
 import com.zebrunner.jenkins.pipeline.runner.maven.TestNG;
 new com.zebrunner.jenkins.pipeline.runner.maven.TestNG(this).runJob()</script>
