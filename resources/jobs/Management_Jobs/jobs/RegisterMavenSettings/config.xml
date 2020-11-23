@@ -1,0 +1,54 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?><flow-definition plugin="workflow-job@2.40">
+  <actions/>
+  <description>Register custom maven settings ID (to support proxies, custom repositories etc)&#13;
+Manage Jenkins -&gt; Managed files -&gt; Add a new Config -&gt; Maven settings.xml&#13;
+Remember ID&#13;
+Submit -&gt; paste customized maven settings -&gt; Submit&#13;
+&#13;
+Run RegisterMavenSettings and register above ID for your organization (folderName)&#13;
+</description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <org.jenkinsci.plugins.workflow.job.properties.DisableResumeJobProperty/>
+    <com.synopsys.arc.jenkins.plugins.ownership.jobs.JobOwnerJobProperty plugin="ownership@0.13.0"/>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.31">
+      <autoRebuild>false</autoRebuild>
+      <rebuildDisabled>false</rebuildDisabled>
+    </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>folderName</name>
+          <description>Organization name to be register as Jenkins folder. </description>
+          <defaultValue/>
+          <trim>true</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>Name</name>
+          <description>Maven settings name</description>
+          <defaultValue>MySettings</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>ID</name>
+          <description>Maven settings file ID</description>
+          <defaultValue/>
+          <trim>true</trim>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+    
+    <org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
+      <triggers/>
+    </org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
+  </properties>
+  <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.86">
+    <script>@Library('Zebrunner-CE@#develop')
+import com.zebrunner.jenkins.pipeline.Organization;
+new Organization(this).registerMavenSettings()</script>
+    <sandbox>true</sandbox>
+  </definition>
+  <triggers/>
+  <authToken>ciStart</authToken>
+  <disabled>false</disabled>
+</flow-definition>
