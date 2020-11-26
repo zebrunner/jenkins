@@ -1,11 +1,10 @@
-<?xml version='1.1' encoding='UTF-8'?>
-<flow-definition plugin="workflow-job@2.36">
+<?xml version="1.1" encoding="UTF-8" standalone="no"?><flow-definition plugin="workflow-job@2.40">
   <actions/>
   <description>Register SCM organization folder on CI (github, gitlab etc)</description>
   <keepDependencies>false</keepDependencies>
   <properties>
     <org.jenkinsci.plugins.workflow.job.properties.DisableResumeJobProperty/>
-    <com.synopsys.arc.jenkins.plugins.ownership.jobs.JobOwnerJobProperty plugin="ownership@0.12.1"/>
+    <com.synopsys.arc.jenkins.plugins.ownership.jobs.JobOwnerJobProperty plugin="ownership@0.13.0"/>
     <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.31">
       <autoRebuild>false</autoRebuild>
       <rebuildDisabled>false</rebuildDisabled>
@@ -15,50 +14,50 @@
         <hudson.model.StringParameterDefinition>
           <name>folderName</name>
           <description>Organization name to be register as Jenkins folder. </description>
-          <defaultValue></defaultValue>
+          <defaultValue/>
           <trim>true</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>reportingServiceUrl</name>
           <description>Get ServiceUrl in Zebrunner "Account and profile menu"</description>
-          <defaultValue></defaultValue>
+          <defaultValue/>
           <trim>true</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>reportingAccessToken</name>
           <description>Generate token in Zebrunner "Account and profile menu"</description>
-          <defaultValue></defaultValue>
+          <defaultValue/>
           <trim>true</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>customPipeline</name>
-          <defaultValue>false</defaultValue>
           <description>Jenkinsfile that contains the definition of a Jenkins Pipeline and is checked into your source control</description>
-          <trim>true</trim>
+          <defaultValue>false</defaultValue>
         </hudson.model.BooleanParameterDefinition>
         <com.wangyin.parameter.WHideParameterDefinition plugin="hidden-parameter@0.0.4">
           <name>callbackUrl</name>
-          <description></description>
-          <defaultValue></defaultValue>
+          <description/>
+          <defaultValue/>
         </com.wangyin.parameter.WHideParameterDefinition>
         <com.wangyin.parameter.WHideParameterDefinition plugin="hidden-parameter@0.0.4">
           <name>accessToken</name>
-          <description></description>
-          <defaultValue></defaultValue>
+          <description/>
+          <defaultValue/>
         </com.wangyin.parameter.WHideParameterDefinition>
         <com.wangyin.parameter.WHideParameterDefinition plugin="hidden-parameter@0.0.4">
           <name>securityEnabled</name>
-          <description></description>
+          <description/>
           <defaultValue>false</defaultValue>
         </com.wangyin.parameter.WHideParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
+    
     <org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
       <triggers/>
     </org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
   </properties>
-  <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.78">
-    <script>@Library(&apos;Zebrunner-CE@1.1&apos;)
+  <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.86">
+    <script>@Library('Zebrunner-CE@1.3')
 import com.zebrunner.jenkins.pipeline.Organization;
 new Organization(this).register()</script>
     <sandbox>true</sandbox>

@@ -1,16 +1,14 @@
 <?xml version="1.1" encoding="UTF-8" standalone="no"?><flow-definition plugin="workflow-job@2.40">
   <actions/>
-  <description>Register personal SCM tokens and their association with jenkins user to support execution vs forked repositories</description>
+  <description>Register custom maven settings ID (to support proxies, custom repositories etc)&#13;
+Manage Jenkins -&gt; Managed files -&gt; Add a new Config -&gt; Maven settings.xml&#13;
+Remember ID&#13;
+Submit -&gt; paste customized maven settings -&gt; Submit&#13;
+&#13;
+Run RegisterMavenSettings and register above ID for your organization (folderName)&#13;
+</description>
   <keepDependencies>false</keepDependencies>
   <properties>
-    <jenkins.model.BuildDiscarderProperty>
-      <strategy class="hudson.tasks.LogRotator">
-        <daysToKeep>1</daysToKeep>
-        <numToKeep>-1</numToKeep>
-        <artifactDaysToKeep>-1</artifactDaysToKeep>
-        <artifactNumToKeep>-1</artifactNumToKeep>
-      </strategy>
-    </jenkins.model.BuildDiscarderProperty>
     <org.jenkinsci.plugins.workflow.job.properties.DisableResumeJobProperty/>
     <com.synopsys.arc.jenkins.plugins.ownership.jobs.JobOwnerJobProperty plugin="ownership@0.13.0"/>
     <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.31">
@@ -20,20 +18,20 @@
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
-          <name>scmUser</name>
-          <description>Git user</description>
+          <name>folderName</name>
+          <description>Organization name to be register as Jenkins folder. </description>
           <defaultValue/>
           <trim>true</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>scmToken</name>
-          <description>Git token with read permissions</description>
-          <defaultValue/>
-          <trim>true</trim>
+          <name>Name</name>
+          <description>Maven settings name</description>
+          <defaultValue>MySettings</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>jenkinsUser</name>
-          <description>Optional, skip if you register your personal token</description>
+          <name>ID</name>
+          <description>Maven settings file ID</description>
           <defaultValue/>
           <trim>true</trim>
         </hudson.model.StringParameterDefinition>
@@ -45,9 +43,9 @@
     </org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.86">
-    <script>@Library('Zebrunner-CE@1.3')
-import com.zebrunner.jenkins.pipeline.Organization
-new Organization(this).registerUserCredentials()</script>
+    <script>@Library('Zebrunner-CE@#1.3')
+import com.zebrunner.jenkins.pipeline.Organization;
+new Organization(this).registerMavenSettings()</script>
     <sandbox>true</sandbox>
   </definition>
   <triggers/>

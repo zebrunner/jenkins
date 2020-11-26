@@ -1,4 +1,4 @@
-FROM jenkins/jenkins:2.259-jdk11
+FROM jenkins/jenkins:2.267-jdk11
 
 ENV ROOT_URL=http://localhost:8080/jenkins
 ENV ROOT_EMAIL=qps-auto@zebrunner.com
@@ -64,7 +64,7 @@ COPY resources/jobs/ /usr/share/jenkins/ref/jobs/
 
 # Configure plugins
 COPY resources/configs/plugins.txt /usr/share/jenkins/ref/
-RUN /usr/local/bin/install-plugins.sh $(cat /usr/share/jenkins/ref/plugins.txt | tr '\n' ' ')
+RUN /bin/jenkins-plugin-cli --plugin-file /usr/share/jenkins/ref/plugins.txt
 
 # override default jenkins.sh to be able to upload extra plugins on startup
 COPY resources/scripts/jenkins.sh /usr/local/bin/jenkins.sh
