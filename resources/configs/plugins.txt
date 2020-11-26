@@ -26,7 +26,6 @@ external-monitor-job:1.7
 generic-webhook-trigger:1.72
 git-client:3.5.1
 github:1.32.0
-github-api:1.116
 git-server:1.9
 global-variable-string-parameter:1.2
 gradle:1.36
