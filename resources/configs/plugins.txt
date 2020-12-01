@@ -13,7 +13,7 @@ build-user-vars-plugin:1.6
 categorized-view:1.10
 command-launcher:1.5
 config-file-provider:3.7.0
-copyartifact:1.45.2
+copyartifact:1.45.3
 credentials:2.3.14
 credentials-binding:1.24
 docker-commons:1.17
@@ -34,7 +34,7 @@ handlebars:1.1.1
 hidden-parameter:0.0.4
 htmlpublisher:1.25
 http_request:1.8.27
-jackson2-api:2.11.3
+jackson2-api:2.12.0
 javadoc:1.6
 jaxb:2.3.0.1
 jdk-tool:1.4
