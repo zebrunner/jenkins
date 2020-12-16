@@ -6,9 +6,8 @@ import com.cloudbees.plugins.credentials.*;
 import com.cloudbees.plugins.credentials.domains.*;
 
 // Disable Jenkins security that blocks eTAF reports
-//TODO: test if it still required
-// System.setProperty("hudson.model.DirectoryBrowserSupport.CSP", "default-src 'self'; script-src 'self' https://ajax.googleapis.com 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self'")
-// System.setProperty("hudson.model.ParametersAction.keepUndefinedParameters", "true")
+System.setProperty("hudson.model.DirectoryBrowserSupport.CSP", "default-src 'self'; script-src 'self' https://ajax.googleapis.com 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self'")
+System.setProperty("hudson.model.ParametersAction.keepUndefinedParameters", "true")
 
 // Variables
 def env = System.getenv()
@@ -17,7 +16,7 @@ def env = System.getenv()
 def infraHost = "CHANGE_ME"
 
 def zbrPipelineURL = "https://github.com/zebrunner/pipeline-ce.git"
-def zbrPipelineVersion = "1.1"
+def zbrPipelineVersion = "1.3"
 def zbrLogLevel = "INFO"
 
 // Constants
