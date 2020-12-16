@@ -1,4 +1,4 @@
-# Deploy qps-infra setting to 3rd party Jenkins
+# Deploy Zebrunner CE pipelines to 3rd party Jenkins
 
 ### Prerequisites
 * Jenkins instance URL
@@ -16,15 +16,10 @@
   Note: for details visit https://issues.jenkins-ci.org/browse/JENKINS-40961 and https://github.com/jenkinsci/job-dsl-plugin/wiki/Migration#migrating-to-160<br>
   -> Verify that Manage Jenkins -> Configure Global Security -> Enable script security for Job DSL scripts is unchecked!
 * Declare required global variables by [global-args-security.groovy](https://github.com/qaprosoft/jenkins-master/blob/master/manual_deployment/global-args-security.groovy)<br>
-  -> Verify that Manage Jenkins -> Configure System has such golbal variables defined: ADMIN_EMAILS, JENKINS_SECURITY_INITIALIZED, INFRA_HOST, ZEBRUNNER_PIPELINE, ZEBRUNNER_VERSION, ZEBRUNNER_LOG_LEVEL<br>
-  Note: Make sure to replace "CHANGE_ME" variables values to the valid data
-* Declare required aws-jacoco-token [setup_aws_credentials.groovy](https://github.com/qaprosoft/jenkins-master/blob/master/resources/init.groovy.d/setup_aws_credentials.groovy)<br>
-  Note: valid value can be added manually if needed
-* Setup Maven installer by [configMavenAutoInstaller.groovy](https://github.com/qaprosoft/jenkins-master/blob/master/resources/init.groovy.d/configMavenAutoInstaller.groovy) 
+  Note: Make sure to replace "CHANGE_ME" infraHost variable  to valid data
+  -> Verify that Manage Jenkins -> Configure System has such global variables defined: INFRA_HOST, ZEBRUNNER_PIPELINE, ZEBRUNNER_VERSION, ZEBRUNNER_LOG_LEVEL and JENKINS_SECURITY_INITIALIZED<br>
+* Setup Maven installer by [configMavenAutoInstaller.groovy](https://github.com/qaprosoft/jenkins-master/blob/master/resources/init.groovy.d/configMavenAutoInstaller.groovy)<br>
   ->  Verify that Manage Jenkins  -> Global Tool Configuration <br>  -> Maven installations contains declaration for 'M3'
-* Setup SBT installerby [configSbtAutoInstaller.groovy](https://github.com/qaprosoft/jenkins-master/blob/master/resources/init.groovy.d/configSbtAutoInstaller.groovy) 
-  -> Verify that Manage Jenkins -> Global Tool Configuration -> Sbt installations contains declaration for 'SBT'
-* Setup GitHub Pull Request Builder by [setup_ghprbhook_credentials.groovy](https://github.com/qaprosoft/jenkins-master/blob/master/manual_deployment/setup_ghprbhook_credentials.groovy)-> verify that Manage Jenkins -> Global Tool Configuration -> Setup GitHub Pull Request Builder credential field contains 'ghprbhook-token'
 * Restart Jenkins
   
 ### Declare Zebrunner-CE library
@@ -39,8 +34,6 @@
   * Repository URL: https://github.com/zebrunner/pipeline-ce.git
 * Save changes
 
-![Alt text](./qps-pipeline-library.png?raw=true "Zebrunner-CE library")
-
 ### Adjust Pipeline Speed/Durability Settings
 * Open Manage Jenkins -> Configure System
 * Specify Pipeline Default Speed/Durability Level: Performance-optimized: much faster (requires clean shutdown to save running pipelines)
@@ -51,12 +44,35 @@
 * Click "Add New Choice List"
   * name: gc_BUILD_PRIORITY
   * values: 5, 4, 3, 2, 1
-  Note: Each value from this doc should be specified in new line!
+  * Allow Add Edited Value: false
+  Note: Each above value should be specified in new line!
 * Click "Add New Choice List"
   * name: gc_CUSTOM_CAPABILITIES
   * values: NULL
-  Note: specify full list of custom capabilities resource file like https://github.com/qaprosoft/carina-demo/tree/master/src/main/resources/browserstack/android
-  For example: browserstack/android/Samsung_Galaxy_S8.properties
+  * Allow Add Edited Value: false
+  Note: specify full list of custom capabilities resource files like [browserstack/android/Samsung_Galaxy_S8.properties](https://github.com/qaprosoft/carina-demo/blob/master/src/main/resources/browserstack/android/Samsung_Galaxy_S8.properties) if needed
+* Click "Add New Choice List"
+  * name: gc_PIPELINE_LIBRARY
+  * values: Zebrunner-CE
+  * Allow Add Edited Value: true
+* Click "Add New Choice List"
+  * name: gc_RUNNER_CLASS
+  * values: 
+    ```
+    com.zebrunner.jenkins.pipeline.runner.maven.TestNG
+    com.zebrunner.jenkins.pipeline.runner.maven.Runner
+    com.zebrunner.jenkins.pipeline.runner.gradle.Runner
+    ```
+  * Allow Add Edited Value: true
+* Click "Add New Choice List"
+  * name: gc_GIT_TYPE
+  * values: 
+    ```
+    github
+    gitlab
+    bitbucket
+    ```
+  * Allow Add Edited Value: true
 * Save changes
   
 ### Create Management Jobs
@@ -64,7 +80,7 @@
   <b>Warning:</b> for unix based system make sure after copying with sudo permissions to change ownership to exact jenkins user and group, for example:
   ```
   cd /tmp
-  git clone https://github.com/qaprosoft/jenkins-master.git
+  git clone https://github.com/zebrunner/jenkins-master.git
   sudo cp -R jenkins-master/resources/jobs/Management_Jobs /var/lib/jenkins/jobs/
   ls -la /var/lib/jenkins/jobs/
   total 12
@@ -74,27 +90,26 @@
   sudo chown -R jenkins:jenkins /var/lib/jenkins/jobs/
   ```
 * Manage Jenkins -> Reload Configuration from Disk
-* Verify that folder "Management_Jobs" is created (4-5 default jobs should present as of today)
+* Verify that folder "Management_Jobs" is created (~10 default jobs should be created)
   
 ### Test deployment steps
 * Run Management_Jobs/RegisterOrganization job with parameters:
-  folderName: folderName
-  pipelineLibrary: QPS-Pipeline
-  runnerClass: com.qaprosoft.jenkins.pipeline.runner.maven.QARunner
-  securityEnabled: false
-  Note: verify that qaprosoft folder is created at top of your jenkins with launcher and registerRepository jobs
-* Run qaprosoft/RegisterRepository job with parameters:<br>
-   organization: qaprosoft<br>
-   repo: carina-demo<br>
+  folderName: MyOrganization
+  customPipeline: false
+  Note: Provide Zebrunner reporting url and token as reportingServiceUrl and reportingAccessToken<br>
+  -> Verify that MyOrganization folder is created at top of your jenkins with launcher and RegisterRepository jobs
+
+* Run MyOrganization/RegisterRepository job with parameters:<br>
+   scmType: github<br>
+   pipelineLibrary: Zebrunner-CE<br>
+   runnerClass: com.zebrunner.jenkins.pipeline.runner.maven.TestNG<br>
+   repoUrl: https://github.com/qaprosoft/carina-demo.git<br>
    branch: master<br>
-   githubUser:<br>
-   githubToken:<br>
-   pipelineLibrary: QPS-Pipeline<br>
-   runnerClass: com.qaprosoft.jenkins.pipeline.runner.maven.QARunner<br>
-  Note: verify that inside qaprosoft folder a lot of test jobs created (10+)
-* Run qaprosoft/API-Demo-Test job with default parameters<br>
-  Note: make sure you have slave with "api" label to be able to run tests
-* Run qaprosoft/Web-Demo-Test job with default parameters<br>
-  Note: make sure you have slave with "web" label to be able to run tests
-* verify that runs are registered successfully in Reporting Tool
+   scmUser:<br>
+   scmToken:<br>
+  -> Verify that inside MyOrganization folder a lot of test jobs created (10+)
+* Run API-Demo-Test and Web-Demo-Test jobs with default parameters from  MyOrganization/carina-demo folder<br>
+  Note: make sure you have slaves with "api" and "web" labels<br>
+  -> Verify that runs are registered successfully in Reporting Tool
   
+* Follow [Configuration](https://zebrunner.github.io/zebrunner/config-guide/) and [User](https://zebrunner.github.io/zebrunner/user-guide/) guides to setup your QA CI/CD process.
