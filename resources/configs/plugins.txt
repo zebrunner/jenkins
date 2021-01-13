@@ -20,7 +20,6 @@ docker-commons:1.17
 docker-workflow:1.25
 durable-task:1.35
 email-ext:2.79
-embeddable-build-status:2.0.3
 extensible-choice-parameter:1.7.0
 external-monitor-job:1.7
 generic-webhook-trigger:1.72
