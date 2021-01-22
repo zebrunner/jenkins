@@ -84,7 +84,7 @@ variant:1.4
 view-job-filters:2.3
 windows-slaves:1.7
 workflow-aggregator:2.6
-workflow-api:2.40
+workflow-api:2.41
 workflow-cps-global-lib:2.17
 workflow-job:2.40
 workflow-multibranch:2.22
