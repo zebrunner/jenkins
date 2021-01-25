@@ -94,7 +94,7 @@
     
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.83">
-    <script>@Library('Zebrunner-CE@1.4')
+    <script>@Library('Zebrunner-CE@master')
 import com.zebrunner.jenkins.pipeline.Repository;
 new Repository(this).register()</script>
     <sandbox>true</sandbox>
