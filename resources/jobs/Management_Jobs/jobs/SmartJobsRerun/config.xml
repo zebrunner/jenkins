@@ -80,12 +80,11 @@ owner</description>
     
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.86">
-    <script>@Library('Zebrunner-CE@1.3')
+    <script>@Library(&apos;Zebrunner-CE@master&apos;)
 import com.zebrunner.jenkins.pipeline.runner.maven.TestNG;
 new TestNG(this).rerunJobs()</script>
     <sandbox>true</sandbox>
   </definition>
   <triggers/>
-  <authToken>ciStart</authToken>
   <disabled>false</disabled>
 </flow-definition>
