@@ -79,7 +79,7 @@ structs:1.22
 subversion:2.13.2
 swarm:3.24
 timestamper:1.11.8
-token-macro:2.13
+token-macro:2.15
 variant:1.4
 view-job-filters:2.3
 windows-slaves:1.7
