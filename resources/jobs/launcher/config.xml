@@ -80,6 +80,5 @@ new com.zebrunner.jenkins.pipeline.runner.maven.TestNG(this).runJob()</script>
     <sandbox>true</sandbox>
   </definition>
   <triggers/>
-  <authToken>ciStart</authToken>
   <disabled>false</disabled>
 </flow-definition>
