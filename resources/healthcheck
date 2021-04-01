@@ -1,7 +1,8 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 # Run a curl against the Jenkins instance installed in a Dockerfile to do a basic health check
 
+#TODO: current implementation return 403 error as jenkins is secured by default. Need find better way to track state
 set -x
 
 CURL_MAX_TIME=15
