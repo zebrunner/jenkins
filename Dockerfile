@@ -59,6 +59,9 @@ RUN /usr/local/bin/mvn-entrypoint.sh
 
 USER jenkins
 
+RUN echo $JENKINS_VERSION > /usr/share/jenkins/ref/jenkins.install.UpgradeWizard.state \
+	&& echo $JENKINS_VERSION > /usr/share/jenkins/ref/jenkins.install.InstallUtil.lastExecVersion
+
 COPY resources/init.groovy.d/ /usr/share/jenkins/ref/init.groovy.d/
 COPY resources/jobs/ /usr/share/jenkins/ref/jobs/
 
