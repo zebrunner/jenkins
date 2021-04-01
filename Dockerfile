@@ -29,7 +29,7 @@ COPY resources/healthcheck /usr/local/bin/
 
 # Install utils
 RUN apt-get update && \
-	apt-get install -qqy iputils-ping telnet nano procps
+	apt-get install -qqy iputils-ping telnet nano procps netcat iputils-ping
 
 #======================
 # Install Apache Maven
