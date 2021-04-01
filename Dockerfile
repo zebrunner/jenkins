@@ -20,6 +20,8 @@ ENV SONAR_URL=
 
 USER root
 
+COPY resources/healthcheck /usr/local/bin/
+
 # Install Git
 
 # RUN apk update && apk upgrade && \
@@ -27,7 +29,7 @@ USER root
 
 # Install utils
 RUN apt-get update && \
-	apt-get install -qqy iputils-ping telnet nano procps
+	apt-get install -qqy iputils-ping telnet nano procps netcat iputils-ping
 
 #======================
 # Install Apache Maven
@@ -74,3 +76,5 @@ COPY resources/scripts/jenkins.sh /usr/local/bin/jenkins.sh
 
 COPY resources/configs/jp.ikedam.jenkins.plugins.extensible_choice_parameter.GlobalTextareaChoiceListProvider.xml /usr/share/jenkins/ref/
 COPY resources/configs/org.jenkinsci.plugins.workflow.libs.GlobalLibraries.xml /usr/share/jenkins/ref/
+
+HEALTHCHECK CMD ["healthcheck"]

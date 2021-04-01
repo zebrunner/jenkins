@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -eu pipefail
+
+#simple verification that we still listen on JENKINS_SLAVE_AGENT_PORT
+if nc -z localhost $JENKINS_SLAVE_AGENT_PORT; then
+	exit 0
+fi
+
+exit 1
+
