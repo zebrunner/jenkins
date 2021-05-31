@@ -24,11 +24,9 @@ services:
      - "JENKINS_MASTER_URL=http://jenkins-master:8080/jenkins"
      - "JENKINS_SLAVE_NAME=jenkins-slave"
      - "JENKINS_SLAVE_WORKERS=5"
-     - "JENKINS_SLAVE_LABELS=default maven gradle api web"
+     - "JENKINS_SLAVE_LABELS=default maven gradle"
     ports:
      - "8000:8000"
-    depends_on:
-     - "jenkins-master"
     restart: always
 #  jenkins-slave-docker:
 #    image: "zebrunner/jenkins-slave:${TAG_JENKINS_SLAVE}-docker"
@@ -42,8 +40,6 @@ services:
 #     - "JENKINS_SLAVE_LABELS=docker"
 #    volumes:
 #     - "/var/run/docker.sock:/var/run/docker.sock"
-#    depends_on:
-#     - "jenkins-master"
 #    restart: always
 volumes:
   data-volume:

@@ -1,4 +1,4 @@
-FROM jenkins/jenkins:2.267-jdk11
+FROM jenkins/jenkins:2.286-jdk11
 
 ENV ROOT_URL=http://localhost:8080/jenkins
 ENV ROOT_EMAIL=qps-auto@zebrunner.com
@@ -20,6 +20,8 @@ ENV SONAR_URL=
 
 USER root
 
+COPY resources/healthcheck /usr/local/bin/
+
 # Install Git
 
 # RUN apk update && apk upgrade && \
@@ -27,7 +29,7 @@ USER root
 
 # Install utils
 RUN apt-get update && \
-	apt-get install -qqy iputils-ping telnet nano procps
+	apt-get install -qqy iputils-ping telnet nano procps netcat iputils-ping
 
 #======================
 # Install Apache Maven
@@ -59,6 +61,9 @@ RUN /usr/local/bin/mvn-entrypoint.sh
 
 USER jenkins
 
+RUN echo $JENKINS_VERSION > /usr/share/jenkins/ref/jenkins.install.UpgradeWizard.state \
+	&& echo $JENKINS_VERSION > /usr/share/jenkins/ref/jenkins.install.InstallUtil.lastExecVersion
+
 COPY resources/init.groovy.d/ /usr/share/jenkins/ref/init.groovy.d/
 COPY resources/jobs/ /usr/share/jenkins/ref/jobs/
 
@@ -71,3 +76,5 @@ COPY resources/scripts/jenkins.sh /usr/local/bin/jenkins.sh
 
 COPY resources/configs/jp.ikedam.jenkins.plugins.extensible_choice_parameter.GlobalTextareaChoiceListProvider.xml /usr/share/jenkins/ref/
 COPY resources/configs/org.jenkinsci.plugins.workflow.libs.GlobalLibraries.xml /usr/share/jenkins/ref/
+
+HEALTHCHECK CMD ["healthcheck"]

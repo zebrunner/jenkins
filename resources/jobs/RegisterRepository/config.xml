@@ -100,6 +100,5 @@ new Repository(this).register()</script>
     <sandbox>true</sandbox>
   </definition>
   <triggers/>
-  <authToken>ciStart</authToken>
   <disabled>false</disabled>
 </flow-definition>
