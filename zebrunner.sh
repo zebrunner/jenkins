@@ -118,7 +118,7 @@
     #TODO: https://github.com/zebrunner/zebrunner/issues/328 organize debug logging for setup/replace
     file=$1
     #echo "file: $file"
-    content=$(<$file) # read the file's content into
+    content=$(<"$file") # read the file's content into
     #echo "content: $content"
 
     old=$2
@@ -129,8 +129,7 @@
     content=${content//"$old"/$new}
 
     #echo "content: $content"
-
-    printf '%s' "$content" >$file    # write new content to disk
+    printf '%s' "$content" >"$file"    # write new content to disk
   }
 
 
