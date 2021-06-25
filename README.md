@@ -1,17 +1,19 @@
 # Zebrunner CE - Jenkins Master Image
 
-### How to run
-```
-./zebrunner.sh start
-```
+Feel free to support the development with a [**donation**](https://www.paypal.com/donate?hosted_button_id=JLQ4U468TWQPS) for the next improvements.
 
-### How to authorize
-1. Open http://localhost:8080/jenkins
-2. Login using admin/changeit credentials
+<p align="center">
+  <a href="https://zebrunner.com/"><img alt="Zebrunner" src="./docs/img/zebrunner_intro.png"></a>
+</p>
 
-### How to use
-Follow installation and configuration guide in [Zebrunner CE](https://zebrunner.github.io/zebrunner) to reuse Jenkins image effectively for Test Automation.
+## Usage
+1. Clone [jenkins-master](https://github.com/zebrunner/jenkins-master) and start:
+   ```
+   git clone https://github.com/zebrunner/jenkins-master.git && cd jenkins-master && ./zebrunner.sh start
+   ```
+2. Open http://hostname:8080/jenkins
+3. Login using admin/changeit credentials
+> Follow installation and configuration guide in [Zebrunner CE](https://zebrunner.github.io/zebrunner) to reuse Jenkins image effectively for Test Automation.
 
 ## Manual deployment steps for 3rd party Jenkins Setup
-In order to configure existing Jenkins with automation Pipeline/JobDSL follow detailed [guide](https://github.com/qaprosoft/jenkins-master/blob/master/manual_deployment/README.md)
- 
+In order to configure existing Jenkins with automation Pipeline/JobDSL follow the detailed [guide](https://github.com/zebrunner/jenkins-master/blob/master/manual_deployment/README.md) 
