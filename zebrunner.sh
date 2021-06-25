@@ -5,11 +5,11 @@
     local url="$ZBR_PROTOCOL://$ZBR_HOSTNAME:$ZBR_PORT/jenkins"
 
     cp variables.env.original variables.env
-    sed -i "s#http://localhost:8080/jenkins#${url}#g" variables.env
-    sed -i "s#INFRA_HOST=localhost:8080#INFRA_HOST=${ZBR_INFRA_HOST}#g" variables.env
+    replace variables.env "http://localhost:8080/jenkins" "${url}"
+    replace variables.env "INFRA_HOST=localhost:8080" "INFRA_HOST=${ZBR_INFRA_HOST}"
 
     if [[ ! -z $ZBR_SONAR_URL ]]; then
-      sed -i "s#SONAR_URL=#SONAR_URL=${ZBR_SONAR_URL}#g" variables.env
+      replace variables.env "SONAR_URL=" "SONAR_URL=${ZBR_SONAR_URL}"
     fi
 
   }
@@ -62,7 +62,7 @@
     fi
 
     cp variables.env variables.env.bak
-    docker run --rm --volumes-from jenkins-master -v $(pwd)/backup:/var/backup "ubuntu" tar -czvf /var/backup/jenkins-master.tar.gz /var/jenkins_home
+    docker run --rm --volumes-from jenkins-master -v "$(pwd)"/backup:/var/backup "ubuntu" tar -czvf /var/backup/jenkins-master.tar.gz /var/jenkins_home
   }
 
   restore() {
@@ -72,7 +72,7 @@
 
     stop
     cp variables.env.bak variables.env
-    docker run --rm --volumes-from jenkins-master -v $(pwd)/backup:/var/backup "ubuntu" bash -c "cd / && tar -xzvf /var/backup/jenkins-master.tar.gz"
+    docker run --rm --volumes-from jenkins-master -v "$(pwd)"/backup:/var/backup "ubuntu" bash -c "cd / && tar -xzvf /var/backup/jenkins-master.tar.gz"
     down
   }
 
@@ -80,7 +80,7 @@
     if [[ -f .disabled ]]; then
       exit 0
     fi
-  
+ 
     source .env
     echo "jenkins-master: ${TAG_JENKINS_MASTER}"
   }
@@ -114,8 +114,27 @@
       exit 0
   }
 
+  replace() {
+    #TODO: https://github.com/zebrunner/zebrunner/issues/328 organize debug logging for setup/replace
+    file=$1
+    #echo "file: $file"
+    content=$(<"$file") # read the file's content into
+    #echo "content: $content"
+
+    old=$2
+    #echo "old: $old"
+
+    new=$3
+    #echo "new: $new"
+    content=${content//"$old"/$new}
+
+    #echo "content: $content"
+    printf '%s' "$content" >"$file"    # write new content to disk
+  }
+
+
 BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-cd ${BASEDIR}
+cd "${BASEDIR}" || exit
 
 case "$1" in
     setup)
