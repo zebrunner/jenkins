@@ -10,10 +10,10 @@ build-timeout:1.20
 build-user-vars-plugin:1.7
 categorized-view:1.11
 command-launcher:1.5
-config-file-provider:3.8.0
+config-file-provider:3.8.1
 copyartifact:1.46.1
 credentials:2.5
-credentials-binding:1.25
+credentials-binding:1.27
 docker-commons:1.17
 docker-workflow:1.26
 durable-task:1.37
@@ -23,7 +23,7 @@ external-monitor-job:1.7
 generic-webhook-trigger:1.72
 git-client:3.7.2
 github:1.33.1
-git-server:1.9
+git-server:1.10
 global-variable-string-parameter:1.2
 gradle:1.36
 h2-api:1.4.199
@@ -85,9 +85,9 @@ variant:1.4
 view-job-filters:2.3
 windows-slaves:1.7
 workflow-aggregator:2.6
-workflow-api:2.45
-workflow-cps-global-lib:2.19
+workflow-api:2.46
+workflow-cps-global-lib:2.21
 workflow-job:2.41
-workflow-multibranch:2.24
+workflow-multibranch:2.26
 workflow-scm-step:2.13
 ws-cleanup:0.39
