@@ -1,12 +1,19 @@
 #!/bin/bash
 
+# shellcheck disable=SC1091
+source patch/utility.sh
+
   setup() {
+    if [[ ! $ZBR_INSTALLER -eq 1 ]]; then
+      set_global_settings
+    fi
+
     # PREREQUISITES: valid values inside ZBR_PROTOCOL, ZBR_HOSTNAME and ZBR_PORT env vars!
     local url="$ZBR_PROTOCOL://$ZBR_HOSTNAME:$ZBR_PORT/jenkins"
 
     cp variables.env.original variables.env
     replace variables.env "http://localhost:8080/jenkins" "${url}"
-    replace variables.env "INFRA_HOST=localhost:8080" "INFRA_HOST=${ZBR_INFRA_HOST}"
+    replace variables.env "INFRA_HOST=localhost:8080" "INFRA_HOST=${ZBR_HOSTNAME}"
 
     if [[ ! -z $ZBR_SONAR_URL ]]; then
       replace variables.env "SONAR_URL=" "SONAR_URL=${ZBR_SONAR_URL}"
@@ -96,6 +103,40 @@
       "
   }
 
+  set_global_settings() {
+    # Setup global settings: protocol, hostname and port
+    echo "Zebrunner General Settings"
+    local is_confirmed=0
+    if [[ -z $ZBR_HOSTNAME ]]; then
+      ZBR_HOSTNAME=$HOSTNAME
+    fi
+
+    while [[ $is_confirmed -eq 0 ]]; do
+      read -r -p "Protocol [$ZBR_PROTOCOL]: " local_protocol
+      if [[ ! -z $local_protocol ]]; then
+        ZBR_PROTOCOL=$local_protocol
+      fi
+
+      read -r -p "Fully qualified domain name (ip) [$ZBR_HOSTNAME]: " local_hostname
+      if [[ ! -z $local_hostname ]]; then
+        ZBR_HOSTNAME=$local_hostname
+      fi
+
+      read -r -p "Port [$ZBR_PORT]: " local_port
+      if [[ ! -z $local_port ]]; then
+        ZBR_PORT=$local_port
+      fi
+
+      confirm "Zebrunner URL: $ZBR_PROTOCOL://$ZBR_HOSTNAME:$ZBR_PORT" "Continue?" "y"
+      is_confirmed=$?
+    done
+
+    export ZBR_PROTOCOL=$ZBR_PROTOCOL
+    export ZBR_HOSTNAME=$ZBR_HOSTNAME
+    export ZBR_PORT=$ZBR_PORT
+
+  }
+
   echo_help() {
     echo "
       Usage: ./zebrunner.sh [option]
@@ -138,12 +179,7 @@ cd "${BASEDIR}" || exit
 
 case "$1" in
     setup)
-        if [[ $ZBR_INSTALLER -eq 1 ]]; then
           setup
-        else
-          echo_warning "Setup procedure is supported only as part of Zebrunner Server (Community Edition)!"
-          echo_telegram
-        fi
         ;;
     start)
 	start
