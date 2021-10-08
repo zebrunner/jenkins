@@ -13,7 +13,7 @@ source patch/utility.sh
 
     cp variables.env.original variables.env
     replace variables.env "http://localhost:8080/jenkins" "${url}"
-    replace variables.env "INFRA_HOST=localhost:8080" "INFRA_HOST=${ZBR_HOSTNAME}"
+    replace variables.env "INFRA_HOST=localhost:8080" "INFRA_HOST=$ZBR_HOSTNAME:$ZBR_PORT"
 
     if [[ ! -z $ZBR_SONAR_URL ]]; then
       replace variables.env "SONAR_URL=" "SONAR_URL=${ZBR_SONAR_URL}"
