@@ -181,7 +181,7 @@ source patch/utility.sh
           ZBR_PORT=8443
       fi
 
-      confirm "Zebrunner URL: $ZBR_PROTOCOL://$ZBR_HOSTNAME:$ZBR_PORT" "Continue?" "y"
+      confirm "Zebrunner Jenkins URL: $ZBR_PROTOCOL://$ZBR_HOSTNAME:$ZBR_PORT/jenkins" "Continue?" "y"
       is_confirmed=$?
     done
 
