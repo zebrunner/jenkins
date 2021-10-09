@@ -4,7 +4,7 @@ ant:1.11
 antisamy-markup-formatter:2.1
 apache-httpcomponents-client-4-api:4.5.13-1.0
 authentication-tokens:1.4
-bouncycastle-api:2.25
+bouncycastle-api:2.20
 build-name-setter:2.1.0
 build-timeout:1.20
 build-user-vars-plugin:1.7
@@ -12,7 +12,7 @@ categorized-view:1.11
 command-launcher:1.5
 config-file-provider:3.8.1
 copyartifact:1.46.1
-credentials:2.6.1
+credentials:2.5
 credentials-binding:1.27
 docker-commons:1.17
 docker-workflow:1.26
@@ -21,7 +21,7 @@ email-ext:2.83
 extensible-choice-parameter:1.7.0
 external-monitor-job:1.7
 generic-webhook-trigger:1.72
-git-client:3.10.0
+git-client:3.7.2
 github:1.33.1
 git-server:1.10
 global-variable-string-parameter:1.2
@@ -31,7 +31,7 @@ handlebars:3.0.8
 hidden-parameter:0.0.4
 htmlpublisher:1.25
 http_request:1.8.27
-jackson2-api:2.12.4
+jackson2-api:2.12.3
 javadoc:1.6
 jaxb:2.3.0.1
 jdk-tool:1.5
@@ -56,9 +56,9 @@ pipeline-graph-analysis:1.11
 pipeline-input-step:2.12
 pipeline-maven:3.9.3
 pipeline-milestone-step:1.3.2
-pipeline-model-api:1.9.1
+pipeline-model-api:1.8.5
 pipeline-model-definition:1.8.5
-pipeline-model-extensions:1.9.1
+pipeline-model-extensions:1.8.5
 pipeline-stage-step:2.5
 pipeline-stage-tags-metadata:1.8.5
 pipeline-utility-steps:2.6.1
@@ -69,8 +69,8 @@ rebuild:1.32
 resource-disposer:0.16
 s3:0.11.6
 sbt:1.5
-scm-api:2.6.5
-script-security:1.78
+scm-api:2.6.4
+script-security:1.77
 slack:2.45
 sonar:2.13
 ssh-credentials:1.19
