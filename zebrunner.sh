@@ -32,6 +32,12 @@ source patch/utility.sh
       exit 0 #no need to proceed as nothing was configured
     fi
 
+    if [ ! -f .env ]; then
+      echo_warning "You have to setup services in advance using: ./zebrunner.sh setup"
+      echo_telegram
+      exit -1
+    fi
+
     docker-compose --env-file .env -f docker-compose.yml down -v
     rm -f variables.env
     rm -f .env
@@ -41,6 +47,12 @@ source patch/utility.sh
   start() {
     if [[ -f .disabled ]]; then
       exit 0
+    fi
+
+    if [ ! -f .env ]; then
+      echo_warning "You have to setup services in advance using: ./zebrunner.sh setup"
+      echo_telegram
+      exit -1
     fi
 
     # create infra network only if not exist
@@ -62,12 +74,24 @@ source patch/utility.sh
       exit 0
     fi
 
+    if [ ! -f .env ]; then
+      echo_warning "You have to setup services in advance using: ./zebrunner.sh setup"
+      echo_telegram
+      exit -1
+    fi
+
     docker-compose --env-file .env -f docker-compose.yml stop
   }
 
   down() {
     if [[ -f .disabled ]]; then
       exit 0
+    fi
+
+    if [ ! -f .env ]; then
+      echo_warning "You have to setup services in advance using: ./zebrunner.sh setup"
+      echo_telegram
+      exit -1
     fi
 
     docker-compose --env-file .env -f docker-compose.yml down
@@ -78,6 +102,12 @@ source patch/utility.sh
       exit 0
     fi
 
+    if [ ! -f .env ]; then
+      echo_warning "You have to setup services in advance using: ./zebrunner.sh setup"
+      echo_telegram
+      exit -1
+    fi
+
     cp .env .env.bak
     cp variables.env variables.env.bak
     docker run --rm --volumes-from jenkins-master -v "$(pwd)"/backup:/var/backup "ubuntu" tar -czvf /var/backup/jenkins-master.tar.gz /var/jenkins_home
@@ -86,6 +116,12 @@ source patch/utility.sh
   restore() {
     if [[ -f .disabled ]]; then
       exit 0
+    fi
+
+    if [ ! -f .env ]; then
+      echo_warning "You have to setup services in advance using: ./zebrunner.sh setup"
+      echo_telegram
+      exit -1
     fi
 
     stop
@@ -99,8 +135,13 @@ source patch/utility.sh
     if [[ -f .disabled ]]; then
       exit 0
     fi
- 
-    source .env
+
+    if [ -f .env ]; then
+      source .env
+    else
+      source .env.original
+    fi
+
     echo "jenkins-master: ${TAG_JENKINS_MASTER}"
   }
 
@@ -117,7 +158,7 @@ source patch/utility.sh
 
   set_global_settings() {
     # Setup global settings: protocol, hostname and port
-    echo "Zebrunner General Settings"
+    echo "Zebrunner Jenkins General Settings"
     local is_confirmed=0
     if [[ -z $ZBR_HOSTNAME ]]; then
       ZBR_HOSTNAME=$HOSTNAME
@@ -134,9 +175,10 @@ source patch/utility.sh
         ZBR_HOSTNAME=$local_hostname
       fi
 
-      read -r -p "Port [$ZBR_PORT]: " local_port
-      if [[ ! -z $local_port ]]; then
-        ZBR_PORT=$local_port
+      if [[ "$ZBR_PROTOCOL" == "http" ]]; then
+          ZBR_PORT=8080
+      else
+          ZBR_PORT=8443
       fi
 
       confirm "Zebrunner URL: $ZBR_PROTOCOL://$ZBR_HOSTNAME:$ZBR_PORT" "Continue?" "y"

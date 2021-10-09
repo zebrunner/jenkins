@@ -7,13 +7,14 @@ Feel free to support the development with a [**donation**](https://www.paypal.co
 </p>
 
 ## Usage
-1. Clone [jenkins-master](https://github.com/zebrunner/jenkins-master) and configure:
+1. Clone [jenkins-master](https://github.com/zebrunner/jenkins-master) and setup:
    ```
    git clone https://github.com/zebrunner/jenkins-master.git && cd jenkins-master && ./zebrunner.sh setup
    ```
-> Provide valid protocol, hostname and port values
-2. Start services `./zebrunner.sh start` and open `$ZBR_PROTOCOL://$ZBR_HOSTNAME:$ZBR_PORT/jenkins`
-3. Login using admin/changeit credentials
+> Provide valid protocol and hostname
+2. Start services `./zebrunner.sh start`
+3. Open `http://hostname:8080/jenkins` url for unsecured and `https://hostname:8443/jenkins` for secured protocol
+4. Login using admin/changeit credentials
 > Follow installation and configuration guide in [Zebrunner CE](https://zebrunner.github.io/zebrunner) to reuse Jenkins image effectively for Test Automation.
 
 ## Manual deployment steps for 3rd party Jenkins Setup
