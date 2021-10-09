@@ -27,7 +27,7 @@ source patch/utility.sh
       exit 0 #no need to proceed as nothing was configured
     fi
 
-    if [ ! -f variable.env ]; then
+    if [ ! -f variables.env ]; then
       echo_warning "You have to setup services in advance using: ./zebrunner.sh setup"
       echo_telegram
       exit -1
@@ -43,7 +43,7 @@ source patch/utility.sh
       exit 0
     fi
 
-    if [ ! -f variable.env ]; then
+    if [ ! -f variables.env ]; then
       echo_warning "You have to setup services in advance using: ./zebrunner.sh setup"
       echo_telegram
       exit -1
@@ -64,7 +64,7 @@ source patch/utility.sh
       exit 0
     fi
 
-    if [ ! -f variable.env ]; then
+    if [ ! -f variables.env ]; then
       echo_warning "You have to setup services in advance using: ./zebrunner.sh setup"
       echo_telegram
       exit -1
@@ -78,7 +78,7 @@ source patch/utility.sh
       exit 0
     fi
 
-    if [ ! -f variable.env ]; then
+    if [ ! -f variables.env ]; then
       echo_warning "You have to setup services in advance using: ./zebrunner.sh setup"
       echo_telegram
       exit -1
@@ -92,7 +92,7 @@ source patch/utility.sh
       exit 0
     fi
 
-    if [ ! -f variable.env ]; then
+    if [ ! -f variables.env ]; then
       echo_warning "You have to setup services in advance using: ./zebrunner.sh setup"
       echo_telegram
       exit -1
@@ -107,7 +107,7 @@ source patch/utility.sh
       exit 0
     fi
 
-    if [ ! -f variable.env ]; then
+    if [ ! -f variables.env ]; then
       echo_warning "You have to setup services in advance using: ./zebrunner.sh setup"
       echo_telegram
       exit -1
