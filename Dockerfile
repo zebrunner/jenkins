@@ -1,4 +1,4 @@
-FROM jenkins/jenkins:2.301-jdk11
+FROM jenkins/jenkins:2.315-jdk11
 
 ENV ROOT_URL=http://localhost:8080/jenkins
 ENV ROOT_EMAIL=qps-auto@zebrunner.com
