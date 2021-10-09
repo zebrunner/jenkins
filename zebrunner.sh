@@ -11,6 +11,11 @@ source patch/utility.sh
     # PREREQUISITES: valid values inside ZBR_PROTOCOL, ZBR_HOSTNAME and ZBR_PORT env vars!
     local url="$ZBR_PROTOCOL://$ZBR_HOSTNAME:$ZBR_PORT/jenkins"
 
+    cp .env.original .env
+    if [[ "$ZBR_PROTOCOL" == "https" ]]; then
+      replace .env "ZBR_JENKINS_PORT=8080" "ZBR_JENKINS_PORT=8443"
+    fi
+
     cp variables.env.original variables.env
     replace variables.env "http://localhost:8080/jenkins" "${url}"
     replace variables.env "INFRA_HOST=localhost:8080" "INFRA_HOST=$ZBR_HOSTNAME:$ZBR_PORT"
@@ -29,6 +34,7 @@ source patch/utility.sh
 
     docker-compose --env-file .env -f docker-compose.yml down -v
     rm -f variables.env
+    rm -f .env
   }
 
 
@@ -39,6 +45,10 @@ source patch/utility.sh
 
     # create infra network only if not exist
     docker network inspect infra >/dev/null 2>&1 || docker network create infra
+
+    if [[ ! -f .env ]]; then
+      cp .env.original .env
+    fi
 
     if [[ ! -f variables.env ]]; then
       cp variables.env.original variables.env
@@ -68,6 +78,7 @@ source patch/utility.sh
       exit 0
     fi
 
+    cp .env .env.bak
     cp variables.env variables.env.bak
     docker run --rm --volumes-from jenkins-master -v "$(pwd)"/backup:/var/backup "ubuntu" tar -czvf /var/backup/jenkins-master.tar.gz /var/jenkins_home
   }
@@ -78,6 +89,7 @@ source patch/utility.sh
     fi
 
     stop
+    cp .env.bak .env
     cp variables.env.bak variables.env
     docker run --rm --volumes-from jenkins-master -v "$(pwd)"/backup:/var/backup "ubuntu" bash -c "cd / && tar -xzvf /var/backup/jenkins-master.tar.gz"
     down

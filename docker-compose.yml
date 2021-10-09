@@ -13,7 +13,7 @@ services:
      - "data-volume:/var/jenkins_home:rw"
      - "./resources/ssl/cacerts:/opt/java/openjdk/lib/security/cacerts"
     ports:
-     - "8080:8080"
+     - "${ZBR_JENKINS_PORT}:${ZBR_JENKINS_PORT}"
      - "50000:50000"
     restart: always
   jenkins-slave:
