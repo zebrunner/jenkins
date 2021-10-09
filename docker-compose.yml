@@ -11,6 +11,7 @@ services:
       - variables.env
     volumes:
      - "data-volume:/var/jenkins_home:rw"
+     - "./resource/cacerts:/opt/java/openjdk/lib/security/cacerts"
     ports:
      - "8080:8080"
      - "50000:50000"
