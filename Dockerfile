@@ -72,7 +72,7 @@ COPY resources/configs/plugins.txt /usr/share/jenkins/ref/
 RUN /bin/jenkins-plugin-cli --plugin-file /usr/share/jenkins/ref/plugins.txt
 
 # Copy default keystore.jks with self-signed localhost certificate
-COPY resources/ssl/keystore.jks /usr/share/jenkins/
+COPY resources/ssl/keystore.jks /var/jenkins_home
 
 # override default jenkins.sh to be able to upload extra plugins on startup
 COPY resources/scripts/jenkins.sh /usr/local/bin/jenkins.sh
