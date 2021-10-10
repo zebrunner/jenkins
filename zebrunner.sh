@@ -114,6 +114,7 @@ source patch/utility.sh
       exit -1
     fi
 
+    cp backup/settings.env backup/settings.env.bak
     cp variables.env variables.env.bak
     docker run --rm --volumes-from jenkins-master -v "$(pwd)"/backup:/var/backup "ubuntu" tar -czvf /var/backup/jenkins-master.tar.gz /var/jenkins_home
   }
@@ -130,6 +131,7 @@ source patch/utility.sh
     fi
 
     stop
+    cp backup/settings.env.bak backup/settings.env
     cp variables.env.bak variables.env
     docker run --rm --volumes-from jenkins-master -v "$(pwd)"/backup:/var/backup "ubuntu" bash -c "cd / && tar -xzvf /var/backup/jenkins-master.tar.gz"
     down
