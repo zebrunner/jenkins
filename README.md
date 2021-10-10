@@ -11,7 +11,7 @@ Feel free to support the development with a [**donation**](https://www.paypal.co
    ```
    git clone https://github.com/zebrunner/jenkins-master.git && cd jenkins-master && ./zebrunner.sh setup
    ```
-> Provide valid protocol and hostname
+   > Provide valid protocol and hostname
 2. Start services `./zebrunner.sh start`
 3. Open `http://hostname:8080/jenkins` url for unsecured and `https://hostname:8443/jenkins` for secured protocol
 4. Login using admin/changeit credentials
