@@ -11,7 +11,7 @@ services:
       - variables.env
     volumes:
      - "data-volume:/var/jenkins_home:rw"
-     - "./resources/ssl/cacerts:/opt/java/openjdk/lib/security/cacerts"
+     - "./resources/ssl/keystore.jks:/var/jenkins_home/keystore.jks"
     ports:
      - "8080:8080"
      - "8443:8443"
@@ -22,8 +22,6 @@ services:
     container_name: jenkins-slave
     env_file:
       - variables.env
-    volumes:
-     - "./resources/ssl/cacerts:/etc/ssl/certs/java/cacerts"
     environment:
      - "JENKINS_MASTER_URL=http://jenkins-master:8080/jenkins"
      - "JENKINS_SLAVE_NAME=jenkins-slave"
@@ -44,7 +42,6 @@ services:
 #     - "JENKINS_SLAVE_LABELS=docker"
 #    volumes:
 #     - "/var/run/docker.sock:/var/run/docker.sock"
-#     - "./resources/ssl/cacerts:/etc/ssl/certs/java/cacerts"
 #    restart: always
 volumes:
   data-volume:

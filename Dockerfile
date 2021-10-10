@@ -10,7 +10,7 @@ ENV INFRA_HOST=localhost
 ENV ZEBRUNNER_PIPELINE=https://github.com/zebrunner/pipeline-ce.git
 ENV ZEBRUNNER_VERSION=1.1
 ENV ZEBRUNNER_LOG_LEVEL=INFO
-ENV JENKINS_OPTS="--prefix=/jenkins --httpPort=8080 --httpsPort=8443"
+ENV JENKINS_OPTS="--prefix=/jenkins --httpPort=8080 --httpsPort=8443 --httpsKeyStore=/var/jenkins_home/keystore.jks --httpsKeyStorePassword=password"
 ENV JAVA_OPTS="-Dhudson.model.ParametersAction.keepUndefinedParameters=true"
 ENV AWS_KEY=CHANGE_ME
 ENV AWS_SECRET=CHANGE_ME
