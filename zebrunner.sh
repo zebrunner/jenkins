@@ -50,6 +50,7 @@ source patch/utility.sh
 
     docker-compose --env-file .env -f docker-compose.yml down -v
     rm -f variables.env
+    rm -f backup/settings.env
   }
 
 
@@ -179,13 +180,13 @@ source patch/utility.sh
           ZBR_JENKINS_PORT=8443
       fi
 
-      confirm "Zebrunner Jenkins URL: $ZBR_PROTOCOL://$ZBR_HOSTNAME:$ZBR_PORT/jenkins" "Continue?" "y"
+      confirm "Zebrunner Jenkins URL: $ZBR_PROTOCOL://$ZBR_HOSTNAME:$ZBR_JENKINS_PORT/jenkins" "Continue?" "y"
       is_confirmed=$?
     done
 
     export ZBR_PROTOCOL=$ZBR_PROTOCOL
     export ZBR_HOSTNAME=$ZBR_HOSTNAME
-    export ZBR_PORT=$ZBR_PORT
+    export ZBR_JENKINS_PORT=$ZBR_JENKINS_PORT
 
   }
 
