@@ -13,16 +13,20 @@ source patch/utility.sh
       source backup/settings.env
     fi
 
-    if [[ ! $ZBR_INSTALLER -eq 1 ]]; then
-      set_global_settings
+    if [[ $ZBR_INSTALLER -eq 1 ]]; then
+      # Zebrunner CE installer
+      # PREREQUISITES: valid values inside ZBR_PROTOCOL, ZBR_HOSTNAME and ZBR_PORT env vars!
+      url="$ZBR_PROTOCOL://$ZBR_HOSTNAME:$ZBR_PORT/jenkins"
+      host="$ZBR_HOSTNAME:$ZBR_PORT"
+    else
+      set_jenkins_settings
+      url="$ZBR_PROTOCOL://$ZBR_HOSTNAME:$ZBR_JENKINS_PORT/jenkins"
+      host="$ZBR_HOSTNAME:$ZBR_JENKINS_PORT"
     fi
-
-    # PREREQUISITES: valid values inside ZBR_PROTOCOL, ZBR_HOSTNAME and ZBR_PORT env vars!
-    local url="$ZBR_PROTOCOL://$ZBR_HOSTNAME:$ZBR_PORT/jenkins"
 
     cp variables.env.original variables.env
     replace variables.env "http://localhost:8080/jenkins" "${url}"
-    replace variables.env "INFRA_HOST=localhost:8080" "INFRA_HOST=$ZBR_HOSTNAME:$ZBR_PORT"
+    replace variables.env "INFRA_HOST=localhost:8080" "INFRA_HOST=${host}"
 
     if [[ ! -z $ZBR_SONAR_URL ]]; then
       replace variables.env "SONAR_URL=" "SONAR_URL=${ZBR_SONAR_URL}"
@@ -150,7 +154,7 @@ source patch/utility.sh
       "
   }
 
-  set_global_settings() {
+  set_jenkins_settings() {
     # Setup global settings: protocol, hostname and port
     echo "Zebrunner Jenkins General Settings"
     local is_confirmed=0
@@ -170,9 +174,9 @@ source patch/utility.sh
       fi
 
       if [[ "$ZBR_PROTOCOL" == "http" ]]; then
-          ZBR_PORT=8080
+          ZBR_JENKINS_PORT=8080
       else
-          ZBR_PORT=8443
+          ZBR_JENKINS_PORT=8443
       fi
 
       confirm "Zebrunner Jenkins URL: $ZBR_PROTOCOL://$ZBR_HOSTNAME:$ZBR_PORT/jenkins" "Continue?" "y"
