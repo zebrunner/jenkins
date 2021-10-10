@@ -4,6 +4,15 @@
 source patch/utility.sh
 
   setup() {
+    # load default interactive installer settings
+    # shellcheck disable=SC1091
+    source backup/settings.env.original
+
+    # load ./backup/settings.env if exist to declare ZBR* vars from previous run!
+    if [[ -f backup/settings.env ]]; then
+      source backup/settings.env
+    fi
+
     if [[ ! $ZBR_INSTALLER -eq 1 ]]; then
       set_global_settings
     fi
@@ -19,6 +28,8 @@ source patch/utility.sh
       replace variables.env "SONAR_URL=" "SONAR_URL=${ZBR_SONAR_URL}"
     fi
 
+    # export all ZBR* variables to save user input
+    export_settings
   }
 
   shutdown() {
@@ -144,7 +155,7 @@ source patch/utility.sh
     echo "Zebrunner Jenkins General Settings"
     local is_confirmed=0
     if [[ -z $ZBR_HOSTNAME ]]; then
-      ZBR_HOSTNAME=$HOSTNAME
+      ZBR_HOSTNAME=`curl -s ifconfig.me`
     fi
 
     while [[ $is_confirmed -eq 0 ]]; do
