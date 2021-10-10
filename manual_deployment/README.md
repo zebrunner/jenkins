@@ -122,4 +122,4 @@
   Note: make sure you have slaves with "api" and "web" labels<br>
   -> Verify that runs are registered successfully in Reporting Tool
   
-* Follow [Configuration](https://zebrunner.github.io/zebrunner/config-guide/) and [User](https://zebrunner.github.io/zebrunner/user-guide/) guides to setup CI/CD process for Test Automation.
+* Follow [Configuration](https://zebrunner.github.io/community-edition/config-guide/) and [User](https://zebrunner.github.io/community-edition/user-guide/) guides to setup CI/CD process for Test Automation.
