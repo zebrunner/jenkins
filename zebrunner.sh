@@ -4,21 +4,21 @@
 source patch/utility.sh
 
   setup() {
-    # load default interactive installer settings
-    # shellcheck disable=SC1091
-    source backup/settings.env.original
-
-    # load ./backup/settings.env if exist to declare ZBR* vars from previous run!
-    if [[ -f backup/settings.env ]]; then
-      source backup/settings.env
-    fi
-
     if [[ $ZBR_INSTALLER -eq 1 ]]; then
       # Zebrunner CE installer
       # PREREQUISITES: valid values inside ZBR_PROTOCOL, ZBR_HOSTNAME and ZBR_PORT env vars!
       url="$ZBR_PROTOCOL://$ZBR_HOSTNAME:$ZBR_PORT/jenkins"
       host="$ZBR_HOSTNAME:$ZBR_PORT"
     else
+      # load default interactive installer settings
+      # shellcheck disable=SC1091
+      source backup/settings.env.original
+
+      # load ./backup/settings.env if exist to declare ZBR* vars from previous run!
+      if [[ -f backup/settings.env ]]; then
+        source backup/settings.env
+      fi
+
       set_jenkins_settings
       url="$ZBR_PROTOCOL://$ZBR_HOSTNAME:$ZBR_JENKINS_PORT/jenkins"
       host="$ZBR_HOSTNAME:$ZBR_JENKINS_PORT"
