@@ -13,6 +13,7 @@ services:
      - "data-volume:/var/jenkins_home:rw"
     ports:
      - "8080:8080"
+     - "8443:8443"
      - "50000:50000"
     restart: always
   jenkins-slave:

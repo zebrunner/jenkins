@@ -1,4 +1,4 @@
-FROM jenkins/jenkins:2.301-jdk11
+FROM jenkins/jenkins:2.306-jdk11
 
 ENV ROOT_URL=http://localhost:8080/jenkins
 ENV ROOT_EMAIL=qps-auto@zebrunner.com
@@ -10,7 +10,7 @@ ENV INFRA_HOST=localhost
 ENV ZEBRUNNER_PIPELINE=https://github.com/zebrunner/pipeline-ce.git
 ENV ZEBRUNNER_VERSION=1.1
 ENV ZEBRUNNER_LOG_LEVEL=INFO
-ENV JENKINS_OPTS="--prefix=/jenkins --httpPort=8080"
+ENV JENKINS_OPTS="--prefix=/jenkins --httpPort=8080 --httpsPort=8443 --httpsKeyStore=/var/jenkins_home/keystore.jks --httpsKeyStorePassword=password"
 ENV JAVA_OPTS="-Dhudson.model.ParametersAction.keepUndefinedParameters=true"
 ENV AWS_KEY=CHANGE_ME
 ENV AWS_SECRET=CHANGE_ME
@@ -70,6 +70,9 @@ COPY resources/jobs/ /usr/share/jenkins/ref/jobs/
 # Configure plugins
 COPY resources/configs/plugins.txt /usr/share/jenkins/ref/
 RUN /bin/jenkins-plugin-cli --plugin-file /usr/share/jenkins/ref/plugins.txt
+
+# Copy default keystore.jks with self-signed localhost certificate
+COPY resources/ssl/keystore.jks /var/jenkins_home
 
 # override default jenkins.sh to be able to upload extra plugins on startup
 COPY resources/scripts/jenkins.sh /usr/local/bin/jenkins.sh

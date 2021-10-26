@@ -7,13 +7,15 @@ Feel free to support the development with a [**donation**](https://www.paypal.co
 </p>
 
 ## Usage
-1. Clone [jenkins-master](https://github.com/zebrunner/jenkins-master) and start:
+1. Clone [jenkins-master](https://github.com/zebrunner/jenkins-master) and setup:
    ```
-   git clone https://github.com/zebrunner/jenkins-master.git && cd jenkins-master && ./zebrunner.sh start
+   git clone https://github.com/zebrunner/jenkins-master.git && cd jenkins-master && ./zebrunner.sh setup
    ```
-2. Open http://hostname:8080/jenkins
-3. Login using admin/changeit credentials
-> Follow installation and configuration guide in [Zebrunner CE](https://zebrunner.github.io/zebrunner) to reuse Jenkins image effectively for Test Automation.
+   > Provide valid protocol and hostname
+2. Start services `./zebrunner.sh start`
+3. Open `http://hostname:8080/jenkins` url for unsecured and `https://hostname:8443/jenkins` for secured protocol
+4. Login using admin/changeit credentials
+> Follow installation and configuration guide in [Zebrunner CE](https://zebrunner.github.io/community-edition) to reuse Jenkins image effectively for Test Automation.
 
 ## Manual deployment steps for 3rd party Jenkins Setup
 In order to configure existing Jenkins with automation Pipeline/JobDSL follow the detailed [guide](https://github.com/zebrunner/jenkins-master/blob/master/manual_deployment/README.md) 
