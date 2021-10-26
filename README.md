@@ -14,7 +14,7 @@ Feel free to support the development with a [**donation**](https://www.paypal.co
    > Provide valid protocol and hostname
 2. Start services `./zebrunner.sh start`
 3. Open `http://hostname:8080/jenkins` url for unsecured and `https://hostname:8443/jenkins` for secured protocol
-4. Login using admin/changeit credentials
+   > Login using admin/changeit credentials
 > Follow installation and configuration guide in [Zebrunner CE](https://zebrunner.github.io/community-edition) to reuse Jenkins image effectively for Test Automation.
 
 ## Manual deployment steps for 3rd party Jenkins Setup
