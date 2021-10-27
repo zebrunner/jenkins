@@ -18,4 +18,12 @@ Feel free to support the development with a [**donation**](https://www.paypal.co
 > Follow installation and configuration guide in [Zebrunner CE](https://zebrunner.github.io/community-edition) to reuse Jenkins image effectively for Test Automation.
 
 ## Manual deployment steps for 3rd party Jenkins Setup
-In order to configure existing Jenkins with automation Pipeline/JobDSL follow the detailed [guide](https://github.com/zebrunner/jenkins-master/blob/master/manual_deployment/README.md) 
+In order to configure existing Jenkins with automation Pipeline/JobDSL follow the detailed [guide](https://github.com/zebrunner/jenkins-master/blob/master/manual_deployment/README.md)
+
+## Documentation and free support
+* [Zebrunner PRO](https://zebrunner.com)
+* [Zebrunner CE](https://zebrunner.github.io/community-edition)
+* [Zebrunner Reporting](https://zebrunner.com/documentation)
+* [Carina Guide](http://zebrunner.github.io/carina)
+* [Demo Project](https://github.com/zebrunner/carina-demo)
+* [Telegram Channel](https://t.me/zebrunner)
