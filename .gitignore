@@ -2,6 +2,8 @@
 *.bak
 variables.env
 backup/settings.env
+variables.env_*
+.env_*
 backup/*.tar.gz
 .disabled
 

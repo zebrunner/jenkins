@@ -24,12 +24,33 @@ source patch/utility.sh
       host="$ZBR_HOSTNAME:$ZBR_JENKINS_PORT"
     fi
 
+    # load current variables.env if exist to read actual vars even manually updated!
+    if [[ -f variables.env ]]; then
+      source variables.env
+    fi
+
     cp variables.env.original variables.env
     replace variables.env "http://localhost:8080/jenkins" "${url}"
     replace variables.env "INFRA_HOST=localhost:8080" "INFRA_HOST=${host}"
 
     if [[ ! -z $ZBR_SONAR_URL ]]; then
       replace variables.env "SONAR_URL=" "SONAR_URL=${ZBR_SONAR_URL}"
+    fi
+
+    replace variables.env "ADMIN_USER=admin" "ADMIN_USER=${ADMIN_USER}"
+    replace variables.env "ADMIN_PASS=changeit" "ADMIN_PASS=${ADMIN_PASS}"
+    replace variables.env "ROOT_EMAIL=qps-auto@qaprosoft.com" "ROOT_EMAIL=${ROOT_EMAIL}"
+    replace variables.env "ADMIN_EMAILS=qps-auto@qaprosoft.com" "ADMIN_EMAILS=${ADMIN_EMAILS}"
+    replace variables.env "JENKINS_MASTER_USERNAME=admin" "JENKINS_MASTER_USERNAME=${JENKINS_MASTER_USERNAME}"
+    replace variables.env "JENKINS_MASTER_PASSWORD=changeit" "JENKINS_MASTER_PASSWORD=${JENKINS_MASTER_PASSWORD}"
+
+    echo >> variables.env
+    if [[ ! -z $JENKINS_OPTS ]]; then
+      echo "JENKINS_OPTS=\"${JENKINS_OPTS}\"" >> variables.env
+    fi
+
+    if [[ ! -z $JAVA_OPTS ]]; then
+      echo "JAVA_OPTS=\"${JAVA_OPTS}\"" >> variables.env
     fi
 
     # export all ZBR* variables to save user input
