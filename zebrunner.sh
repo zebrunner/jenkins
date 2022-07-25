@@ -24,7 +24,7 @@ source patch/utility.sh
       host="$ZBR_HOSTNAME:$ZBR_JENKINS_PORT"
     fi
 
-    source source variables.env.original
+    source variables.env.original
     # load current variables.env if exist to read actual vars even manually updated!
     if [[ -f variables.env ]]; then
       source variables.env
