@@ -4,6 +4,12 @@
 source patch/utility.sh
 
   setup() {
+    source variables.env.original
+    # load current variables.env if exist to read actual vars even manually updated!
+    if [[ -f variables.env ]]; then
+      source variables.env
+    fi
+
     if [[ $ZBR_INSTALLER -eq 1 ]]; then
       # Zebrunner CE installer
       # PREREQUISITES: valid values inside ZBR_PROTOCOL, ZBR_HOSTNAME and ZBR_PORT env vars!
@@ -22,12 +28,6 @@ source patch/utility.sh
       set_jenkins_settings
       url="$ZBR_PROTOCOL://$ZBR_HOSTNAME:$ZBR_JENKINS_PORT/jenkins"
       host="$ZBR_HOSTNAME:$ZBR_JENKINS_PORT"
-    fi
-
-    source variables.env.original
-    # load current variables.env if exist to read actual vars even manually updated!
-    if [[ -f variables.env ]]; then
-      source variables.env
     fi
 
     cp variables.env.original variables.env
