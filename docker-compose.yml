@@ -5,7 +5,7 @@ networks:
       name: infra
 services:
   jenkins-master:
-    image: "zebrunner/jenkins-master:${TAG_JENKINS_MASTER}"
+    image: "public.ecr.aws/zebrunner/jenkins-master:${TAG_JENKINS_MASTER}"
     container_name: jenkins-master
     env_file:
       - variables.env
