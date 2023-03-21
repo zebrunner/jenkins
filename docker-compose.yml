@@ -30,7 +30,7 @@ services:
      - "8000:8000"
     restart: always
 #  jenkins-slave-docker:
-#    image: "zebrunner/jenkins-slave:${TAG_JENKINS_SLAVE}-docker"
+#    image: "public.ecr.aws/zebrunner/jenkins-slave:${TAG_JENKINS_SLAVE}-docker"
 #    container_name: jenkins-slave-docker
 #    env_file:
 #      - variables.env
