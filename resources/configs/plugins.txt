@@ -1,4 +1,3 @@
-PrioritySorter:4.1.0
 ansicolor:1.0.2
 ant:481.v7b_09e538fcca
 antisamy-markup-formatter:155.v795fb_8702324
@@ -108,6 +107,7 @@ plain-credentials:143.v1b_df8b_d3b_e48
 plugin-util-api:2.20.0
 popper-api:1.16.1-3
 popper2-api:2.11.6-2
+PrioritySorter:4.1.0
 random-string-parameter:1.0
 rebuild:1.34
 resource-disposer:0.20
