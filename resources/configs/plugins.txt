@@ -3,21 +3,6 @@ ant:481.v7b_09e538fcca
 antisamy-markup-formatter:155.v795fb_8702324
 apache-httpcomponents-client-4-api:4.5.13-138.v4e7d9a_7b_a_e61
 authentication-tokens:1.4
-aws-credentials:191.vcb_f183ce58b_9
-aws-java-sdk:1.12.397-362.v050e9394cf8e
-aws-java-sdk-cloudformation:1.12.397-362.v050e9394cf8e
-aws-java-sdk-codebuild:1.12.397-362.v050e9394cf8e
-aws-java-sdk-ec2:1.12.397-362.v050e9394cf8e
-aws-java-sdk-ecr:1.12.397-362.v050e9394cf8e
-aws-java-sdk-ecs:1.12.397-362.v050e9394cf8e
-aws-java-sdk-efs:1.12.397-362.v050e9394cf8e
-aws-java-sdk-elasticbeanstalk:1.12.397-362.v050e9394cf8e
-aws-java-sdk-iam:1.12.397-362.v050e9394cf8e
-aws-java-sdk-logs:1.12.397-362.v050e9394cf8e
-aws-java-sdk-minimal:1.12.397-362.v050e9394cf8e
-aws-java-sdk-sns:1.12.397-362.v050e9394cf8e
-aws-java-sdk-sqs:1.12.397-362.v050e9394cf8e
-aws-java-sdk-ssm:1.12.397-362.v050e9394cf8e
 bootstrap4-api:4.6.0-5
 bootstrap5-api:5.2.1-3
 bouncycastle-api:2.27
@@ -87,7 +72,6 @@ okhttp-api:4.9.3-108.v0feda04578cf
 ownership:0.13.0
 pam-auth:1.10
 parameterized-trigger:2.45
-pipeline-aws:1.43
 pipeline-build-step:2.18
 pipeline-github-lib:38.v445716ea_edda_
 pipeline-graph-analysis:202.va_d268e64deb_3
@@ -112,7 +96,6 @@ random-string-parameter:1.0
 rebuild:1.34
 resource-disposer:0.20
 run-condition:1.5
-s3:0.12.3436.v674b_46258039
 saml:4.385.v4dea_91565e9d
 sbt:81.vb_82499046630
 scm-api:631.v9143df5b_e4a_a
