@@ -120,5 +120,16 @@ envVars.put("ZEBRUNNER_PIPELINE", zbrPipelineURL)
 println "Put Zebrunner Pipeline version: " + zbrPipelineVersion
 envVars.put("ZEBRUNNER_VERSION", zbrPipelineVersion)
 
+
+// TODO: Decommission usage of master label.
+//  https://github.com/zebrunner/pipeline-ce/issues/291
+//  Due to new Jenkins policy of development we need to eventually remove label named "master"
+
+// Adds label "master" to the 'built-in' node if this label was not added
+def labels = instance.getLabelString()
+if (!labels.find("(\\s|\\G)(master)(\\s|\\z)")) {
+  instance.setLabelString("master" + " " + labels)
+}
+
 // Save the state
 instance.save()
