@@ -31,7 +31,6 @@
           <description>List of integration selenium hub providers</description>
           <choices class="java.util.Arrays$ArrayList">
             <a class="string-array">
-              <string>selenium</string>
               <string>mcloud</string>
               <string>zebrunner</string>
               <string>aerokube</string>
