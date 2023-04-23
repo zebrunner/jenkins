@@ -76,6 +76,9 @@ if(!envVars.containsKey("JENKINS_SECURITY_INITIALIZED") || "false".equalsIgnoreC
   println "SONAR_URL: " + sonarUrl
   envVars.put("SONAR_URL", sonarUrl)
 
+  // #388 declare new SONAR_TOKEN global env var
+  envVars.put("SONAR_TOKEN", "")
+
   // #166: NPE during disabling CLI: java.lang.NullPointerException: Cannot invoke method get() on null object
   // Commented below obsolete codeline
   //instance.getDescriptor("jenkins.CLI").get().setEnabled(false)
