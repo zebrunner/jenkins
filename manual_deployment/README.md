@@ -26,7 +26,7 @@
 * Open Manage Jenkins -> Configure System
 * Add into the <b>Global Pipeline Libraries</b> Zebrunner-CE entry
   * Name: Zebrunner-CE
-  * Default version: master
+  * Default version: main
   * Load implicitly: false
   * Allow default version to be overridden: true
   * Include @Library changes in job recent changes: false
@@ -113,7 +113,7 @@
   pipelineLibrary: Zebrunner-CE
   runnerClass: com.zebrunner.jenkins.pipeline.runner.maven.TestNG
   repoUrl: https://github.com/qaprosoft/carina-demo.git
-  branch: master
+  branch: main
   scmUser:
   scmToken:
   ```
