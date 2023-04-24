@@ -5,7 +5,7 @@ networks:
       name: infra
 services:
   jenkins-master:
-    image: "zebrunner/jenkins-master:${TAG_JENKINS_MASTER}"
+    image: "public.ecr.aws/zebrunner/jenkins-master:${TAG_JENKINS_MASTER}"
     container_name: jenkins-master
     env_file:
       - variables.env
@@ -17,7 +17,7 @@ services:
      - "50000:50000"
     restart: always
   jenkins-slave:
-    image: "zebrunner/jenkins-slave:${TAG_JENKINS_SLAVE}"
+    image: "public.ecr.aws/zebrunner/jenkins-slave:${TAG_JENKINS_SLAVE}"
     container_name: jenkins-slave
     env_file:
       - variables.env
@@ -30,7 +30,7 @@ services:
      - "8000:8000"
     restart: always
 #  jenkins-slave-docker:
-#    image: "zebrunner/jenkins-slave:${TAG_JENKINS_SLAVE}-docker"
+#    image: "public.ecr.aws/zebrunner/jenkins-slave:${TAG_JENKINS_SLAVE}-docker"
 #    container_name: jenkins-slave-docker
 #    env_file:
 #      - variables.env

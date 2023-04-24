@@ -76,6 +76,9 @@ if(!envVars.containsKey("JENKINS_SECURITY_INITIALIZED") || "false".equalsIgnoreC
   println "SONAR_URL: " + sonarUrl
   envVars.put("SONAR_URL", sonarUrl)
 
+  // #388 declare new SONAR_TOKEN global env var
+  envVars.put("SONAR_TOKEN", "")
+
   // #166: NPE during disabling CLI: java.lang.NullPointerException: Cannot invoke method get() on null object
   // Commented below obsolete codeline
   //instance.getDescriptor("jenkins.CLI").get().setEnabled(false)
@@ -119,6 +122,17 @@ envVars.put("ZEBRUNNER_PIPELINE", zbrPipelineURL)
 
 println "Put Zebrunner Pipeline version: " + zbrPipelineVersion
 envVars.put("ZEBRUNNER_VERSION", zbrPipelineVersion)
+
+
+// TODO: Decommission usage of master label.
+//  https://github.com/zebrunner/pipeline-ce/issues/291
+//  Due to new Jenkins policy of development we need to eventually remove label named "master"
+
+// Adds label "master" to the 'built-in' node if this label was not added
+def labels = instance.getLabelString()
+if (!labels.find("(\\s|\\G)(master)(\\s|\\z)")) {
+  instance.setLabelString("master" + " " + labels)
+}
 
 // Save the state
 instance.save()
