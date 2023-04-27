@@ -57,7 +57,7 @@
     </org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.86">
-    <script>@Library('Zebrunner-CE@master')
+    <script>@Library('Zebrunner-CE@develop')
 import com.zebrunner.jenkins.pipeline.Organization;
 new Organization(this).register()</script>
     <sandbox>true</sandbox>

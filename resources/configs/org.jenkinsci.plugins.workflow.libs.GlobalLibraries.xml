@@ -12,7 +12,7 @@
           </traits>
         </scm>
       </retriever>
-      <defaultVersion>master</defaultVersion>
+      <defaultVersion>develop</defaultVersion>
       <implicit>false</implicit>
       <allowVersionOverride>true</allowVersionOverride>
       <includeInChangesets>false</includeInChangesets>

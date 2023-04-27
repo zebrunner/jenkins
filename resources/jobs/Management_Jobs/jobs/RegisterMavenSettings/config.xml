@@ -43,7 +43,7 @@ Run RegisterMavenSettings and register above ID for your organization (folderNam
     </org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.86">
-    <script>@Library(&apos;Zebrunner-CE@main&apos;)
+    <script>@Library(&apos;Zebrunner-CE@develop&apos;)
 import com.zebrunner.jenkins.pipeline.Organization;
 new Organization(this).registerMavenSettings()</script>
     <sandbox>true</sandbox>
