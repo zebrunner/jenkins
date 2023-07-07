@@ -1,4 +1,4 @@
-FROM jenkins/jenkins:2.387-jdk11
+FROM jenkins/jenkins:2.401.2-lts-jdk11
 
 ENV ROOT_URL=http://localhost:8080/jenkins
 ENV ROOT_EMAIL=qps-auto@zebrunner.com
@@ -29,33 +29,7 @@ COPY resources/healthcheck /usr/local/bin/
 
 # Install utils
 RUN apt-get update && \
-	apt-get install -qqy iputils-ping telnet nano procps netcat iputils-ping
-
-#======================
-# Install Apache Maven
-#======================
-
-ARG MAVEN_VERSION=3.6.3
-ARG SHA=26ad91d751b3a9a53087aefa743f4e16a17741d3915b219cf74112bf87a438c5
-ARG BASE_URL=https://apache.osuosl.org/maven/maven-3/${MAVEN_VERSION}/binaries
-
-RUN mkdir -p /usr/share/maven /usr/share/maven/ref \
-  && curl -fsSL -o /tmp/apache-maven.tar.gz ${BASE_URL}/apache-maven-${MAVEN_VERSION}-bin.tar.gz \
-  && echo "${SHA}  /tmp/apache-maven.tar.gz" | sha256sum -c - \
-  && tar -xzf /tmp/apache-maven.tar.gz -C /usr/share/maven --strip-components=1 \
-  && rm -f /tmp/apache-maven.tar.gz \
-  && ln -s /usr/share/maven/bin/mvn /usr/bin/mvn
-
-ENV MAVEN_HOME /usr/share/maven
-ENV MAVEN_CONFIG "/var/jenkins_home/.m2"
-
-COPY resources/scripts/mvn-entrypoint.sh /usr/local/bin/mvn-entrypoint.sh
-COPY resources/configs/settings-docker.xml /usr/share/maven/ref/
-
-RUN chown -R jenkins /usr/share/maven /usr/share/maven/ref
-#RUN chmod a+w /usr/local/openjdk-11/lib/security/cacerts
-
-RUN /usr/local/bin/mvn-entrypoint.sh
+	apt-get install -qqy iputils-ping telnet nano procps netcat iputils-ping rsync
 
 # Initialize Jenkins
 
