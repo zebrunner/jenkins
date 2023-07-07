@@ -84,7 +84,7 @@ source patch/utility.sh
     if [ ! -f variables.env ]; then
       # need proceed with setup steps in advance!
       setup
-      exit -1
+      exit 1
     fi
 
     # create infra network only if not exist
@@ -105,7 +105,7 @@ source patch/utility.sh
     if [ ! -f variables.env ]; then
       echo_warning "You have to setup services in advance using: ./zebrunner.sh setup"
       echo_telegram
-      exit -1
+      exit 1
     fi
 
     docker-compose --env-file .env -f docker-compose.yml stop
@@ -119,7 +119,7 @@ source patch/utility.sh
     if [ ! -f variables.env ]; then
       echo_warning "You have to setup services in advance using: ./zebrunner.sh setup"
       echo_telegram
-      exit -1
+      exit 1
     fi
 
     docker-compose --env-file .env -f docker-compose.yml down
@@ -133,7 +133,7 @@ source patch/utility.sh
     if [ ! -f variables.env ]; then
       echo_warning "You have to setup services in advance using: ./zebrunner.sh setup"
       echo_telegram
-      exit -1
+      exit 1
     fi
 
     cp backup/settings.env backup/settings.env.bak
@@ -149,7 +149,7 @@ source patch/utility.sh
     if [ ! -f variables.env ]; then
       echo_warning "You have to setup services in advance using: ./zebrunner.sh setup"
       echo_telegram
-      exit -1
+      exit 1
     fi
 
     stop
