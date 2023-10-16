@@ -6,7 +6,7 @@ if [ ! "$( ls -A /var/jenkins_home/plugins )" ]; then
   echo "- plugins dir is empty, installing plugins"
   echo "plugins to install: "
   echo "$( cat /var/jenkins_home/plugins.txt )"
-  /bin/jenkins-plugin-cli --plugin-file /usr/share/jenkins/ref/plugins.txt
+  /bin/jenkins-plugin-cli --plugin-file /var/jenkins_home/plugins.txt
 else
   echo "- plugins dir is not empty, no actions needed"
   echo "installed plugins:"
