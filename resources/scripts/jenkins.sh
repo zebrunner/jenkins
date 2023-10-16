@@ -2,15 +2,15 @@
 
 # Check if the plugins dir is empty and if so install plugins
 echo "Check if plugins dir is empty:"
-if [ ! "$( ls -A /var/jenkins_home/plugins )" ]; then
+if [ ! "$( ls -A /usr/share/jenkins/ref/plugins )" ]; then
   echo "- plugins dir is empty, installing plugins"
   echo "plugins to install: "
-  echo "$( cat /var/jenkins_home/plugins.txt )"
+  echo "$( cat /usr/share/jenkins/ref/plugins.txt )"
   /bin/jenkins-plugin-cli --plugin-file /usr/share/jenkins/ref/plugins.txt
 else
   echo "- plugins dir is not empty, no actions needed"
   echo "installed plugins:"
-  echo "$( ls -d /var/jenkins_home/plugins/*/ )"
+  echo "$( ls -d /usr/share/jenkins/ref/plugins/*/ )"
 fi
 
 # upload extra plugins at run-time during first initialization only
