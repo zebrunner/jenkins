@@ -41,9 +41,8 @@ RUN echo $JENKINS_VERSION > /usr/share/jenkins/ref/jenkins.install.UpgradeWizard
 COPY resources/init.groovy.d/ /usr/share/jenkins/ref/init.groovy.d/
 COPY resources/jobs/ /usr/share/jenkins/ref/jobs/
 
-# Configure plugins
+# Copy plugins list
 COPY resources/configs/plugins.txt /usr/share/jenkins/ref/
-RUN /bin/jenkins-plugin-cli --plugin-file /usr/share/jenkins/ref/plugins.txt
 
 # Copy default keystore.jks with self-signed localhost certificate
 COPY resources/ssl/keystore.jks /var/jenkins_home
