@@ -70,7 +70,7 @@ source patch/utility.sh
       exit -1
     fi
 
-    docker-compose --env-file .env -f docker-compose.yml down -v
+    docker compose down -v
     rm -f variables.env
     rm -f backup/settings.env
   }
@@ -94,7 +94,7 @@ source patch/utility.sh
       cp variables.env.original variables.env
     fi
 
-    docker-compose --env-file .env -f docker-compose.yml up -d
+    docker compose up -d
   }
 
   stop() {
@@ -108,7 +108,7 @@ source patch/utility.sh
       exit 1
     fi
 
-    docker-compose --env-file .env -f docker-compose.yml stop
+    docker compose stop
   }
 
   down() {
@@ -122,7 +122,7 @@ source patch/utility.sh
       exit 1
     fi
 
-    docker-compose --env-file .env -f docker-compose.yml down
+    docker compose down
   }
 
   backup() {
