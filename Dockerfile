@@ -1,4 +1,4 @@
-FROM jenkins/jenkins:2.401.2-lts-jdk11
+FROM jenkins/jenkins:2.452.1-lts-jdk11
 
 ENV ROOT_URL=http://localhost:8080/jenkins
 ENV ROOT_EMAIL=qps-auto@zebrunner.com
@@ -29,7 +29,7 @@ COPY resources/healthcheck /usr/local/bin/
 
 # Install utils
 RUN apt-get update && \
-	apt-get install -qqy iputils-ping telnet nano procps netcat iputils-ping rsync
+	apt-get install -qqy iputils-ping telnet nano procps netcat-openbsd iputils-ping rsync
 
 # Initialize Jenkins
 
