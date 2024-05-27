@@ -1,4 +1,4 @@
-FROM jenkins/jenkins:2.401.2-lts-jdk11
+FROM jenkins/jenkins:2.440.3-lts-jdk11
 
 ENV ROOT_URL=http://localhost:8080/jenkins
 ENV ROOT_EMAIL=qps-auto@zebrunner.com
@@ -21,11 +21,6 @@ ENV SONAR_URL=
 USER root
 
 COPY resources/healthcheck /usr/local/bin/
-
-# Install Git
-
-# RUN apk update && apk upgrade && \
-#    apk add --no-cache bash git openssh
 
 # Install utils
 RUN apt-get update && \
