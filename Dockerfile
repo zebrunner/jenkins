@@ -1,4 +1,4 @@
-FROM jenkins/jenkins:2.452.1-lts-jdk11
+FROM jenkins/jenkins:2.440.3-lts-jdk11
 
 ENV ROOT_URL=http://localhost:8080/jenkins
 ENV ROOT_EMAIL=qps-auto@zebrunner.com
@@ -22,14 +22,8 @@ USER root
 
 COPY resources/healthcheck /usr/local/bin/
 
-# Install Git
-
-# RUN apk update && apk upgrade && \
-#    apk add --no-cache bash git openssh
-
 # Install utils
-RUN apt-get update && \
-	apt-get install -qqy iputils-ping telnet nano procps netcat-openbsd iputils-ping rsync
+RUN apt-get upgrade && apt-get update && apt-get install -qqy iputils-ping telnet nano procps netcat-openbsd iputils-ping rsync
 
 # Initialize Jenkins
 
