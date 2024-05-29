@@ -24,7 +24,7 @@ COPY resources/healthcheck /usr/local/bin/
 
 # Install utils
 RUN apt-get update && \
-	apt-get install -qqy iputils-ping telnet nano procps netcat-openbsd iputils-ping rsync
+	apt-get install -qqy iputils-ping telnet nano procps netcat iputils-ping rsync
 
 # Initialize Jenkins
 
